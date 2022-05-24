@@ -1,9 +1,11 @@
 package projet.echecmartien.modele
 
+class MoyenPion: GrandPion() {
 
+    override fun getScore(): Int = 2
 
-class MoyenPion {
-
-
+    override fun getDeplacement(deplacement: Deplacement): List<Coordonnee> {
+        TODO("Not yet implemented")
+    }
 
 }

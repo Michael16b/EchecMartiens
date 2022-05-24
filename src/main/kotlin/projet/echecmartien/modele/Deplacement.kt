@@ -7,8 +7,15 @@ package projet.echecmartien.modele
  *
  */
 
-class Deplacement {
+class Deplacement(origine: Coordonnee, destination: Coordonnee) {
 
+    private val origine: Coordonnee
+    private val destination: Coordonnee
+
+    init {
+        this.origine = origine
+        this.destination = destination
+    }
 
     /**
      * dans le constructeur la validité du déplacement dans la grille est testée
@@ -21,18 +28,14 @@ class Deplacement {
      * getter
      * @return la destination de ce déplacement
      */
-    fun getDestination():Coordonnee{
-        TODO()
-    }
+    fun getDestination():Coordonnee = this.destination
 
 
     /**
      * getter
      * @return l'origine de ce déplacement
      */
-    fun getOrigine():Coordonnee{
-       TODO()
-    }
+    fun getOrigine():Coordonnee = this.origine
 
     /**
      *méthode qui permet de tester si le déplacement est horizontal
