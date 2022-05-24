@@ -4,12 +4,12 @@ package projet.echecmartien.modele
 /**
  * Classe Pion
  */
-class Pion {
+abstract class Pion {
 	/**
 	 * récupère la valeur du score d'un pion
 	 * @return la valeur du score
 	 */
-	//TODO
+	abstract fun getScore(): Int
 
 
 	/**
@@ -22,5 +22,6 @@ class Pion {
 	 *
 	 * @throws DeplacementException est levée si le déplacement n'est pas possible
 	 */
-	//TODO
-   }
+	abstract fun getDeplacement(deplacement: Deplacement): List<Coordonnee>
+
+}
