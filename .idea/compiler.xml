@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="echecMartien" />
+        <module name="sae-dev-ihm-test" />
+        <module name="eq_1_03_besily-michael_bleuet-matthis_le-juge-julien_painter-louis" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
