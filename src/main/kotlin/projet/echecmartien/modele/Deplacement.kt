@@ -1,5 +1,6 @@
 package projet.echecmartien.modele
 
+import kotlin.math.abs
 
 
 /**
@@ -15,6 +16,8 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
     init {
         this.origine = origine
         this.destination = destination
+
+        // TODO : vérifier la validité du déplacement
     }
 
     /**
@@ -42,7 +45,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @return true si le déplacement est horizontal, false sinon
      */
     fun estHorizontal() : Boolean {
-        TODO()
+        return origine.getY() == destination.getY()
     }
 
     /**
@@ -50,7 +53,15 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @return true si le déplacement est vertical, false sinon
      */
     fun estVertical(): Boolean {
-       TODO()
+       return origine.getX() == destination.getX()
+    }
+
+    private fun distanceX(): Int {
+        return abs(origine.getX() - destination.getX())
+    }
+
+    private fun distanceY(): Int {
+        return abs(origine.getY() - destination.getY())
     }
 
     /**
@@ -58,16 +69,14 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @return true si le déplacement est diagonal, false sinon
      */
     fun estDiagonal():Boolean {
-       TODO()
+        return distanceX() == distanceY()
     }
 
     /**
      *méthode qui permet de calculer le nombre de case d'un déplacement
      * @return le nombre de case que le pion sera déplacée
      */
-    fun longueur(): Int {
-        TODO()
-    }
+    fun longueur(): Int = distanceX() + distanceY()
 
 
     /**
@@ -133,7 +142,12 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @throws DeplacementException est levée si le déplacement n'est pas vertical
      */
     fun getCheminVertical(): List<Coordonnee> {
-       TODO()
+        if (!estVertical())
+           throw DeplacementException("déplacement non verical")
+
+        val coords = listOf<Coordonnee>()
+        
+        return coords
     }
 
 

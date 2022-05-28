@@ -1,17 +1,43 @@
 package projet.echecmartien.modele
 
+import projet.echecmartien.librairie.EnumPion
+import projet.echecmartien.librairie.GeneralData
+import projet.echecmartien.librairie.TAILLEHORIZONTALE
+import projet.echecmartien.librairie.TAILLEVERTICALE
 
 
 class Plateau {
 
+    private var tailleHorizontale: Int
+    private var tailleVerticale: Int
+    private var cases: Array<Array<Case>>
 
+    init {
+        this.tailleHorizontale = TAILLEHORIZONTALE
+        this.tailleVerticale = TAILLEVERTICALE
+        this.cases = Array(tailleVerticale) {Array(tailleHorizontale) {Case()} }
+    }
 
     /**
      * initialise le plateau de jeu avec les pions
      */
     fun initialiser() {
-       TODO()
+
+        val refPlateau = GeneralData()
+
+        for (i in 0 until TAILLEVERTICALE) {
+            for (j in 0 until TAILLEHORIZONTALE) {
+
+                val pion: Pion? = when (refPlateau.tableau[i][j]) {
+                    EnumPion.GRANDPION -> GrandPion()
+                    EnumPion.MOYENPION -> MoyenPion()
+                    EnumPion.PETITPION -> PetitPion()
+                    else -> null
+                }
+                this.cases[i][j].setPion(pion)
+            }
         }
+    }
 
 
 
@@ -19,27 +45,21 @@ class Plateau {
      * donne la taille horizontale du plateau
      * @return la taille horizontale du plateau
      */
-    fun getTailleHorizontale(): Int {
-        TODO()
-    }
+    fun getTailleHorizontale(): Int = this.tailleHorizontale
 
 
     /**
      * donne la taille verticale du plateau
      * @return la taille verticale du plateau
      */
-    fun getTailleVerticale(): Int {
-       TODO()
-    }
+    fun getTailleVerticale(): Int = this.tailleVerticale
 
 
     /**
      * donne le tableau des cases du plateau
      * @return les cases du plateau
      */
-    fun getCases(): Array<Array<Case>> {
-        TODO()
-    }
+    fun getCases(): Array<Array<Case>> = this.cases
 
 
 }

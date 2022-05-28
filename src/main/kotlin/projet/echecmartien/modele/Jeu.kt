@@ -1,8 +1,15 @@
 package projet.echecmartien.modele
 
 
-class Jeu
+class Jeu {
 
+    private var nombreCoupsSansPrise: Int
+    private var nombreCoupsSansPriseMax: Int
+
+    init {
+        this.nombreCoupsSansPrise = 0
+        this.nombreCoupsSansPriseMax = 0
+    }
 
     /**
      * getter
@@ -46,7 +53,7 @@ class Jeu
     }
 
 
-/**
+    /**
      * affectation des joueurs aux cases
      * @param joueur1 premier joueur
      * @paral joueur2 second joueur
@@ -68,5 +75,7 @@ class Jeu
      *
      */
     fun changeJoueurCourant() {
-       TODO()
+        TODO()
+    }
+
 }
