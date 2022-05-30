@@ -15,8 +15,8 @@ class Jeu {
     private var plateau : Plateau
 
     init {
-        this.nombreCoupsSansPrise = 0
-        this.nombreCoupsSansPriseMax = 0
+        nombreCoupsSansPrise = 0
+        nombreCoupsSansPriseMax = 0
         coordOrigine = null
         coordDest = null
         joueurCourant = null
@@ -28,16 +28,12 @@ class Jeu {
      * getter
      * @return la coordonnée origine du déplacement
      */
-    fun getCoordOrigineDeplacement(): Coordonnee?{
-       return coordOrigine
-    }
+    fun getCoordOrigineDeplacement(): Coordonnee? = coordOrigine
     /**
      * getter
      * @return la coordonnée destination du déplacement
      */
-    fun getCoordDestinationDeplacement(): Coordonnee?{
-        return coordDest
-    }
+    fun getCoordDestinationDeplacement(): Coordonnee? = coordDest
 
 
     /**
@@ -61,13 +57,12 @@ class Jeu {
     /** retourne le joueur courant
      * @return le joueur courant
      */
-    fun getJoueurCourant(): Joueur? {
-       return joueurCourant
-    }
+    fun getJoueurCourant(): Joueur? = joueurCourant
 
     fun initialiserPartie(joueur1: Joueur, joueur2: Joueur, nombreCoupsSansPriseMax : Int) {
         initialiserJoueur(joueur1, joueur2)
         this.nombreCoupsSansPriseMax = nombreCoupsSansPriseMax
+        nombreCoupsSansPrise = 0
     }
 
     /**
@@ -78,6 +73,20 @@ class Jeu {
     private fun initialiserJoueur(joueur1: Joueur, joueur2: Joueur) {
         joueurs[0] = joueur1
         joueurs[1] = joueur2
+
+        // Joueur 1, partie "haute" du plateau
+        for (i in 0 until TAILLEVERTICALE/2) {
+            for (j in 0 until TAILLEHORIZONTALE) {
+                plateau.getCases()[i][j].setJoueur(joueur1)
+            }
+        }
+
+        // Joueur 2, partie "basse" du plateau
+        for (i in TAILLEVERTICALE/2 until TAILLEVERTICALE) {
+            for (j in 0 until TAILLEHORIZONTALE) {
+                plateau.getCases()[i][j].setJoueur(joueur2)
+            }
+        }
     }
 
     fun deplacementPossible(coordOriginX : Int, coordOriginY : Int) : Boolean {
