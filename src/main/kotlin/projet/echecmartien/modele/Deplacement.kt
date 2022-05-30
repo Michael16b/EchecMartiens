@@ -87,7 +87,14 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      *méthode qui permet de calculer le nombre de case d'un déplacement
      * @return le nombre de case que le pion sera déplacée
      */
-    fun longueur(): Int = distanceX() + distanceY()
+    fun longueur(): Int {
+        val distance = distanceX() + distanceY()
+        return if (estDiagonal()) {
+            distance / 2
+        } else {
+            distance
+        }
+    }
 
 
     /**
