@@ -96,7 +96,6 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         }
     }
 
-
     /**
      * méthode qui permet de déterminer le sens d'un déplacement vertical
      *

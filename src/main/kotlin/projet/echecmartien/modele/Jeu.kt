@@ -63,6 +63,7 @@ class Jeu {
         initialiserJoueur(joueur1, joueur2)
         this.nombreCoupsSansPriseMax = nombreCoupsSansPriseMax
         nombreCoupsSansPrise = 0
+        plateau.initialiser()
     }
 
     /**
@@ -96,7 +97,7 @@ class Jeu {
         if (plateau.getCases()[coordOriginX][coordOriginY].estLibre()) {
             return false
         }
-
+        var plateauCase = plateau.getCases()
         return true
     }
 
