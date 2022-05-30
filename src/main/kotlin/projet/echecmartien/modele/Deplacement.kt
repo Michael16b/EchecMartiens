@@ -200,7 +200,6 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
             steps++
         }
         return coords
-
     }
 
 
