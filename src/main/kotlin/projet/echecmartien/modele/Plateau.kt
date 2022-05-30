@@ -27,7 +27,6 @@ class Plateau {
 
         for (i in 0 until TAILLEHORIZONTALE) {
             for (j in 0 until TAILLEVERTICALE) {
-                println("${refPlateau.tableau[i][j]}")
                 val pion: Pion? = when (refPlateau.tableau[i][j]) {
                     EnumPion.GRANDPION -> GrandPion()
                     EnumPion.MOYENPION -> MoyenPion()
