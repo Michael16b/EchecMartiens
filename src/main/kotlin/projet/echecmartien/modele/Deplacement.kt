@@ -227,6 +227,16 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         if (!estDiagonal())
             throw DeplacementException("déplacement non diagonal")
 
+        val steps = 1
+        val xStep = if (origine.getX() < destination.getX()) 1 else -1
+        val yStep = if (origine.getY() < destination.getY()) 1 else -1
+
+        val coords = mutableListOf<Coordonnee>()
+        while (steps <= distanceX()) {
+            coords.add(Coordonnee(origine.getX()+steps*xStep, origine.getY()+steps*yStep))
+        }
+
+        return coords
     }
 
 
