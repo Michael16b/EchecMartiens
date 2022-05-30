@@ -1,4 +1,4 @@
-package projet.echecmartien
+package projet.echecmartien.modele
 
 
 
