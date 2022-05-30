@@ -18,8 +18,6 @@ class AppliJeuEchecMartien: Application() {
 }
 
 fun main(){
-    val p = Plateau()
-    p.initialiser()
     Application.launch(AppliJeuEchecMartien::class.java)
 }
 
