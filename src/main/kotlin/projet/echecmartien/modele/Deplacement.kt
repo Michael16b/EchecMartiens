@@ -186,7 +186,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
             return coords
         }
         // le déplacement est négatif horizontalement
-        for (i in destination.getX()-1 downTo origine.getX()) {
+        for (i in origine.getX()-1 downTo destination.getX()) {
             coords.add(Coordonnee(i, y))
         }
         return coords
