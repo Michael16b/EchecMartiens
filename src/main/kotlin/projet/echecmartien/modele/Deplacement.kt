@@ -161,9 +161,22 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      */
     fun getCheminVertical(): List<Coordonnee> {
         if (!estVertical())
-           throw DeplacementException("déplacement non verical")
+           throw DeplacementException("déplacement non vertical")
 
         val coords = mutableListOf<Coordonnee>()
+        val x = origine.getX()
+
+        // Le déplacement est positif et vertical
+        if (estVerticalPositif()) {
+            for (i in origine.getY()+1..destination.getY()) {
+                coords.add(Coordonnee(x, i))
+            }
+            return coords
+        }
+        // le déplacement est négatif et vertical
+        for (i in origine.getY()-1 downTo destination.getY()) {
+            coords.add(Coordonnee(x, i))
+        }
         return coords
     }
 
@@ -214,7 +227,6 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         if (!estDiagonal())
             throw DeplacementException("déplacement non diagonal")
 
-        TODO()
     }
 
 
