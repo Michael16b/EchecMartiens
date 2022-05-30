@@ -15,7 +15,7 @@ class Plateau {
     init {
         this.tailleHorizontale = TAILLEHORIZONTALE
         this.tailleVerticale = TAILLEVERTICALE
-        this.cases = Array(tailleVerticale) {Array(tailleHorizontale) {Case()} }
+        this.cases = Array(tailleHorizontale) {Array(tailleVerticale) {Case()} }
     }
 
     /**
@@ -25,9 +25,9 @@ class Plateau {
 
         val refPlateau = GeneralData()
 
-        for (i in 0 until TAILLEVERTICALE) {
-            for (j in 0 until TAILLEHORIZONTALE) {
-
+        for (i in 0 until TAILLEHORIZONTALE) {
+            for (j in 0 until TAILLEVERTICALE) {
+                println("${refPlateau.tableau[i][j]}")
                 val pion: Pion? = when (refPlateau.tableau[i][j]) {
                     EnumPion.GRANDPION -> GrandPion()
                     EnumPion.MOYENPION -> MoyenPion()
