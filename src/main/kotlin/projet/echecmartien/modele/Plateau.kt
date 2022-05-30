@@ -32,7 +32,7 @@ class Plateau {
                     EnumPion.GRANDPION -> GrandPion()
                     EnumPion.MOYENPION -> MoyenPion()
                     EnumPion.PETITPION -> PetitPion()
-                    else -> null
+                    else -> null // EnumPion.LIBRE
                 }
                 this.cases[i][j].setPion(pion)
             }

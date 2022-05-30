@@ -1,5 +1,8 @@
 package projet.echecmartien.modele
 
+import projet.echecmartien.librairie.TAILLEHORIZONTALE
+import projet.echecmartien.librairie.TAILLEVERTICALE
+import java.lang.Exception
 import kotlin.math.abs
 
 
@@ -17,7 +20,15 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         this.origine = origine
         this.destination = destination
 
-        // TODO : vérifier la validité du déplacement
+        if (!estVertical() && !estHorizontal() && !estDiagonal())
+            throw DeplacementException("Le déplacement de $origine à $destination n'est ni vertical, ni horizontal, ni diagonal")
+
+        // les coordonnées d'origine et de destination ne doivent pas être en dehors du plateau de jeu
+        require(origine.getX() in 0 until TAILLEHORIZONTALE && origine.getY() in 0 until TAILLEVERTICALE)
+        require(destination.getX() in 0 until TAILLEHORIZONTALE && destination.getY() in 0 until TAILLEVERTICALE)
+
+        // l'origine et la destination ne peut pas être situés au même endroit
+        require(origine.toString() != destination.toString())
     }
 
     /**
@@ -85,7 +96,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      *@return true si le déplacement est positif, false sinon
      */
     fun estVerticalPositif():Boolean{
-        TODO()
+        return destination.getY() > origine.getY()
     }
 
     /**
@@ -94,7 +105,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @return true si le déplacement est positif, false sinon
      */
     fun estHorizontalPositif():Boolean{
-       TODO()
+        return destination.getX() > origine.getX()
     }
 
     /**
@@ -103,7 +114,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @return true si le déplacement est positif en X et Y, false sinon
      */
     fun estDiagonalPositifXPositifY(): Boolean{
-       TODO()
+        return estVerticalPositif() && estHorizontalPositif()
     }
     /**
      * méthode qui permet de déterminer si le sens d'un déplacement diagonal est négatif en X et positif en Y
@@ -111,7 +122,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @return true si le déplacement est négatif en X et positif en Y, false sinon
      */
     fun estDiagonalNegatifXPositifY(): Boolean{
-       TODO()
+       return estVerticalPositif() && !estHorizontalPositif()
     }
 
     /**
@@ -121,7 +132,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @return true si le déplacement est positif en X et négatif en Y, false sinon
      */
     fun estDiagonalPositifXNegatifY(): Boolean{
-       TODO()
+       return !estVerticalPositif() && estHorizontalPositif()
     }
 
     /**
@@ -130,7 +141,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @return true si le déplacement est négatif en X et négatif en Y, false sinon
      */
     fun estDiagonalNegatifXNegatifY(): Boolean{
-        TODO()
+        return !estVerticalPositif() && !estHorizontalPositif()
     }
 
     /**
@@ -145,8 +156,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         if (!estVertical())
            throw DeplacementException("déplacement non verical")
 
-        val coords = listOf<Coordonnee>()
-        
+        val coords = mutableListOf<Coordonnee>()
         return coords
     }
 
@@ -162,6 +172,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      */
     fun getCheminHorizontal(): List<Coordonnee> {
        TODO()
+
     }
 
 
