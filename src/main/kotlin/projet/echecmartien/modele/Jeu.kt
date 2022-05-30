@@ -8,8 +8,8 @@ class Jeu {
 
     private var nombreCoupsSansPrise: Int
     private var nombreCoupsSansPriseMax: Int
-    private var coordOrigine : Coordonnee
-    private var coordDest : Coordonnee
+    private var coordOrigine : Coordonnee?
+    private var coordDest : Coordonnee?
     private var joueurCourant : Joueur?
     private var joueurs : Array<Joueur?>
     private var plateau : Plateau
@@ -17,8 +17,8 @@ class Jeu {
     init {
         this.nombreCoupsSansPrise = 0
         this.nombreCoupsSansPriseMax = 0
-        coordOrigine = Coordonnee(0,0)
-        coordDest = Coordonnee(0,0)
+        coordOrigine = null
+        coordDest = null
         joueurCourant = null
         joueurs = arrayOfNulls(2)
         plateau = Plateau()
@@ -92,15 +92,35 @@ class Jeu {
     }
 
     fun deplacementPossible(coordOriginX : Int, coordOriginY : Int, coordDestinationX : Int, coordDestinationY : Int, joueur : Joueur?) : Boolean {
-        TODO()
+        if (coordOriginX !in 0 until TAILLEHORIZONTALE || coordOriginY !in 0 until TAILLEVERTICALE) {
+            return false
+        }
+        if (plateau.getCases()[coordOriginX][coordOriginY].estLibre()) {
+            return false
+        }
+        TODO("faire la fonction")
     }
 
     fun deplacer(coordOriginX: Int, coordOriginY: Int, coordDestinationX: Int, coordDestinationY: Int) {
-        TODO()
+        if (coordDestinationX in 0 until TAILLEHORIZONTALE
+            || coordDestinationY in 0 until TAILLEVERTICALE
+            || plateau.getCases()[coordDestinationX][coordDestinationY].estLibre()
+            && deplacementPossible(coordOriginX,coordOriginY)) {
+                this.coordOrigine = Coordonnee(coordDestinationX, coordDestinationY)
+        } else {
+            throw DeplacementException("Le déplacement n'est pas possible")
+        }
     }
 
     fun joueurVainqueur(): Joueur? {
-        TODO()
+        if (nombreCoupsSansPrise == nombreCoupsSansPriseMax && joueurs[0] != null && joueurs[1] != null) {
+            if (joueurs[0]!!.calculerScore() > joueurs[1]!!.calculerScore()) {
+                return joueurs[0]
+            } else if (joueurs[0]!!.calculerScore() < joueurs[1]!!.calculerScore()) {
+                return joueurs[1]
+            }
+        }
+        return null
     }
 
     /**
@@ -108,7 +128,7 @@ class Jeu {
      * @return true si la partie est finie, false sinon
      */
     fun arretPartie(): Boolean {
-       TODO()
+        return joueurVainqueur() != null
     }
 
     /**
@@ -116,7 +136,11 @@ class Jeu {
      *
      */
     fun changeJoueurCourant() {
-        TODO()
+        joueurCourant = if (joueurCourant == joueurs[0]) {
+            joueurs[1]
+        } else {
+            joueurs[0]
+        }
     }
 
 }
