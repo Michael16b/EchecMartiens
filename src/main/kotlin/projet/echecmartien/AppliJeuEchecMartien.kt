@@ -18,6 +18,16 @@ class AppliJeuEchecMartien: Application() {
 }
 
 fun main(){
+    val jeu = Jeu()
+    val plateau = Plateau()
+    jeu.initialiserPartie(Joueur("Michaël"), Joueur("Matthis"), 10)
+    plateau.initialiser()
+    var cases = plateau.getCases()
+    for (i in 0 until cases.size) {
+        for (j in 0 until cases[i].size) {
+            println(cases[i][j].getPion())
+        }
+    }
     Application.launch(AppliJeuEchecMartien::class.java)
 }
 

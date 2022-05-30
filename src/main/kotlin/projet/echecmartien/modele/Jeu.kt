@@ -2,6 +2,7 @@ package projet.echecmartien.modele
 
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
+import java.lang.IllegalArgumentException
 
 
 class Jeu {
@@ -76,15 +77,15 @@ class Jeu {
         joueurs[1] = joueur2
 
         // Joueur 1, partie "haute" du plateau
-        for (i in 0 until TAILLEVERTICALE/2) {
-            for (j in 0 until TAILLEHORIZONTALE) {
+        for (i in 0 until TAILLEHORIZONTALE) {
+            for (j in 0 until TAILLEVERTICALE/2) {
                 plateau.getCases()[i][j].setJoueur(joueur1)
             }
         }
 
         // Joueur 2, partie "basse" du plateau
-        for (i in TAILLEVERTICALE/2 until TAILLEVERTICALE) {
-            for (j in 0 until TAILLEHORIZONTALE) {
+        for (i in 0 until TAILLEHORIZONTALE) {
+            for (j in TAILLEVERTICALE/2 until TAILLEVERTICALE) {
                 plateau.getCases()[i][j].setJoueur(joueur2)
             }
         }
@@ -98,6 +99,18 @@ class Jeu {
             return false
         }
         var plateauCase = plateau.getCases()
+        for (i in coordOriginY-1 until coordOriginY+2) {
+            for (j in coordOriginX-1 until coordOriginX+2) {
+                if (i != coordOriginX && j != coordOriginY) {
+                    var deplacement : Deplacement
+                    try {
+                        deplacement = Deplacement(Coordonnee(coordOriginX, coordOriginY), Coordonnee(i, j))
+                    } catch (e : IllegalArgumentException) {
+
+                    }
+                }
+            }
+        }
         return true
     }
 
