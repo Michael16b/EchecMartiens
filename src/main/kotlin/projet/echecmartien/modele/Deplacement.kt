@@ -163,19 +163,15 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         if (!estVertical())
            throw DeplacementException("déplacement non vertical")
 
-        val coords = mutableListOf<Coordonnee>()
+        var steps = 1
+        val yStep = if(estVerticalPositif()) 1 else -1
         val x = origine.getX()
 
-        // Le déplacement est positif et vertical
-        if (estVerticalPositif()) {
-            for (i in origine.getY()+1..destination.getY()) {
-                coords.add(Coordonnee(x, i))
-            }
-            return coords
-        }
-        // le déplacement est négatif et vertical
-        for (i in origine.getY()-1 downTo destination.getY()) {
-            coords.add(Coordonnee(x, i))
+        val coords = mutableListOf<Coordonnee>()
+
+        while (steps <= distanceY()) {
+            coords.add(Coordonnee(x, origine.getY()+steps*yStep))
+            steps++
         }
         return coords
     }
@@ -191,23 +187,18 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
      * @throws DeplacementException est levée si le déplacement n'est pas horizontal
      */
     fun getCheminHorizontal(): List<Coordonnee> {
-
         if (!estHorizontal())
             throw DeplacementException("déplacement non horizontal")
 
-        val coords = mutableListOf<Coordonnee>()
+        var steps = 1
+        val xStep = if(estHorizontalPositif()) 1 else -1
         val y = origine.getY()
 
-        // le déplacement est positif horizontalement
-        if (estHorizontalPositif()) {
-            for (i in origine.getX()+1..destination.getX()) {
-                coords.add(Coordonnee(i, y))
-            }
-            return coords
-        }
-        // le déplacement est négatif horizontalement
-        for (i in origine.getX()-1 downTo destination.getX()) {
-            coords.add(Coordonnee(i, y))
+        val coords = mutableListOf<Coordonnee>()
+
+        while (steps <= distanceX()) {
+            coords.add(Coordonnee(origine.getX()+steps*xStep, y))
+            steps++
         }
         return coords
 
