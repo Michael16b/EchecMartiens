@@ -1,11 +1,9 @@
 package projet.echecmartien.modele
 
-import org.junit.Before
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
-import org.junit.platform.commons.util.CollectionUtils
-import projet.echecmartien.modele.Joueur
 
 class TestJoueur{
 
@@ -15,8 +13,8 @@ class TestJoueur{
     private val nbGrand = 3
     private val nbTotal = nbPetit + nbMoyen + nbGrand
 
-    @Before
-    fun setup() {
+    @BeforeEach
+    fun setUp() {
         joueur1 = Joueur("toto")
     }
 

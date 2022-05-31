@@ -1,21 +1,19 @@
 package projet.echecmartien.modele
 
-import org.junit.Before
 import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 
 internal class TestCase {
 
     private var c = Case()
     val p = PetitPion()
     val p2 = GrandPion()
-    val p3 = GrandPion()
     val j1 = Joueur("Matthis")
     val j2 = Joueur("Louis")
 
-    @Before
-    fun setup() {
+    @BeforeEach
+    fun setUp() {
         c = Case()
     }
 
