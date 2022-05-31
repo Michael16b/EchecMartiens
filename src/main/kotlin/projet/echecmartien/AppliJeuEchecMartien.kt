@@ -23,10 +23,14 @@ fun main(){
     jeu.initialiserPartie(Joueur("Michaël"), Joueur("Matthis"), 10)
     plateau.initialiser()
     var cases = plateau.getCases()
-    for (i in 0 until cases.size) {
-        for (j in 0 until cases[i].size) {
-            println(cases[i][j].getPion())
+    println(jeu.deplacementPossible(1, 1))
+    println(jeu.deplacementPossible(2, 0))
+    println(jeu.deplacementPossible(3, 0))
+    for (row in cases) {
+        for (pion in row) {
+            print("$pion ")
         }
+        print("\n")
     }
     Application.launch(AppliJeuEchecMartien::class.java)
 }

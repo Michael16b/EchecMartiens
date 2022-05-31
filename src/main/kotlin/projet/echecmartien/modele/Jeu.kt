@@ -98,20 +98,30 @@ class Jeu {
         if (plateau.getCases()[coordOriginX][coordOriginY].estLibre()) {
             return false
         }
-        var plateauCase = plateau.getCases()
+
+        val plateauCase = plateau.getCases()
+
         for (i in coordOriginY-1 until coordOriginY+2) {
             for (j in coordOriginX-1 until coordOriginX+2) {
                 if (i != coordOriginX && j != coordOriginY) {
                     var deplacement : Deplacement
-                    try {
-                        deplacement = Deplacement(Coordonnee(coordOriginX, coordOriginY), Coordonnee(i, j))
-                    } catch (e : IllegalArgumentException) {
 
+                    try {
+                        deplacement = Deplacement(Coordonnee(coordOriginX, coordOriginY), Coordonnee(j, i))
+                    } catch (e : IllegalArgumentException) {
+                        continue
                     }
+                    if (plateauCase[i][j].estLibre())
+                        continue
+                    try {
+                        plateauCase[i][j].getPion()!!.getDeplacement(deplacement)
+                        return true
+                    } catch (_: DeplacementException) { }
+
                 }
             }
         }
-        return true
+        return false
     }
 
     fun deplacementPossible(coordOriginX : Int, coordOriginY : Int, coordDestinationX : Int, coordDestinationY : Int, joueur : Joueur?) : Boolean {

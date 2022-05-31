@@ -21,17 +21,17 @@ class TestJoueur{
     }
 
     @Test
-    fun testJoueur1() {
+    fun testNom() {
         assertEquals("toto", joueur1.getPseudo(), "le nom du joueur devrait être toto")
     }
 
     @Test
-    fun testJoueur2() {
+    fun testNbPionsCapturesNul() {
         assertEquals(0, joueur1.getNbPionsCaptures(), "le nombre de pions capturés du joueur devrait être 0")
     }
 
     @Test
-    fun testJoueur3() {
+    fun testNbPionsCapturesNonNul() {
 
         for (i in 0 until nbPetit) {
             joueur1.ajouterPionCaptures(PetitPion())
@@ -46,7 +46,12 @@ class TestJoueur{
     }
 
     @Test
-    fun testJoueur4() {
+    fun testPionsCapturesNuls() {
+        assertEquals(0, joueur1.getPionsCaptures().size, "Le nombre de pions capturés du joueur devrait être 0")
+    }
+
+    @Test
+    fun testPionsCapturesNonNuls() {
         val mesPions = mutableSetOf<Pion>()
         for (i in 0 until nbPetit) {
             val p = PetitPion()

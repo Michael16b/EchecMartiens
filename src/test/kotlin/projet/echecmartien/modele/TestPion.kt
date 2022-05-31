@@ -6,11 +6,4 @@ import org.junit.jupiter.api.Assertions.*
 
 internal class TestPion {
 
-    @Test
-    fun getScore() {
-    }
-
-    @Test
-    fun getDeplacement() {
-    }
 }
