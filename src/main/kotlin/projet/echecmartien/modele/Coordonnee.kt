@@ -24,7 +24,7 @@ class Coordonnee(x: Int, y: Int) {
     override fun toString():String = "$x $y"
 
     override fun equals(other: Any?): Boolean {
-        if (other == this)
+        if (other === this)
             return true
 
         if (other !is Coordonnee)
