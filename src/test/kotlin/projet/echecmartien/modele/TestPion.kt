@@ -33,7 +33,7 @@ internal class TestPion {
     }
 
     @Test
-    fun testDeplacementPetitPionException(){
+    fun testDeplacementPetitPionException1(){
         val deplacement = Deplacement(Coordonnee(0,0),Coordonnee(2,2))
         assertThrows<DeplacementException>("Une exception devrait être levée"){
             petitpion.getDeplacement(deplacement)
@@ -41,7 +41,7 @@ internal class TestPion {
     }
 
     @Test
-    fun testDeplacementPetitPionException1(){
+    fun testDeplacementPetitPionException2(){
         val deplacement = Deplacement(Coordonnee(0,0),Coordonnee(0,1))
         assertThrows<DeplacementException>("Une exception devrait être levée"){
             petitpion.getDeplacement(deplacement)
