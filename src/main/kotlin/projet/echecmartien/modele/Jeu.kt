@@ -109,34 +109,6 @@ class Jeu {
                 if (deplacementPossible(coordOriginX, coordOriginY, i, j, caseOrigine.getJoueur()))
                     return true
 
-                /*
-                val deplacement : Deplacement
-                // on teste si le déplacement dans une direction est possible, sinon on passe au suivant
-                try {
-                    deplacement = Deplacement(Coordonnee(coordOriginX,coordOriginY),Coordonnee(i,j))
-                } catch (_:IllegalArgumentException) {
-                    continue
-                }
-                // on regarde si le pion peut faire ce déplacement, sinon on passe au déplacement suivant
-                try {
-                    caseOrigine.getPion()!!.getDeplacement(deplacement)
-                } catch (_: DeplacementException) {
-                    continue
-                }
-
-                // si le pion vient d'arriver dans la zone, il ne peut pas sortir de la zone directement après
-                if (pionArriveDeZone == caseOrigine.getPion() && cases[i][j].getJoueur() != joueurCourant)
-                    return false
-
-                if (cases[i][j].estLibre())
-                    return true
-
-                // la case n'est pas libre, le pion peut bouger si le pion sur la case est un pion adverse
-                if (cases[i][j].getJoueur() != joueurCourant)
-                    return true
-
-
-                 */
             }
         }
         return false
