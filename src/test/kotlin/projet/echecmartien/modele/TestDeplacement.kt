@@ -294,4 +294,13 @@ internal class TestDeplacement {
             Deplacement(Coordonnee(2, 8), Coordonnee(2, 4))
         }
     }
+
+    @Test
+    fun testOrigineDestination() {
+        val deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(0, 5))
+        assertTrue(deplacement.getOrigine() == Coordonnee(0, 1))
+        assertTrue(deplacement.getDestination() == Coordonnee(0, 5))
+    }
+
+
 }
