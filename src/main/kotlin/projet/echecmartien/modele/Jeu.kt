@@ -2,7 +2,6 @@ package projet.echecmartien.modele
 
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
-import java.lang.IllegalArgumentException
 
 
 class Jeu {
@@ -14,6 +13,7 @@ class Jeu {
     private var joueurCourant : Joueur?
     private var joueurs : Array<Joueur?>
     private var plateau : Plateau
+    private var pionArriveDeZone: Pion?
 
     init {
         nombreCoupsSansPrise = 0
@@ -21,6 +21,7 @@ class Jeu {
         coordOrigine = null
         coordDest = null
         joueurCourant = null
+        pionArriveDeZone = null
         joueurs = arrayOfNulls(2)
         plateau = Plateau()
     }
@@ -75,6 +76,7 @@ class Jeu {
     private fun initialiserJoueur(joueur1: Joueur, joueur2: Joueur) {
         joueurs[0] = joueur1
         joueurs[1] = joueur2
+        joueurCourant = joueur1
 
         val cases = plateau.getCases()
         // Joueur 1, partie "haute" du plateau
@@ -103,18 +105,32 @@ class Jeu {
 
         for (i in coordOriginX-1 until coordOriginX+2) {
             for (j in coordOriginY-1 until coordOriginY+2) {
+                if (i == coordOriginX && j == coordOriginY)
+                    continue
+
                 val deplacement : Deplacement
+                // on teste si le déplacement dans une direction est possible, sinon on passe au suivant
                 try {
                     deplacement = Deplacement(Coordonnee(coordOriginX,coordOriginY),Coordonnee(i,j))
                 } catch (_:IllegalArgumentException) {
                     continue
                 }
+                // on regarde si le pion peut faire ce déplacement, sinon on passe au déplacement suivant
                 try {
                     caseOrigine.getPion()!!.getDeplacement(deplacement)
                 } catch (_: DeplacementException) {
                     continue
                 }
+
+                // si le pion vient d'arriver dans la zone, il ne peut pas sortir de la zone directement après
+                if (pionArriveDeZone == caseOrigine.getPion() && cases[i][j].getJoueur() != joueurCourant)
+                    return false
+
                 if (cases[i][j].estLibre())
+                    return true
+
+                // la case n'est pas libre, le pion peut bouger si le pion sur la case est un pion adverse
+                if (cases[i][j].getJoueur() != joueurCourant)
                     return true
             }
         }
@@ -125,21 +141,77 @@ class Jeu {
         if (coordOriginX !in 0 until TAILLEHORIZONTALE || coordOriginY !in 0 until TAILLEVERTICALE)
             return false
 
-        if (plateau.getCases()[coordOriginX][coordOriginY].estLibre())
+        if (coordDestinationX !in 0 until TAILLEHORIZONTALE || coordDestinationY !in 0 until TAILLEVERTICALE)
             return false
 
-        TODO("faire la fonction")
+        if (joueur !in joueurs)
+            return false
+
+        val cases = plateau.getCases()
+        val caseOrigine = cases[coordOriginX][coordOriginY]
+        if (caseOrigine.estLibre())
+            return false
+
+        val deplacement: Deplacement
+        // on teste si le déplacement est valide, sinon le déplacement n'est pas possible
+        try {
+            deplacement = Deplacement(Coordonnee(coordOriginX, coordOriginY), Coordonnee(coordDestinationX, coordDestinationY))
+        } catch (_: DeplacementException) {
+            return false
+        }
+
+        val coords: List<Coordonnee>
+        /**
+         * on teste si le déplacement est valide pour le pion dans la case d'origine, sinon
+         * le déplacement n'est pas possible
+         */
+        try {
+            coords = caseOrigine.getPion()!!.getDeplacement(deplacement)
+        } catch (_: DeplacementException) {
+            return false
+        }
+
+        // on teste si la dernière case est libre ou le pion dessus peut être mangé
+        val lastCoord = coords.last()
+        if (!cases[lastCoord.getX()][lastCoord.getY()].estLibre())
+            return false
+
+        if (cases[lastCoord.getX()][lastCoord.getY()].getJoueur() == joueur)
+            return false
+
+        /**
+         * on teste s'il y a des pions sur le chemin (sans compter la dernière case)
+         * un pion ne peut pas enjamber un autre
+          */
+
+        for (i in 0 until coords.size-1) {
+            if (!cases[coords[i].getX()][coords[i].getY()].estLibre())
+                return false
+        }
+
+        return true
+
     }
 
     fun deplacer(coordOriginX: Int, coordOriginY: Int, coordDestinationX: Int, coordDestinationY: Int) {
-        if (coordDestinationX in 0 until TAILLEHORIZONTALE
-            || coordDestinationY in 0 until TAILLEVERTICALE
-            || plateau.getCases()[coordDestinationX][coordDestinationY].estLibre()
-            && deplacementPossible(coordOriginX,coordOriginY)) {
-                this.coordOrigine = Coordonnee(coordDestinationX, coordDestinationY)
-        } else {
-            throw DeplacementException("Le déplacement n'est pas possible")
-        }
+        // le pionArriveDeZone dure qu'un seul tour
+        pionArriveDeZone = null
+
+        val cases = plateau.getCases()
+        val caseDestination = cases[coordDestinationX][coordDestinationY]
+        val caseOrigine = cases[coordOriginX][coordOriginY]
+
+        if (!caseDestination.estLibre())
+            joueurCourant?.ajouterPionCaptures(caseDestination.getPion()!!)
+
+        // si le pion change de zone il devient le dernier pion arrivé de zone
+        if (caseDestination.getJoueur() != joueurCourant)
+            pionArriveDeZone = caseOrigine.getPion()
+
+        caseDestination.setPion(caseOrigine.getPion())
+        caseOrigine.setPion(null)
+
+
     }
 
     fun joueurVainqueur(): Joueur? {
