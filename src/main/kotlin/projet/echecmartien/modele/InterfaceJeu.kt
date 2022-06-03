@@ -41,8 +41,9 @@ interface InterfaceJeu {
     ): Boolean
 
     /**
-     * Effectue le déplacement d'un pion en modifiant ses coordonnées (coordonnées de départ) qui prennent pour valeur les coordonnées d'arrivée. <br></br>Si un pion adverse a pour coordonnées, les coordonnées d'arrivée du pion déplacé alors il est capturé.
-     * <br></br>préconditions: le déplacement est potentiellement possible dans la grille de jeu
+     * Effectue le déplacement d'un pion en modifiant ses coordonnées (coordonnées de départ) qui prennent pour valeur les coordonnées d'arrivée. <
+     * Si un pion adverse a pour coordonnées, les coordonnées d'arrivée du pion déplacé alors il est capturé.
+     * préconditions: le déplacement est potentiellement possible dans la grille de jeu
      *
      * @param coordOrigineX
      * la coordonnée horizontale de la case dont le joueur veut
