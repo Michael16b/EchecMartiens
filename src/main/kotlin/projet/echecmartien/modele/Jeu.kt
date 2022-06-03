@@ -178,6 +178,16 @@ class Jeu {
 
     fun deplacer(coordOriginX: Int, coordOriginY: Int, coordDestinationX: Int, coordDestinationY: Int) {
 
+        val cases = plateau.getCases()
+        val caseDestination = cases[coordDestinationX][coordDestinationY]
+        val caseOrigine = cases[coordOriginX][coordOriginY]
+
+        if (!caseDestination.estLibre())
+            joueurCourant?.ajouterPionCaptures(caseDestination.getPion()!!)
+
+        caseDestination.setPion(caseOrigine.getPion())
+        caseOrigine.setPion(null)
+
 
     }
 
