@@ -53,6 +53,18 @@ internal class TestDeplacement {
         assertEquals(oracle, d.estDiagonalPositifXNegatifY(), message)
     }
 
+    @ParameterizedTest
+    @MethodSource("diagonalNegatifXPositifYProvider")
+    fun testEstDiagonalNegatifXPositifY(d:Deplacement,oracle: Boolean, message: String){
+        assertEquals(oracle, d.estDiagonalNegatifXPositifY(), message)
+    }
+
+    @ParameterizedTest
+    @MethodSource("diagonalNegatifXNegatifYProvider")
+    fun testEstDiagonalNegatifXNegatifY(d:Deplacement,oracle: Boolean, message: String){
+        assertEquals(oracle, d.estDiagonalNegatifXNegatifY(), message)
+    }
+
     companion object {
         @JvmStatic
         fun horizontalProvider(): Stream<Arguments?>? {
