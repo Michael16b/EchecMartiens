@@ -209,8 +209,6 @@ class Jeu {
 
         caseDestination.setPion(caseOrigine.getPion())
         caseOrigine.setPion(null)
-
-
     }
 
     fun joueurVainqueur(): Joueur? {
@@ -260,5 +258,11 @@ class Jeu {
             joueurs[0]
         }
     }
+
+    /**
+     * retourne le plateau du jeu
+     * @return le plateau du jeu
+     */
+    fun getPLateau() : Plateau = this.plateau
 
 }

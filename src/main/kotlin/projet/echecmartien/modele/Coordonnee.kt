@@ -23,7 +23,14 @@ class Coordonnee(x: Int, y: Int) {
 
     override fun toString():String = "$x $y"
 
+    override fun equals(other: Any?): Boolean {
+        if (other === this)
+            return true
 
+        if (other !is Coordonnee)
+            return false
 
+        return getX() == other.getX() && getY() == other.getY()
+    }
 
 }
