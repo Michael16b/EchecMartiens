@@ -193,6 +193,8 @@ class Jeu {
     }
 
     fun deplacer(coordOriginX: Int, coordOriginY: Int, coordDestinationX: Int, coordDestinationY: Int) {
+        // le pionArriveDeZone dure qu'un seul tour
+        pionArriveDeZone = null
 
         val cases = plateau.getCases()
         val caseDestination = cases[coordDestinationX][coordDestinationY]
@@ -200,6 +202,10 @@ class Jeu {
 
         if (!caseDestination.estLibre())
             joueurCourant?.ajouterPionCaptures(caseDestination.getPion()!!)
+
+        // si le pion change de zone il devient le dernier pion arrivé de zone
+        if (caseDestination.getJoueur() != joueurCourant)
+            pionArriveDeZone = caseOrigine.getPion()
 
         caseDestination.setPion(caseOrigine.getPion())
         caseOrigine.setPion(null)
