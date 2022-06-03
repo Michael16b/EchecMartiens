@@ -2,7 +2,6 @@ package projet.echecmartien.modele
 
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
-import java.lang.Exception
 import kotlin.math.abs
 
 
@@ -28,7 +27,7 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         require(destination.getX() in 0 until TAILLEHORIZONTALE && destination.getY() in 0 until TAILLEVERTICALE)
 
         // l'origine et la destination ne peut pas être situés au même endroit
-        require(origine.toString() != destination.toString())
+        require(origine != destination)
     }
 
     /**
