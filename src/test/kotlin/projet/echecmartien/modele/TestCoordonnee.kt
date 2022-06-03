@@ -2,6 +2,7 @@ package projet.echecmartien.modele
 
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -9,6 +10,18 @@ import java.util.stream.Stream
 
 
 internal class TestCoordonnee {
+
+    @Test
+    fun testEquals() {
+        val c1 : Coordonnee = Coordonnee(0, 2)
+        val c2 : Coordonnee = Coordonnee(0, 2)
+        val c3 : Coordonnee = Coordonnee(5, 3)
+
+        assertEquals(true,c1.equals(c2), "Les deux coordonnées sont égaux")
+        assertEquals(false, c1.equals(c3),"Les deux coordonnées ne sont pas égaux")
+        assertEquals(true, c1.equals(c1),"Ce sont des objets égaux")
+    }
+
 
     @ParameterizedTest
     @MethodSource("coordProviderGetX")
@@ -45,8 +58,7 @@ internal class TestCoordonnee {
         @JvmStatic
         fun coordProviderEquals(): Stream<Arguments?>? {
             return Stream.of(
-                Arguments.of(Coordonnee(0, 2),Coordonnee(0, 2), true, "Les deux coordonnées sont égaux"),
-                Arguments.of(Coordonnee(5, 2),Coordonnee(0, 2), false, "Les deux coordonnées ne sont pas égaux")
+                Arguments.of(Coordonnee(5, 2),Coordonnee(0, 2), false, "")
             )
         }
     }
