@@ -2,7 +2,6 @@ package projet.echecmartien.modele
 
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
-import java.lang.IllegalArgumentException
 
 
 class Jeu {
@@ -92,36 +91,7 @@ class Jeu {
     }
 
     fun deplacementPossible(coordOriginX : Int, coordOriginY : Int) : Boolean {
-        if (coordOriginX !in 0 until TAILLEHORIZONTALE || coordOriginY !in 0 until TAILLEVERTICALE) {
-            return false
-        }
-        if (plateau.getCases()[coordOriginX][coordOriginY].estLibre()) {
-            return false
-        }
-
-        val plateauCase = plateau.getCases()
-
-        for (i in coordOriginY-1 until coordOriginY+2) {
-            for (j in coordOriginX-1 until coordOriginX+2) {
-                if (i != coordOriginX && j != coordOriginY) {
-                    var deplacement : Deplacement
-
-                    try {
-                        deplacement = Deplacement(Coordonnee(coordOriginX, coordOriginY), Coordonnee(j, i))
-                    } catch (e : IllegalArgumentException) {
-                        continue
-                    }
-                    if (plateauCase[i][j].estLibre())
-                        continue
-                    try {
-                        plateauCase[i][j].getPion()!!.getDeplacement(deplacement)
-                        return true
-                    } catch (_: DeplacementException) { }
-
-                }
-            }
-        }
-        return false
+        TODO()
     }
 
     fun deplacementPossible(coordOriginX : Int, coordOriginY : Int, coordDestinationX : Int, coordDestinationY : Int, joueur : Joueur?) : Boolean {
@@ -146,13 +116,46 @@ class Jeu {
     }
 
     fun joueurVainqueur(): Joueur? {
-        if (nombreCoupsSansPrise == nombreCoupsSansPriseMax && joueurs[0] != null && joueurs[1] != null) {
-            if (joueurs[0]!!.calculerScore() > joueurs[1]!!.calculerScore()) {
-                return joueurs[0]
-            } else if (joueurs[0]!!.calculerScore() < joueurs[1]!!.calculerScore()) {
-                return joueurs[1]
+        if (null in joueurs)
+            return null
+
+        if (nombreCoupsSansPrise >=  nombreCoupsSansPriseMax) {
+            return if (joueurs[0]!!.calculerScore() > joueurs[1]!!.calculerScore()) {
+                joueurs[0]
+            } else {
+                joueurs[1]
             }
         }
+
+        // Joueur 1, partie "haute" du plateau
+        var possedePionJoueur1 = false
+        val cases = plateau.getCases()
+        for (i in 0 until TAILLEHORIZONTALE) {
+            for (j in 0 until TAILLEVERTICALE/2) {
+                if(!cases[i][j].estLibre()) {
+                    possedePionJoueur1 = true
+                    break
+                }
+            }
+        }
+
+        // Joueur 2, partie "basse" du plateau
+        var possedePionJoueur2 = false
+        for (i in 0 until TAILLEHORIZONTALE) {
+            for (j in TAILLEVERTICALE/2 until TAILLEVERTICALE) {
+                if(!cases[i][j].estLibre()) {
+                    possedePionJoueur2 = true
+                    break
+                }
+            }
+        }
+
+        if (possedePionJoueur1 && !possedePionJoueur2)
+            return joueurs[0]
+
+        if (!possedePionJoueur1 && possedePionJoueur2)
+            return joueurs[1]
+
         return null
     }
 
