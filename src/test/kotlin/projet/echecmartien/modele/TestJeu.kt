@@ -32,7 +32,21 @@ internal class TestJeu {
     }
 
     @Test
-    fun testInitialiserJoueur() {
+    fun testDeplacementOrigine() {
+        val origine = Coordonnee(3, 2)
+        jeu.setCoordOrigineDeplacement(origine)
+        assertEquals(origine, jeu.getCoordOrigineDeplacement())
+    }
+
+    @Test
+    fun testDeplacementDestination() {
+        val destination = Coordonnee(7, 3)
+        jeu.setCoordDestinationDeplacement(destination)
+        assertEquals(destination, jeu.getCoordDestinationDeplacement())
+    }
+
+    @Test
+    fun testInitialiserJoueurPlateau() {
         jeu.initialiserPartie(j1, j2, 10)
 
         val cases = jeu.getPLateau().getCases()
