@@ -145,44 +145,28 @@ class Jeu {
         if (null in joueurs)
             return null
 
-        if (nombreCoupsSansPrise >=  nombreCoupsSansPriseMax) {
-            return if (joueurs[0]!!.calculerScore() > joueurs[1]!!.calculerScore()) {
-                joueurs[0]
-            } else {
-                joueurs[1]
-            }
-        }
+        if (nombreCoupsSansPrise >=  nombreCoupsSansPriseMax)
+            return joueurMeilleurScore()
 
-        // Joueur 1, partie "haute" du plateau
-        var possedePionJoueur1 = false
-        val cases = plateau.getCases()
-        for (i in 0 until TAILLEHORIZONTALE) {
-            for (j in 0 until TAILLEVERTICALE/2) {
-                if(!cases[i][j].estLibre()) {
-                    possedePionJoueur1 = true
-                    break
-                }
-            }
-        }
-
-        // Joueur 2, partie "basse" du plateau
-        var possedePionJoueur2 = false
-        for (i in 0 until TAILLEHORIZONTALE) {
-            for (j in TAILLEVERTICALE/2 until TAILLEVERTICALE) {
-                if(!cases[i][j].estLibre()) {
-                    possedePionJoueur2 = true
-                    break
-                }
-            }
-        }
-
-        if (possedePionJoueur1 && !possedePionJoueur2)
-            return joueurs[0]
-
-        if (!possedePionJoueur1 && possedePionJoueur2)
-            return joueurs[1]
+        if (joueurs[0]!!.getNbPionsCaptures() + joueurs[1]!!.getNbPionsCaptures() == 17)
+            return joueurMeilleurScore()
 
         return null
+    }
+
+    /**
+     * permet de savoir le joueur ayant le meilleur score
+     * @return le joueur ayant le meilleur score, null si joueurs non initialisés
+     */
+    private fun joueurMeilleurScore(): Joueur? {
+        if (null in joueurs)
+            return null
+
+        return if (joueurs[0]!!.calculerScore() > joueurs[1]!!.calculerScore()) {
+            joueurs[0]
+        } else {
+            joueurs[1]
+        }
     }
 
     /**
