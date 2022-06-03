@@ -106,7 +106,10 @@ class Jeu {
             for (j in coordOriginY-1 until coordOriginY+2) {
                 if (i == coordOriginX && j == coordOriginY)
                     continue
+                if (deplacementPossible(coordOriginX, coordOriginY, i, j, caseOrigine.getJoueur()))
+                    return true
 
+                /*
                 val deplacement : Deplacement
                 // on teste si le déplacement dans une direction est possible, sinon on passe au suivant
                 try {
@@ -131,6 +134,9 @@ class Jeu {
                 // la case n'est pas libre, le pion peut bouger si le pion sur la case est un pion adverse
                 if (cases[i][j].getJoueur() != joueurCourant)
                     return true
+
+
+                 */
             }
         }
         return false
@@ -170,12 +176,14 @@ class Jeu {
             return false
         }
 
-        // on teste si la dernière case est libre ou le pion dessus peut être mangé
-        val lastCoord = coords.last()
-        if (!cases[lastCoord.getX()][lastCoord.getY()].estLibre())
+        // si le pion vient d'arriver dans la zone, il ne peut pas sortir de la zone directement après
+        if (pionArriveDeZone == caseOrigine.getPion() && cases[coordDestinationX][coordDestinationY].getJoueur() != joueur)
             return false
 
-        if (cases[lastCoord.getX()][lastCoord.getY()].getJoueur() == joueur)
+        // si la dernière case contient un pion non adverse, le déplacement n'est pas possible
+        val lastCoord = coords.last()
+        if (!cases[lastCoord.getX()][lastCoord.getY()].estLibre() &&
+            cases[lastCoord.getX()][lastCoord.getY()].getJoueur() == joueur)
             return false
 
         /**
@@ -204,8 +212,9 @@ class Jeu {
             joueurCourant?.ajouterPionCaptures(caseDestination.getPion()!!)
 
         // si le pion change de zone il devient le dernier pion arrivé de zone
-        if (caseDestination.getJoueur() != joueurCourant)
+        if (caseDestination.getJoueur() != joueurCourant) {
             pionArriveDeZone = caseOrigine.getPion()
+        }
 
         caseDestination.setPion(caseOrigine.getPion())
         caseOrigine.setPion(null)
@@ -218,7 +227,7 @@ class Jeu {
         if (nombreCoupsSansPrise >=  nombreCoupsSansPriseMax)
             return joueurMeilleurScore()
 
-        if (joueurs[0]!!.getNbPionsCaptures() + joueurs[1]!!.getNbPionsCaptures() == 17)
+        if (joueurs[0]!!.getNbPionsCaptures() + joueurs[1]!!.getNbPionsCaptures() >= 17)
             return joueurMeilleurScore()
 
         return null
