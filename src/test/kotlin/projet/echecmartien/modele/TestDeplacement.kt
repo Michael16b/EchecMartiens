@@ -116,5 +116,23 @@ internal class TestDeplacement {
                 Arguments.of(Deplacement(Coordonnee(3, 3), Coordonnee(1, 1)), false, "le déplacement n'est pas diagonal positif en X et négatif en Y")
             )
         }
+
+        @JvmStatic
+        fun diagonalNegatifXPositifYProvider(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of(Deplacement(Coordonnee(3, 1), Coordonnee(0, 4)), true, "le déplacement est bien diagonal négatif en X et positif en Y"),
+                Arguments.of(Deplacement(Coordonnee(0, 2), Coordonnee(3, 2)), false, "le déplacement n'est pas diagonal négatif en X et positif en Y"),
+                Arguments.of(Deplacement(Coordonnee(0, 3), Coordonnee(2, 1)), false, "le déplacement n'est pas diagonal négatif en X et positif en Y")
+            )
+        }
+
+        @JvmStatic
+        fun diagonalNegatifXNegatifYProvider(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of(Deplacement(Coordonnee(3, 6), Coordonnee(0, 3)), true, "le déplacement est bien diagonal négatif en X et négatif en Y"),
+                Arguments.of(Deplacement(Coordonnee(1, 0), Coordonnee(1, 5)), false, "le déplacement n'est pas diagonal négatif en X et négatif en Y"),
+                Arguments.of(Deplacement(Coordonnee(0, 2), Coordonnee(2, 4)), false, "le déplacement n'est pas diagonal négatif en X et négatif en Y")
+            )
+        }
     }
 }
