@@ -62,10 +62,10 @@ class Jeu {
     fun getJoueurCourant(): Joueur? = joueurCourant
 
     fun initialiserPartie(joueur1: Joueur, joueur2: Joueur, nombreCoupsSansPriseMax : Int) {
+        initialiserJoueur(joueur1, joueur2)
         this.nombreCoupsSansPriseMax = nombreCoupsSansPriseMax
         nombreCoupsSansPrise = 0
         plateau.initialiser()
-        initialiserJoueur(joueur1, joueur2)
     }
 
     /**
@@ -78,18 +78,17 @@ class Jeu {
         joueurs[1] = joueur2
         joueurCourant = joueur1
 
-        val cases = plateau.getCases()
         // Joueur 1, partie "haute" du plateau
         for (i in 0 until TAILLEHORIZONTALE) {
             for (j in 0 until TAILLEVERTICALE/2) {
-                cases[i][j].setJoueur(joueur1)
+                plateau.getCases()[i][j].setJoueur(joueur1)
             }
         }
 
         // Joueur 2, partie "basse" du plateau
         for (i in 0 until TAILLEHORIZONTALE) {
             for (j in TAILLEVERTICALE/2 until TAILLEVERTICALE) {
-                cases[i][j].setJoueur(joueur2)
+                plateau.getCases()[i][j].setJoueur(joueur2)
             }
         }
     }
