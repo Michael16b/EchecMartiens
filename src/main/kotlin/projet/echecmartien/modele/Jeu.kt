@@ -13,6 +13,7 @@ class Jeu {
     private var joueurCourant : Joueur?
     private var joueurs : Array<Joueur?>
     private var plateau : Plateau
+    private var pionArriveDeZone: Pion?
 
     init {
         nombreCoupsSansPrise = 0
@@ -20,6 +21,7 @@ class Jeu {
         coordOrigine = null
         coordDest = null
         joueurCourant = null
+        pionArriveDeZone = null
         joueurs = arrayOfNulls(2)
         plateau = Plateau()
     }
@@ -102,18 +104,32 @@ class Jeu {
 
         for (i in coordOriginX-1 until coordOriginX+2) {
             for (j in coordOriginY-1 until coordOriginY+2) {
+                if (i == coordOriginX && j == coordOriginY)
+                    continue
+
                 val deplacement : Deplacement
+                // on teste si le déplacement dans une direction est possible, sinon on passe au suivant
                 try {
                     deplacement = Deplacement(Coordonnee(coordOriginX,coordOriginY),Coordonnee(i,j))
                 } catch (_:IllegalArgumentException) {
                     continue
                 }
+                // on regarde si le pion peut faire ce déplacement, sinon on passe au déplacement suivant
                 try {
                     caseOrigine.getPion()!!.getDeplacement(deplacement)
                 } catch (_: DeplacementException) {
                     continue
                 }
+
+                // si le pion vient d'arriver dans la zone, il ne peut pas sortir de la zone directement après
+                if (pionArriveDeZone == caseOrigine.getPion() && cases[i][j].getJoueur() != joueurCourant)
+                    return false
+
                 if (cases[i][j].estLibre())
+                    return true
+
+                // la case n'est pas libre, le pion peut bouger si le pion sur la case est un pion adverse
+                if (cases[i][j].getJoueur() != joueurCourant)
                     return true
             }
         }
@@ -177,6 +193,22 @@ class Jeu {
     }
 
     fun deplacer(coordOriginX: Int, coordOriginY: Int, coordDestinationX: Int, coordDestinationY: Int) {
+        // le pionArriveDeZone dure qu'un seul tour
+        pionArriveDeZone = null
+
+        val cases = plateau.getCases()
+        val caseDestination = cases[coordDestinationX][coordDestinationY]
+        val caseOrigine = cases[coordOriginX][coordOriginY]
+
+        if (!caseDestination.estLibre())
+            joueurCourant?.ajouterPionCaptures(caseDestination.getPion()!!)
+
+        // si le pion change de zone il devient le dernier pion arrivé de zone
+        if (caseDestination.getJoueur() != joueurCourant)
+            pionArriveDeZone = caseOrigine.getPion()
+
+        caseDestination.setPion(caseOrigine.getPion())
+        caseOrigine.setPion(null)
 
 
     }
