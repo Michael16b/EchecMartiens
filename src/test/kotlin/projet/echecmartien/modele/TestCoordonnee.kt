@@ -1,7 +1,7 @@
 package projet.echecmartien.modele
 
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -17,9 +17,12 @@ internal class TestCoordonnee {
         val c2 : Coordonnee = Coordonnee(0, 2)
         val c3 : Coordonnee = Coordonnee(5, 3)
 
-        assertEquals(true,c1.equals(c2), "Les deux coordonnées sont égaux")
-        assertEquals(false, c1.equals(c3),"Les deux coordonnées ne sont pas égaux")
-        assertEquals(true, c1.equals(c1),"Ce sont des objets égaux")
+        assertTrue(c1.equals(c2), "Les deux coordonnées sont égaux")
+        assertFalse(c1.equals(c3),"Les deux coordonnées ne sont pas égaux")
+        assertTrue(c1.equals(c1),"Ce sont des objets égaux")
+
+        assertFalse(c1.equals(null),"Un null et une coordonnée ne sont pas égaux")
+        assertFalse(c1.equals(Case()),"Une case et une coordonnée ne sont pas égaux")
     }
 
 
