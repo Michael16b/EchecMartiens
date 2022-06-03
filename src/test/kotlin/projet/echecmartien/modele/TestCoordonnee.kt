@@ -9,13 +9,14 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
 
+@Suppress("ReplaceCallWithBinaryOperator")
 internal class TestCoordonnee {
 
     @Test
     fun testEquals() {
-        val c1 : Coordonnee = Coordonnee(0, 2)
-        val c2 : Coordonnee = Coordonnee(0, 2)
-        val c3 : Coordonnee = Coordonnee(5, 3)
+        val c1 = Coordonnee(0, 2)
+        val c2 = Coordonnee(0, 2)
+        val c3 = Coordonnee(5, 3)
 
         assertTrue(c1.equals(c2), "Les deux coordonnées sont égaux")
         assertFalse(c1.equals(c3),"Les deux coordonnées ne sont pas égaux")

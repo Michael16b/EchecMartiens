@@ -311,16 +311,19 @@ internal class TestDeplacement {
 
     @Test
     fun testGetCheminVertical() {
-        assertThrows<DeplacementException> {
-            Deplacement(Coordonnee(2, 3), Coordonnee(3, 3))
+
+        val deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(1, 0))
+        assertThrows<DeplacementException>("getCheminVertical de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminVertical()
         }
+
         val calcul1 = Deplacement(Coordonnee(0, 1), Coordonnee(0, 4))
-        val attendu1 = mutableListOf<Coordonnee>(Coordonnee(1, 2), Coordonnee(1, 3), Coordonnee(1, 4))
+        val attendu1 = mutableListOf(Coordonnee(0, 2), Coordonnee(0, 3), Coordonnee(0, 4))
         for (i in 0 until calcul1.getCheminVertical().size) {
             assertEquals(calcul1.getCheminVertical()[i], attendu1[i])
         }
         val calcul2 = Deplacement(Coordonnee(0, 7), Coordonnee(0, 2))
-        val attendu2 = mutableListOf<Coordonnee>(Coordonnee(0, 6), Coordonnee(0, 5), Coordonnee(0, 4), Coordonnee(0, 3), Coordonnee(0, 2))
+        val attendu2 = mutableListOf(Coordonnee(0, 6), Coordonnee(0, 5), Coordonnee(0, 4), Coordonnee(0, 3), Coordonnee(0, 2))
         for (i in 0 until calcul2.getCheminVertical().size) {
             assertEquals(calcul2.getCheminVertical()[i], attendu2[i])
         }

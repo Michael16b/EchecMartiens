@@ -228,5 +228,24 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         return coords
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (other === this)
+            return true
+
+        if (other !is Deplacement)
+            return false
+
+        if (origine != other.origine)
+            return false
+
+        if (destination != other.destination)
+            return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return origine.getX()*31+destination.getX()*31+origine.getY()*31+destination.getY()
+    }
 
 }
