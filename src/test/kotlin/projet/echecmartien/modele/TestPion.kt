@@ -15,15 +15,21 @@ import java.util.stream.Stream
 
 internal class TestPion {
 
-    //Petits pions
-    var petitpion = PetitPion()
-    val moyenpion = MoyenPion()
-
-
+    private var petitpion = PetitPion()
+    private val moyenpion = MoyenPion()
+    private  val grandpion = GrandPion()
 
     @Test
     fun testGetScorePetitPion0() {
         assertEquals(1, petitpion.getScore(), "Le petit pion vaut 1")
+    }
+    @Test
+    fun testGetScoreMoyenPion0() {
+        assertEquals(2, moyenpion.getScore(), "Le moyen pion vaut 2")
+    }
+    @Test
+    fun testGetScoreGrandPion0() {
+        assertEquals(3, grandpion.getScore(), "Le grand pion vaut 3")
     }
 
     @Test
@@ -42,6 +48,71 @@ internal class TestPion {
         }
     }
 
+    @Test
+    fun testDeplacementMoyenPionException(){
+        val deplacement = Deplacement(Coordonnee(0,0),Coordonnee(3,3))
+        assertThrows<DeplacementException>("Une exception devrait être levée"){
+            moyenpion.getDeplacement(deplacement)
+        }
+    }
+
+    @Test
+    fun testDeplacementGrandPionException(){
+        assertThrows<DeplacementException>("Une exception devrait être levée"){
+            Deplacement(Coordonnee(0,0),Coordonnee(2,3))
+        }
+    }
+
+    @Test
+    fun testDeplacementGrandPiondVertical1(){
+        val oracle11 = arrayListOf<Coordonnee>(Coordonnee(0,1),Coordonnee(0,2),Coordonnee(0,3),Coordonnee(0,4))
+        val deplacement11 = Deplacement(Coordonnee(0,0), Coordonnee(0,4))
+            val coords = grandpion.getDeplacement(deplacement11)
+            if (!equalsListCoords(oracle11, coords))
+                fail("$coords devrait être $oracle11")
+    }
+    @Test
+    fun testDeplacementGrandPiondVertical2(){
+        val oracle12 = arrayListOf<Coordonnee>(Coordonnee(0,3),Coordonnee(0,2), Coordonnee(0,1),Coordonnee(0,0))
+        val deplacement12 = Deplacement(Coordonnee(0,4), Coordonnee(0,0))
+        val coords = grandpion.getDeplacement(deplacement12)
+        if (!equalsListCoords(oracle12, coords))
+            fail("$coords devrait être $oracle12")
+    }
+
+    @Test
+    fun testDeplacementGrandPiondHorizontal1(){
+        val deplacement13 = Deplacement(Coordonnee(0,0), Coordonnee(3,0))
+        val oracle13 = arrayListOf<Coordonnee>(Coordonnee(1,0), Coordonnee(2,0),Coordonnee(3,0))
+        val coords = grandpion.getDeplacement(deplacement13)
+        if (!equalsListCoords(oracle13, coords))
+            fail("$coords devrait être $oracle13")
+    }
+    @Test
+    fun testDeplacementGrandPiondHorizontal2(){
+        val deplacement14 = Deplacement(Coordonnee(3,0), Coordonnee(0,0))
+        val oracle14= arrayListOf<Coordonnee>(Coordonnee(2,0),Coordonnee(1,0),Coordonnee(0,0))
+        val coords = grandpion.getDeplacement(deplacement14)
+        if (!equalsListCoords(oracle14, coords))
+            fail("$coords devrait être $oracle14")
+    }
+
+    @Test
+    fun testDeplacementGrandPiondDiagonal1(){
+        val oracle15 = arrayListOf<Coordonnee>(Coordonnee(1,1), Coordonnee(2,2),Coordonnee(3,3))
+        val deplacement15 = Deplacement(Coordonnee(0,0), Coordonnee(3,3,))
+        val coords = grandpion.getDeplacement(deplacement15)
+        if (!equalsListCoords(oracle15, coords))
+            fail("$coords devrait être $oracle15")
+    }
+    @Test
+    fun testDeplacementGrandPiondDiagonale2(){
+        val oracle16 = arrayListOf<Coordonnee>(Coordonnee(2,2),Coordonnee(1,1),Coordonnee(0,0))
+        val deplacement16 = Deplacement(Coordonnee(3,3), Coordonnee(0,0))
+        val coords = grandpion.getDeplacement(deplacement16)
+        if (!equalsListCoords(oracle16, coords))
+            fail("$coords devrait être $oracle16")
+    }
 
 
     @ParameterizedTest
@@ -121,14 +192,5 @@ internal class TestPion {
         }
     }
 
-    //Moyens pions
 
-
-    @Test
-    fun testDeplacementMoyenPionException(){
-        val deplacement = Deplacement(Coordonnee(0,0),Coordonnee(3,3))
-        assertThrows<DeplacementException>("Une exception devrait être levée"){
-            petitpion.getDeplacement(deplacement)
-        }
-    }
 }
