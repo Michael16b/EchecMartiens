@@ -27,8 +27,7 @@ internal class TestJeu {
         jeu.changeJoueurCourant()
         assertEquals(j1, jeu.getJoueurCourant())
     }
-    @Test
-    fun testViderPlateau() {
+    fun viderPlateau() {
         plateau.initialiser()
         plateau.getCases().forEach { liste ->
             liste.forEach { case ->
