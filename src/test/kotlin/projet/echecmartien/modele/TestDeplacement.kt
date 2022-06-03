@@ -3,6 +3,7 @@ package projet.echecmartien.modele
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -238,6 +239,59 @@ internal class TestDeplacement {
                     "le déplacement n'est pas diagonal négatif en X et négatif en Y"
                 )
             )
+        }
+    }
+
+    @Test
+    fun testMauvaisDeplacement() {
+        assertThrows<DeplacementException> {
+            Deplacement(Coordonnee(0, 0), Coordonnee(1, 2))
+        }
+    }
+
+    @Test
+    fun testSortiesPlateau() {
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(0, 0), Coordonnee(-1, 0))
+        }
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(0, 0), Coordonnee(0, -2))
+        }
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(1, 6), Coordonnee(1, 8))
+        }
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(3, 4), Coordonnee(5, 4))
+        }
+    }
+
+    @Test
+    fun testDeplacementNul() {
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(2, 2), Coordonnee(2, 2))
+        }
+    }
+
+    @Test
+    fun testDeplacementExterieurPlateau() {
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(5, 11), Coordonnee(5, 15))
+        }
+    }
+
+    @Test
+    fun testEntreesPlateau() {
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(-2, 0), Coordonnee(1, 0))
+        }
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(0, -2), Coordonnee(0, 2))
+        }
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(4, 5), Coordonnee(2, 5))
+        }
+        assertThrows<IllegalArgumentException> {
+            Deplacement(Coordonnee(2, 8), Coordonnee(2, 4))
         }
     }
 }
