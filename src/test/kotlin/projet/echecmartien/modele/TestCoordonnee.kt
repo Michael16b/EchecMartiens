@@ -1,23 +1,41 @@
 package projet.echecmartien.modele
 
-import jdk.incubator.jpackage.internal.Arguments
-import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 
 internal class TestCoordonnee {
 
-    private val c = Coordonnee(0, 2)
-
-    @Test
-    fun testGetX(){
-        assertEquals(0,  c.getX(), "")
+    @ParameterizedTest
+    @MethodSource("coordProviderGetX")
+    fun testGetX(c:Coordonnee,oracle: Int, message: String){
+        assertEquals(oracle, c.getX(), message)
     }
 
-    @Test
-    fun testGetY(){
-        assertEquals(2,  c.getX(), "")
+    @ParameterizedTest
+    @MethodSource("coordProviderGetY")
+    fun testGetY(c:Coordonnee,oracle: Int, message: String){
+        assertEquals(oracle, c.getY(), message)
     }
 
+    companion object {
+        @JvmStatic
+        fun coordProviderGetX(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of(Coordonnee(0, 2), 0, "La coordonnée en x est 0"),
+                Arguments.of(Coordonnee(5, 2), 5, "La coordonnée en x est 5")
+            )
+        }
+        @JvmStatic
+        fun coordProviderGetY(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of(Coordonnee(0, 2), 2, "La coordonnée en y est 2"),
+                Arguments.of(Coordonnee(5, 8), 8, "La coordonnée en y est 8")
+            )
+        }
+    }
 }
