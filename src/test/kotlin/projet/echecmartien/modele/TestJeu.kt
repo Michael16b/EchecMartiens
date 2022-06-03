@@ -21,15 +21,14 @@ internal class TestJeu {
     fun testChangementJoueurCourant() {
 
         jeu.initialiserPartie(j1, j2, 10)
-
         assertEquals(j1, jeu.getJoueurCourant())
         jeu.changeJoueurCourant()
         assertEquals(j2, jeu.getJoueurCourant())
         jeu.changeJoueurCourant()
         assertEquals(j1, jeu.getJoueurCourant())
     }
-
-    fun viderPlateau() {
+    @Test
+    fun testViderPlateau() {
         plateau.initialiser()
         plateau.getCases().forEach { liste ->
             liste.forEach { case ->
@@ -37,4 +36,6 @@ internal class TestJeu {
             }
         }
     }
+
+
 }
