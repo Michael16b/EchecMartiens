@@ -2,6 +2,7 @@ package projet.echecmartien.modele
 
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
+import java.lang.IllegalArgumentException
 
 
 class Jeu {
@@ -91,16 +92,41 @@ class Jeu {
     }
 
     fun deplacementPossible(coordOriginX : Int, coordOriginY : Int) : Boolean {
-        TODO()
+        if (coordOriginX !in 0 until TAILLEHORIZONTALE || coordOriginY !in 0 until TAILLEVERTICALE)
+            return false
+
+        val cases = plateau.getCases()
+        val caseOrigine = cases[coordOriginX][coordOriginY]
+        if (caseOrigine.estLibre())
+            return false
+
+        for (i in coordOriginX-1 until coordOriginX+2) {
+            for (j in coordOriginY-1 until coordOriginY+2) {
+                val deplacement : Deplacement
+                try {
+                    deplacement = Deplacement(Coordonnee(coordOriginX,coordOriginY),Coordonnee(i,j))
+                } catch (_:IllegalArgumentException) {
+                    continue
+                }
+                try {
+                    caseOrigine.getPion()!!.getDeplacement(deplacement)
+                } catch (_: DeplacementException) {
+                    continue
+                }
+                if (cases[i][j].estLibre())
+                    return true
+            }
+        }
+        return false
     }
 
     fun deplacementPossible(coordOriginX : Int, coordOriginY : Int, coordDestinationX : Int, coordDestinationY : Int, joueur : Joueur?) : Boolean {
-        if (coordOriginX !in 0 until TAILLEHORIZONTALE || coordOriginY !in 0 until TAILLEVERTICALE) {
+        if (coordOriginX !in 0 until TAILLEHORIZONTALE || coordOriginY !in 0 until TAILLEVERTICALE)
             return false
-        }
-        if (plateau.getCases()[coordOriginX][coordOriginY].estLibre()) {
+
+        if (plateau.getCases()[coordOriginX][coordOriginY].estLibre())
             return false
-        }
+
         TODO("faire la fonction")
     }
 
