@@ -260,4 +260,10 @@ class Jeu {
         }
     }
 
+    /**
+     * retourne le plateau du jeu
+     * @return le plateau du jeu
+     */
+    fun getPLateau() : Plateau = this.plateau
+
 }
