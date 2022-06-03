@@ -210,8 +210,6 @@ class Jeu {
 
         caseDestination.setPion(caseOrigine.getPion())
         caseOrigine.setPion(null)
-
-
     }
 
     fun joueurVainqueur(): Joueur? {
