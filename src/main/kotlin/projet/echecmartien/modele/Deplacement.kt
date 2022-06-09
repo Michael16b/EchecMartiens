@@ -236,6 +236,9 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         return coords
     }
 
+    /**
+     * vérifie que 2 déplacements sont égaux s'ils ont la même origine et la même destination
+     */
     override fun equals(other: Any?): Boolean {
         if (other === this)
             return true
