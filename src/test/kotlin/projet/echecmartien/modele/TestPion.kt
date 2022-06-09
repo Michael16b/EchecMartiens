@@ -1,16 +1,13 @@
 package projet.echecmartien.modele
 
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.fail
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-
-
 import java.util.stream.Stream
 
 internal class TestPion {
@@ -99,7 +96,7 @@ internal class TestPion {
      * test qu'un certain déplacement vertical renvoie bien la liste attendue
      */
     @Test
-    fun testDeplacementGrandPiondVertical1(){
+    fun testDeplacementGrandPionVertical1(){
         val oracle11 = arrayListOf(Coordonnee(0,1),Coordonnee(0,2),Coordonnee(0,3),Coordonnee(0,4))
         val deplacement11 = Deplacement(Coordonnee(0,0), Coordonnee(0,4))
             val coords = grandpion.getDeplacement(deplacement11)
@@ -111,7 +108,7 @@ internal class TestPion {
      *  test qu'un certain déplacement vertical de 4 cases renvoie bien la liste attendue
      */
     @Test
-    fun testDeplacementGrandPiondVertical2(){
+    fun testDeplacementGrandPionVertical2(){
         val oracle12 = arrayListOf(Coordonnee(0,3),Coordonnee(0,2), Coordonnee(0,1),Coordonnee(0,0))
         val deplacement12 = Deplacement(Coordonnee(0,4), Coordonnee(0,0))
         val coords = grandpion.getDeplacement(deplacement12)
@@ -122,7 +119,7 @@ internal class TestPion {
      *  test qu'un certain déplacement horizontal d'un grand pion de 3 cases renvoie bien la liste attendue
      */
     @Test
-    fun testDeplacementGrandPiondHorizontal1(){
+    fun testDeplacementGrandPionHorizontal1(){
         val deplacement13 = Deplacement(Coordonnee(0,0), Coordonnee(3,0))
         val oracle13 = arrayListOf(Coordonnee(1,0), Coordonnee(2,0),Coordonnee(3,0))
         val coords = grandpion.getDeplacement(deplacement13)
@@ -133,7 +130,7 @@ internal class TestPion {
      *  test qu'un certain déplacement d'un grand pion horizontal de 3 cases renvoie bien la liste attendue
      */
     @Test
-    fun testDeplacementGrandPiondHorizontal2(){
+    fun testDeplacementGrandPionHorizontal2(){
         val deplacement14 = Deplacement(Coordonnee(3,0), Coordonnee(0,0))
         val oracle14= arrayListOf(Coordonnee(2,0),Coordonnee(1,0),Coordonnee(0,0))
         val coords = grandpion.getDeplacement(deplacement14)
@@ -144,7 +141,7 @@ internal class TestPion {
      *  test qu'un certain déplacement diagonal d'un grand pion de 2 cases renvoie bien la liste attendue
      */
     @Test
-    fun testDeplacementGrandPiondDiagonal1(){
+    fun testDeplacementGrandPionDiagonal1(){
         val oracle15 = arrayListOf(Coordonnee(1,1), Coordonnee(2,2),Coordonnee(3,3))
         val deplacement15 = Deplacement(Coordonnee(0,0), Coordonnee(3,3))
         val coords = grandpion.getDeplacement(deplacement15)
@@ -156,13 +153,14 @@ internal class TestPion {
      * test qu'un certain déplacement diagonal des grands pions de 3 cases renvoie bien la liste attendue
      */
     @Test
-    fun testDeplacementGrandPiondDiagonale2(){
+    fun testDeplacementGrandPionDiagonale2(){
         val oracle16 = arrayListOf(Coordonnee(2,2),Coordonnee(1,1),Coordonnee(0,0))
         val deplacement16 = Deplacement(Coordonnee(3,3), Coordonnee(0,0))
         val coords = grandpion.getDeplacement(deplacement16)
         if (!equalsListCoords(oracle16, coords))
             fail("$coords devrait être $oracle16")
     }
+
 
     /**
      * test différents déplacements possible du petit pion
