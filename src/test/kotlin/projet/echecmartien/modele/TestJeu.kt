@@ -286,4 +286,25 @@ internal class TestJeu {
             {   assertFalse(jeu.deplacementPossible(0, 0, 0, 8, j1), "le déplacement de 0 0 vers 0 8 devrait être impossible") },
         )
     }
+    /**
+     * teste si le pion sur la case destination est bien capturé lors d'un déplacement
+     */
+    @Test
+    fun testDeplacer() {
+        val game = Jeu()
+        val joueur1 = Joueur("Matthis")
+        val joueur2 = Joueur("Louis")
+        game.initialiserPartie(joueur1, joueur2, 7)
+        val cases = game.getPLateau().getCases()
+        val caseOrigine = cases[2][0]
+        val pionOrigine = caseOrigine.getPion()
+        val caseDestination = cases[3][5]
+        val pionDestination = caseDestination.getPion()
+        game.deplacer(2, 0, 3, 5)
+        assertEquals(joueur1.getPionsCaptures().toTypedArray()[0], pionDestination)
+        assertNull(caseOrigine.getPion())
+        assertEquals(pionOrigine, cases[3][5].getPion())
+    }
+
+
 }
