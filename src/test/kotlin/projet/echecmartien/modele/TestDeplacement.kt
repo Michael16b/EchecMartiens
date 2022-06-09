@@ -360,4 +360,31 @@ internal class TestDeplacement {
         }
     }
 
+
+    @Test
+    fun testGetCheminDiagonaleVrai() {
+        val calcul1 = Deplacement(Coordonnee(0, 0), Coordonnee(3, 3))
+        val attendu1 = mutableListOf(Coordonnee(1, 1), Coordonnee(2, 2), Coordonnee(3, 3))
+        for (i in 0 until calcul1.getCheminDiagonal().size) {
+            assertEquals(calcul1.getCheminDiagonal()[i], attendu1[i])
+        }
+        val calcul2 = Deplacement(Coordonnee(3, 0), Coordonnee(1, 2))
+        val attendu2 = mutableListOf(Coordonnee(2, 1),Coordonnee(1, 2))
+        for (i in 0 until calcul2.getCheminDiagonal().size) {
+            assertEquals(calcul2.getCheminDiagonal()[i], attendu2[i])
+        }
+    }
+
+    @Test
+    fun testGetCheminDiagonaleFaux() {
+        var deplacement = Deplacement(Coordonnee(2, 2), Coordonnee(1, 2))
+        assertThrows<DeplacementException>("getCheminDiagonale de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminDiagonal()
+        }
+        deplacement = Deplacement(Coordonnee(0, 0), Coordonnee(0, 3))
+        assertThrows<DeplacementException>("getCheminDiagonale de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminDiagonal()
+        }
+    }
+
 }
