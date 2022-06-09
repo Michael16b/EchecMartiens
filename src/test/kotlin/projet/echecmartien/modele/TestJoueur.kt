@@ -97,4 +97,23 @@ internal class TestJoueur{
 
     }
 
+    @Test
+    fun testCalculScoreJoueur() {
+        for (i in 0 until nbPetit) {
+            val p = PetitPion()
+            joueur1.ajouterPionCaptures(p)
+        }
+        for (i in 0 until nbMoyen) {
+            val p = MoyenPion()
+            joueur1.ajouterPionCaptures(p)
+        }
+        for (i in 0 until nbGrand) {
+            val p = GrandPion()
+            joueur1.ajouterPionCaptures(p)
+        }
+        val scoreAttendu = nbPetit+nbMoyen*2+nbGrand*3
+        assertEquals(scoreAttendu,joueur1.calculerScore())
+
+    }
+
 }
