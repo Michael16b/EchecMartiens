@@ -1,6 +1,6 @@
 package projet.echecmartien.modele
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
@@ -65,30 +65,6 @@ TestJeu {
                 assertEquals(j2, cases[i][j].getJoueur())
             }
         }
-    }
-
-    @Test
-    fun testDeplacementPossible() {
-        jeu.initialiserPartie(j1, j2, 10)
-        assertFalse(jeu.deplacementPossible(2, 2, 2, 1, j1))
-        assertTrue(jeu.deplacementPossible(2, 2, 3, 3, j1))
-        assertFalse(jeu.deplacementPossible(0, 0, 6, 0, j1))
-
-        jeu.deplacer(2, 2, 0, 4)
-        assertFalse(jeu.deplacementPossible(0, 4, 1, 3, j2))
-    }
-
-    @Test
-    fun testDeplacementPossible2() {
-        jeu.initialiserPartie(j1, j2, 10)
-        assertFalse(jeu.deplacementPossible(0, 0))
-        assertTrue(jeu.deplacementPossible(2, 2))
-
-        jeu.deplacer(2, 2, 0, 4)
-        jeu.changeJoueurCourant()
-        assertFalse(jeu.deplacementPossible(0, 4))
-        assertTrue(jeu.deplacementPossible(1, 5))
-        assertFalse(jeu.deplacementPossible(1, 5, 0, 4, j2))
     }
 
     fun viderPlateau() {
