@@ -175,4 +175,25 @@ internal class TestJeu {
         game.initialiserPartie(Joueur("Matthis"), Joueur("Louis"), 2)
 
     }
+
+    /**
+     * teste si le déplacement avec un joueur extérieur à la partie est bien impossible
+     */
+    @Test
+    fun testDeplacementPossible2AutreJoueur() {
+        val j = Joueur("Léo")
+        jeu.initialiserPartie(j1, j2, 10)
+        assertFalse(jeu.deplacementPossible(0, 0, 1, 1, j), "le déplacement d'un joueur qui ne fait pas partie de la partie ne devrait pas être possible")
+    }
+
+    /**
+     * teste si un déplacement dont l'origine est une case vide est bien impossible
+     */
+    @Test
+    fun testDeplacementPossible2CaseLibre() {
+        jeu.initialiserPartie(j1, j2, 10)
+        assertFalse(jeu.deplacementPossible(3, 3, 0, 0, j1), "le déplacement dont l'origine est une case vide ne devrait pas être possible")
+    }
+
+
 }
