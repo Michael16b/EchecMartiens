@@ -45,7 +45,7 @@ class Joueur(pseudo: String) {
      * @return le score du joueur
      */
     fun calculerScore(): Int {
-        var score: Int = 0
+        var score = 0
         this.pionsCaptures.forEach {
             score += it.getScore()
         }

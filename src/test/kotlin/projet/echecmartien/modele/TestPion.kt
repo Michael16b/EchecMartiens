@@ -65,7 +65,7 @@ internal class TestPion {
 
     @Test
     fun testDeplacementGrandPiondVertical1(){
-        val oracle11 = arrayListOf<Coordonnee>(Coordonnee(0,1),Coordonnee(0,2),Coordonnee(0,3),Coordonnee(0,4))
+        val oracle11 = arrayListOf(Coordonnee(0,1),Coordonnee(0,2),Coordonnee(0,3),Coordonnee(0,4))
         val deplacement11 = Deplacement(Coordonnee(0,0), Coordonnee(0,4))
             val coords = grandpion.getDeplacement(deplacement11)
             if (!equalsListCoords(oracle11, coords))
@@ -73,7 +73,7 @@ internal class TestPion {
     }
     @Test
     fun testDeplacementGrandPiondVertical2(){
-        val oracle12 = arrayListOf<Coordonnee>(Coordonnee(0,3),Coordonnee(0,2), Coordonnee(0,1),Coordonnee(0,0))
+        val oracle12 = arrayListOf(Coordonnee(0,3),Coordonnee(0,2), Coordonnee(0,1),Coordonnee(0,0))
         val deplacement12 = Deplacement(Coordonnee(0,4), Coordonnee(0,0))
         val coords = grandpion.getDeplacement(deplacement12)
         if (!equalsListCoords(oracle12, coords))
@@ -83,7 +83,7 @@ internal class TestPion {
     @Test
     fun testDeplacementGrandPiondHorizontal1(){
         val deplacement13 = Deplacement(Coordonnee(0,0), Coordonnee(3,0))
-        val oracle13 = arrayListOf<Coordonnee>(Coordonnee(1,0), Coordonnee(2,0),Coordonnee(3,0))
+        val oracle13 = arrayListOf(Coordonnee(1,0), Coordonnee(2,0),Coordonnee(3,0))
         val coords = grandpion.getDeplacement(deplacement13)
         if (!equalsListCoords(oracle13, coords))
             fail("$coords devrait être $oracle13")
@@ -91,7 +91,7 @@ internal class TestPion {
     @Test
     fun testDeplacementGrandPiondHorizontal2(){
         val deplacement14 = Deplacement(Coordonnee(3,0), Coordonnee(0,0))
-        val oracle14= arrayListOf<Coordonnee>(Coordonnee(2,0),Coordonnee(1,0),Coordonnee(0,0))
+        val oracle14= arrayListOf(Coordonnee(2,0),Coordonnee(1,0),Coordonnee(0,0))
         val coords = grandpion.getDeplacement(deplacement14)
         if (!equalsListCoords(oracle14, coords))
             fail("$coords devrait être $oracle14")
@@ -99,15 +99,15 @@ internal class TestPion {
 
     @Test
     fun testDeplacementGrandPiondDiagonal1(){
-        val oracle15 = arrayListOf<Coordonnee>(Coordonnee(1,1), Coordonnee(2,2),Coordonnee(3,3))
-        val deplacement15 = Deplacement(Coordonnee(0,0), Coordonnee(3,3,))
+        val oracle15 = arrayListOf(Coordonnee(1,1), Coordonnee(2,2),Coordonnee(3,3))
+        val deplacement15 = Deplacement(Coordonnee(0,0), Coordonnee(3,3))
         val coords = grandpion.getDeplacement(deplacement15)
         if (!equalsListCoords(oracle15, coords))
             fail("$coords devrait être $oracle15")
     }
     @Test
     fun testDeplacementGrandPiondDiagonale2(){
-        val oracle16 = arrayListOf<Coordonnee>(Coordonnee(2,2),Coordonnee(1,1),Coordonnee(0,0))
+        val oracle16 = arrayListOf(Coordonnee(2,2),Coordonnee(1,1),Coordonnee(0,0))
         val deplacement16 = Deplacement(Coordonnee(3,3), Coordonnee(0,0))
         val coords = grandpion.getDeplacement(deplacement16)
         if (!equalsListCoords(oracle16, coords))
@@ -131,7 +131,7 @@ internal class TestPion {
             fail("$coords devrait être $oracle")
     }
 
-    fun equalsListCoords(l1: List<Coordonnee>, l2: List<Coordonnee>) : Boolean {
+    private fun equalsListCoords(l1: List<Coordonnee>, l2: List<Coordonnee>) : Boolean {
         if (l1.size != l2.size)
             return false
 
@@ -147,10 +147,10 @@ internal class TestPion {
     companion object {
         @JvmStatic
         fun listCoordProviderPetitPions(): Stream<Arguments?>? {
-            val oracle1 = arrayListOf<Coordonnee>(Coordonnee(1,0))
-            val oracle2 = arrayListOf<Coordonnee>(Coordonnee(2,2))
-            val oracle3 = arrayListOf<Coordonnee>(Coordonnee(2, 1))
-            val oracle4 = arrayListOf<Coordonnee>(Coordonnee(2, 2))
+            val oracle1 = arrayListOf(Coordonnee(1,0))
+            val oracle2 = arrayListOf(Coordonnee(2,2))
+            val oracle3 = arrayListOf(Coordonnee(2, 1))
+            val oracle4 = arrayListOf(Coordonnee(2, 2))
 
             val deplacement1 = Deplacement(Coordonnee(2,1), Coordonnee(1,0))
             val deplacement2 = Deplacement(Coordonnee(3, 1), Coordonnee(2,2))
@@ -167,12 +167,12 @@ internal class TestPion {
 
         @JvmStatic
         fun listCoordProviderMoyenPions(): Stream<Arguments?>? {
-            val oracle5 = arrayListOf<Coordonnee>(Coordonnee(0,1),Coordonnee(0,2))
-            val oracle6 = arrayListOf<Coordonnee>(Coordonnee(1,0),Coordonnee(2,0))
-            val oracle7 = arrayListOf<Coordonnee>(Coordonnee(1,0),Coordonnee(0,0))
-            val oracle8 = arrayListOf<Coordonnee>(Coordonnee(0,1),Coordonnee(0,0))
-            val oracle9 = arrayListOf<Coordonnee>(Coordonnee(1,1), Coordonnee(2,2))
-            val oracle10 = arrayListOf<Coordonnee>(Coordonnee(1,1),Coordonnee(0,0))
+            val oracle5 = arrayListOf(Coordonnee(0,1),Coordonnee(0,2))
+            val oracle6 = arrayListOf(Coordonnee(1,0),Coordonnee(2,0))
+            val oracle7 = arrayListOf(Coordonnee(1,0),Coordonnee(0,0))
+            val oracle8 = arrayListOf(Coordonnee(0,1),Coordonnee(0,0))
+            val oracle9 = arrayListOf(Coordonnee(1,1), Coordonnee(2,2))
+            val oracle10 = arrayListOf(Coordonnee(1,1),Coordonnee(0,0))
 
             val deplacement5 = Deplacement(Coordonnee(0,0), Coordonnee(0,2))
             val deplacement6 = Deplacement(Coordonnee(0,0), Coordonnee(2,0))

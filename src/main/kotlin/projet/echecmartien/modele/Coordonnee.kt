@@ -33,4 +33,8 @@ class Coordonnee(x: Int, y: Int) {
         return getX() == other.getX() && getY() == other.getY()
     }
 
+    override fun hashCode(): Int {
+        return x * 31 + y * 31
+    }
+
 }

@@ -1,3 +1,5 @@
+@file:Suppress("JoinDeclarationAndAssignment")
+
 package projet.echecmartien.modele
 
 import projet.echecmartien.librairie.EnumPion

@@ -13,7 +13,7 @@ enum class EnumPion(var valeur: String) {
 }
 
 class GeneralData {
-    val tableau = Array(TAILLEHORIZONTALE) { Array(TAILLEVERTICALE, { EnumPion.LIBRE }) }
+    val tableau = Array(TAILLEHORIZONTALE) { Array(TAILLEVERTICALE) { EnumPion.LIBRE } }
 
     init {
 

@@ -7,10 +7,10 @@ import org.junit.jupiter.api.BeforeEach
 internal class TestCase {
 
     private var c = Case()
-    val p = PetitPion()
-    val p2 = GrandPion()
-    val j1 = Joueur("Matthis")
-    val j2 = Joueur("Louis")
+    private val p = PetitPion()
+    private val p2 = GrandPion()
+    private val j1 = Joueur("Matthis")
+    private val j2 = Joueur("Louis")
 
     @BeforeEach
     fun setUp() {
