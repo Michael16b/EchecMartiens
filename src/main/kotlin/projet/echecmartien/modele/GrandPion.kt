@@ -6,7 +6,7 @@ open class GrandPion: Pion() {
      */
     override fun getScore(): Int = 3
     /**
-     * donne le déplacement d'unh grand pion sous forme de liste de cordonnées, sans les coordonnées d'orignines
+     * donne le déplacement d'un grand pion sous forme de liste de cordonnées, sans les coordonnées d'orignines
      */
     override fun getDeplacement(deplacement: Deplacement): List<Coordonnee> {
         return when {
