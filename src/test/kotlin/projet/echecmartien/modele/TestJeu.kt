@@ -272,6 +272,9 @@ internal class TestJeu {
         assertFalse(jeu.deplacementPossible(0, 0, 0, 2, j2), "le déplacement enjambe un pion ne devrait pas être possible")
     }
 
+    /**
+     * teste si un déplacement avec des coordonnées invalide est bien impossible
+     */
     @Test
     fun testDeplacementPossible2CoordonnesInvalides() {
         jeu.initialiserPartie(j1, j2, 10)
@@ -286,6 +289,7 @@ internal class TestJeu {
             {   assertFalse(jeu.deplacementPossible(0, 0, 0, 8, j1), "le déplacement de 0 0 vers 0 8 devrait être impossible") },
         )
     }
+
     /**
      * teste si le pion sur la case destination est bien capturé lors d'un déplacement
      */

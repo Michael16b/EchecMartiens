@@ -9,12 +9,13 @@ open class GrandPion: Pion() {
      * donne le déplacement d'un grand pion sous forme de liste de cordonnées, sans les coordonnées d'orignines
      */
     override fun getDeplacement(deplacement: Deplacement): List<Coordonnee> {
-        return when {
-            deplacement.estHorizontal() -> deplacement.getCheminHorizontal()
-            deplacement.estVertical() -> deplacement.getCheminVertical()
-            deplacement.estDiagonal() -> deplacement.getCheminDiagonal()
-            else -> throw DeplacementException("Le déplacement n'est pas possible")
-        }
+        if (deplacement.estHorizontal())
+            return deplacement.getCheminHorizontal()
+
+        if (deplacement.estVertical())
+            return deplacement.getCheminVertical()
+
+        return deplacement.getCheminDiagonal()
     }
 
 }
