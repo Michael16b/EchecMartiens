@@ -120,7 +120,34 @@ internal class TestJeu {
     }
 
     /**
-     * teste le joueur vainqueur
+     * teste si au moins un déplacement est possible pour différentes coordonnées
+     */
+    @Test
+    fun testDeplacementPossibleCoordoneesInvalides() {
+        jeu.initialiserPartie(j1, j2, 10)
+        assertAll(
+            {   assertFalse(jeu.deplacementPossible(-1, 1), "le pion en -1, 1 ne devrait pas pouvoir se déplacer car en dehors du plateau") },
+            {   assertFalse(jeu.deplacementPossible(4, 1), "le pion en 4, 1 ne devrait pas pouvoir se déplacer car en dehors du plateau") },
+            {   assertFalse(jeu.deplacementPossible(0, -1), "le pion en 0, -1 ne devrait pas pouvoir se déplacer car en dehors du plateau")},
+            {   assertFalse(jeu.deplacementPossible(0, 8), "le pion en 0, 8 ne devrait pas pouvoir se déplacer car en dehors du plateau") },
+            {   assertFalse(jeu.deplacementPossible(-1, 8), "le pion en -1, 8 ne devrait pas pouvoir se déplacer car en dehors du plateau") },
+            {assertTrue(jeu.deplacementPossible(0, 2), "le pion en 0, 2 doit pouvoir se déplacer")}
+        )
+    }
+
+    /**
+     * Vérifie que le déplacement n'est pas possible s'il n'y a pas de pion à déplacer
+     */
+    @Test
+    fun testDeplacementPossibleCaseVide() {
+        jeu.initialiserPartie(j1, j2, 10)
+        assertFalse(jeu.deplacementPossible(0, 3), "la case en 0, 3 étant vide, le déplacement ne doit pas être possible")
+        assertFalse(jeu.deplacementPossible(3, 4), "la case en 3, 4 étant vide, le déplacement ne doit pas être possible")
+        assertTrue(jeu.deplacementPossible(0, 2), "le pion en 0, 2 doit pouvoir se déplacer")
+    }
+
+    /**
+     * teste que la fonction JoueurVainqueur renvoie null quand il manque un joueur
      */
     @Test
     fun TestJoueurVainqueurPartieNonInit() {
@@ -129,7 +156,7 @@ internal class TestJeu {
     }
 
     /**
-     * teste le joueur vainqueur
+     * teste le joueur vainqueur quand le joueur1 a un meilleur score que le joueur2
      */
     @Test
     fun TestJoueurVainqueurPartieInit1() {
@@ -143,7 +170,7 @@ internal class TestJeu {
     }
 
     /**
-     * teste le joueur vainqueur
+     * teste le joueur vainqueur quand le joueur2 a un meilleur score que le joueur1
      */
     @Test
     fun TestJoueurVainqueurPartieInit2() {
@@ -157,7 +184,7 @@ internal class TestJeu {
     }
 
     /**
-     * teste le joueur vainqueur
+     * teste que la fonction JoueurVainqueur renvoie null dans le cas où il y a égalité
      */
     @Test
     fun TestJoueurVainqueurPartieInit3() {
@@ -170,9 +197,52 @@ internal class TestJeu {
         assertEquals(null, game.joueurVainqueur())
     }
 
-    fun testArretPartie() {
+    /**
+     * teste le bon arrêt de la partie dans le cas où le nombre de coups sans prises max est atteint
+     */
+    @Test
+    fun testArretPartieCoup() {
         val game = Jeu()
         game.initialiserPartie(Joueur("Matthis"), Joueur("Louis"), 2)
-
+        game.deplacer(2, 1, 3, 1)
+        game.deplacer(1, 5, 0, 5)
+        assertTrue(game.arretPartie())
     }
+
+    /**
+     * teste le bon arrêt de la partie dans le cas où il ne reste plus qu'un seul pion sur le plateau
+     */
+    @Test
+    fun testArretPartiePions() {
+        val game = Jeu()
+        val joueur1 = Joueur("Matthis")
+        val joueur2 = Joueur("Louis")
+        game.initialiserPartie(joueur1, joueur2, 2)
+        for (i in 0 until 9) {
+            joueur1.ajouterPionCaptures(MoyenPion())
+            joueur2.ajouterPionCaptures(MoyenPion())
+        }
+        joueur1.ajouterPionCaptures(MoyenPion())
+        assertTrue(game.arretPartie())
+    }
+
+    /**
+     * teste si la partie ne s'est pas arrêtée quand aucun des cas limites a été atteint
+     */
+    @Test
+    fun testArretPartie() {
+        val game = Jeu()
+        val joueur1 = Joueur("Matthis")
+        val joueur2 = Joueur("Louis")
+        game.initialiserPartie(joueur1, joueur2, 7)
+        game.deplacer(2, 1, 3, 1)
+        game.deplacer(1, 5, 0, 5)
+        for (i in 0 until 5) {
+            joueur1.ajouterPionCaptures(MoyenPion())
+            joueur2.ajouterPionCaptures(MoyenPion())
+        }
+        joueur1.ajouterPionCaptures(MoyenPion())
+        assertFalse(game.arretPartie())
+    }
+
 }
