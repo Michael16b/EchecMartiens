@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
 
-class TestJoueur{
+internal class TestJoueur{
 
     private var joueur1: Joueur = Joueur("toto")
     private val nbPetit = 7
