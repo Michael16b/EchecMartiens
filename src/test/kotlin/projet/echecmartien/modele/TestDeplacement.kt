@@ -387,7 +387,7 @@ internal class TestDeplacement {
     }
 
     /**
-     * teste que 2 déplacement sont égaux
+     * teste que 2 déplacements sont égaux
      */
     @Test
     fun testEqualsDeplacement1() {
@@ -395,31 +395,37 @@ internal class TestDeplacement {
     }
 
     /**
-     * vérifie qu'un ndéplacement et une coordonnées ne sont pas égaux
+     * vérifie qu'un déplacement et une coordonnée ne sont pas égaux
      */
     @Test
     fun testEqualsDeplacement2() {
         assertFalse(Deplacement(Coordonnee(0,0),Coordonnee(2,2)).equals(Coordonnee(0,0)))
     }
     /**
-     * Test que 2 deplacements avec des origines différentes ne sont pas égaux
+     * Test que 2 déplacements avec des origines différentes ne sont pas égaux
      */
     @Test
     fun testEqualsDeplacement3() {
         val deplacement1 = Deplacement(Coordonnee(0,0), Coordonnee(2,2))
         val deplacement2 = Deplacement(Coordonnee(1,1),Coordonnee(2,2))
-        assertFalse(deplacement1.getOrigine().equals(deplacement2.getOrigine()))
+        assertFalse(deplacement1.equals(deplacement2))
     }
     /**
-     * Test que 2 déplacement avec 2 destinations différentes ne sont pas égaux
+     * Test que 2 déplacements avec 2 destinations différentes ne sont pas égaux
      */
     @Test
     fun testEqualsDeplacement4() {
         val deplacement1 = Deplacement(Coordonnee(0,0), Coordonnee(1,1))
         val deplacement2 = Deplacement(Coordonnee(0,0),Coordonnee(2,2))
-        assertFalse(deplacement1.getDestination().equals(deplacement2.getDestination()))
+        assertFalse(deplacement1.equals(deplacement2))
     }
 
-
-
+    /**
+     * Test qu'un déplacement est égal à lui-même
+     */
+    @Test
+    fun testEqualsDeplacement5() {
+        val deplacement = Deplacement(Coordonnee(0,0),Coordonnee(2,2))
+        assertTrue(deplacement.equals(deplacement))
+    }
 }
