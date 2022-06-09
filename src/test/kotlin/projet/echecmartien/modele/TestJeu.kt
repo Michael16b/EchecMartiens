@@ -9,14 +9,12 @@ import projet.echecmartien.librairie.TAILLEVERTICALE
 internal class TestJeu {
 
     private var jeu = Jeu()
-    private var plateau = Plateau()
     private val j1 = Joueur("Matthis")
     private val j2 = Joueur("Julien")
 
     @BeforeEach
     fun setUp() {
         jeu = Jeu()
-        plateau = Plateau()
     }
 
     /**
@@ -265,5 +263,27 @@ internal class TestJeu {
         assertFalse(jeu.deplacementPossible(3, 3, 0, 0, j1), "le déplacement dont l'origine est une case vide ne devrait pas être possible")
     }
 
+    /**
+     * teste si un déplacement qui enjambe un pion est bien impossible
+     */
+    @Test
+    fun testDeplacementPossible2Enjamber() {
+        jeu.initialiserPartie(j1, j2, 10)
+        assertFalse(jeu.deplacementPossible(0, 0, 0, 2, j2), "le déplacement enjambe un pion ne devrait pas être possible")
+    }
 
+    @Test
+    fun testDeplacementPossible2CoordonnesInvalides() {
+        jeu.initialiserPartie(j1, j2, 10)
+        assertAll(
+            {   assertFalse(jeu.deplacementPossible(-1, 1, 0, 0, j1), "le déplacement de -1 1 vers 0 0 devrait être impossible") },
+            {   assertFalse(jeu.deplacementPossible(4, 1, 0, 0, j1), "le déplacement de 4 1 vers 0 0 devrait être impossible") },
+            {   assertFalse(jeu.deplacementPossible(0, -1, 0, 0, j1), "le déplacement de 0 -1 vers 0 0 devrait être impossible")},
+            {   assertFalse(jeu.deplacementPossible(0, 8, 0, 0, j1), "le déplacement de 0 8 vers 0 0 devrait être impossible") },
+            {   assertFalse(jeu.deplacementPossible(0, 0, -1, 1, j1), "le déplacement de 0 0 vers -1 1 devrait être impossible") },
+            {   assertFalse(jeu.deplacementPossible(0, 0, 4, 1, j1), "le déplacement de 0 0 vers 4 1 devrait être impossible") },
+            {   assertFalse(jeu.deplacementPossible(0, 0, 0, -1, j1), "le déplacement de 0 0 vers 0 -1 devrait être impossible") },
+            {   assertFalse(jeu.deplacementPossible(0, 0, 0, 8, j1), "le déplacement de 0 0 vers 0 8 devrait être impossible") },
+        )
+    }
 }
