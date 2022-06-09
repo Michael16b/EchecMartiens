@@ -66,10 +66,18 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
        return origine.getX() == destination.getX()
     }
 
+    /**
+     *méthode qui permet de tester la distance en X entre l'origine et la destination d'un déplacement
+     * @return la valeur absolue de cette distance
+     */
     private fun distanceX(): Int {
         return abs(origine.getX() - destination.getX())
     }
 
+    /**
+     *méthode qui permet de tester la distance en Y entre l'origine et la destination d'un déplacement
+     * @return la valeur absolue de cette distance
+     */
     private fun distanceY(): Int {
         return abs(origine.getY() - destination.getY())
     }
@@ -228,6 +236,9 @@ class Deplacement(origine: Coordonnee, destination: Coordonnee) {
         return coords
     }
 
+    /**
+     * vérifie que 2 déplacements sont égaux s'ils ont la même origine et la même destination
+     */
     override fun equals(other: Any?): Boolean {
         if (other === this)
             return true
