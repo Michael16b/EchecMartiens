@@ -1,9 +1,13 @@
 package projet.echecmartien.modele
 
 open class GrandPion: Pion() {
-
+    /**
+     * donne le score d'un pion moyen
+     */
     override fun getScore(): Int = 3
-
+    /**
+     * donne le déplacement d'unh grand pion sous forme de liste de cordonnées, sans les coordonnées d'orignines
+     */
     override fun getDeplacement(deplacement: Deplacement): List<Coordonnee> {
         return when {
             deplacement.estHorizontal() -> deplacement.getCheminHorizontal()

@@ -1,13 +1,12 @@
 package projet.echecmartien.modele
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.lang.IllegalArgumentException
 import java.util.stream.Stream
 
 internal class TestDeplacement {
@@ -242,9 +241,6 @@ internal class TestDeplacement {
         }
     }
 
-    /**
-     * Teste si le déplacement n'est ni vertical, ni horizontal, ni diagonal
-     */
     @Test
     fun testMauvaisDeplacement() {
         assertThrows<DeplacementException> {
@@ -252,9 +248,6 @@ internal class TestDeplacement {
         }
     }
 
-    /**
-     * Teste si le déplacement sort du plateau de n'importe quel côté
-     */
     @Test
     fun testSortiesPlateau() {
         assertThrows<IllegalArgumentException> {
@@ -271,9 +264,6 @@ internal class TestDeplacement {
         }
     }
 
-    /**
-     * Teste si le déplacement est nul, c'est-à-dire que l'on déplace le pion sur la même case
-     */
     @Test
     fun testDeplacementNul() {
         assertThrows<IllegalArgumentException> {
@@ -281,9 +271,6 @@ internal class TestDeplacement {
         }
     }
 
-    /**
-     * Teste si le déplacement se déroule à l'extérieur du plateau
-     */
     @Test
     fun testDeplacementExterieurPlateau() {
         assertThrows<IllegalArgumentException> {
@@ -291,9 +278,6 @@ internal class TestDeplacement {
         }
     }
 
-    /**
-     * Teste si le déplacement part de l'extérieur du plateau pour arriver à l'intérieur de celui-ci
-     */
     @Test
     fun testEntreesPlateau() {
         assertThrows<IllegalArgumentException> {
@@ -310,9 +294,6 @@ internal class TestDeplacement {
         }
     }
 
-    /**
-     * Teste si l'origine et la destination du déplacement créé ont les valeurs souhaitées
-     */
     @Test
     fun testOrigineDestination() {
         val deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(0, 5))
@@ -320,14 +301,63 @@ internal class TestDeplacement {
         assertTrue(deplacement.getDestination() == Coordonnee(0, 5))
     }
 
-    /**
-     * Teste si le déplacement a bien la longueur attendue
-     */
     @Test
     fun testLongueur() {
         assertEquals(2, Deplacement(Coordonnee(1, 1), Coordonnee(3, 1)).longueur())
         assertEquals(2, Deplacement(Coordonnee(1, 1), Coordonnee(3, 3)).longueur())
         assertEquals(2, Deplacement(Coordonnee(1, 2), Coordonnee(1, 4)).longueur())
+    }
+
+    @Test
+    fun testGetCheminVerticalVrai() {
+        val calcul1 = Deplacement(Coordonnee(0, 1), Coordonnee(0, 4))
+        val attendu1 = mutableListOf(Coordonnee(0, 2), Coordonnee(0, 3), Coordonnee(0, 4))
+        for (i in 0 until calcul1.getCheminVertical().size) {
+            assertEquals(calcul1.getCheminVertical()[i], attendu1[i])
+        }
+        val calcul2 = Deplacement(Coordonnee(0, 7), Coordonnee(0, 2))
+        val attendu2 = mutableListOf(Coordonnee(0, 6), Coordonnee(0, 5), Coordonnee(0, 4), Coordonnee(0, 3), Coordonnee(0, 2))
+        for (i in 0 until calcul2.getCheminVertical().size) {
+            assertEquals(calcul2.getCheminVertical()[i], attendu2[i])
+        }
+    }
+
+    @Test
+    fun testGetCheminVerticalFaux() {
+        var deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(1, 0))
+        assertThrows<DeplacementException>("getCheminVertical de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminVertical()
+        }
+        deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(1, 1))
+        assertThrows<DeplacementException>("getCheminVertical de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminVertical()
+        }
+    }
+
+    @Test
+    fun testGetCheminHorizontalVrai() {
+        val calcul1 = Deplacement(Coordonnee(0, 0), Coordonnee(3, 0))
+        val attendu1 = mutableListOf(Coordonnee(1, 0), Coordonnee(2, 0), Coordonnee(3, 0))
+        for (i in 0 until calcul1.getCheminHorizontal().size) {
+            assertEquals(calcul1.getCheminHorizontal()[i], attendu1[i])
+        }
+        val calcul2 = Deplacement(Coordonnee(1, 2), Coordonnee(0, 2))
+        val attendu2 = mutableListOf(Coordonnee(0, 2))
+        for (i in 0 until calcul2.getCheminHorizontal().size) {
+            assertEquals(calcul2.getCheminHorizontal()[i], attendu2[i])
+        }
+    }
+
+    @Test
+    fun testGetCheminHorizontalFaux() {
+        var deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(1, 2))
+        assertThrows<DeplacementException>("getCheminHorizontal de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminHorizontal()
+        }
+        deplacement = Deplacement(Coordonnee(0, 0), Coordonnee(0, 3))
+        assertThrows<DeplacementException>("getCheminHorizontal de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminHorizontal()
+        }
     }
 
 }

@@ -71,7 +71,7 @@ class Jeu {
     /**
      * affectation des joueurs aux cases
      * @param joueur1 premier joueur
-     * @paral joueur2 second joueur
+     * @param joueur2 second joueur
      */
     private fun initialiserJoueur(joueur1: Joueur, joueur2: Joueur) {
         joueurs[0] = joueur1
@@ -93,6 +93,12 @@ class Jeu {
         }
     }
 
+    /**
+     * indique si oui ou non on peut bouger un certain pion en fonction de là où il est placé
+     * @param coordOriginX la coordonnée d'origine en X à partir de laquelle on veut faire un déplacement
+     * @param coordOriginY la coordonnée d'origine en Y à partir de laquelle on veut faire un déplacement
+     * @return true si au moins un déplacement est possible pour le pion, false sinon
+     */
     fun deplacementPossible(coordOriginX : Int, coordOriginY : Int) : Boolean {
         if (coordOriginX !in 0 until TAILLEHORIZONTALE || coordOriginY !in 0 until TAILLEVERTICALE)
             return false
@@ -114,6 +120,14 @@ class Jeu {
         return false
     }
 
+    /**
+     * indique si oui ou non il est possible de bouger un certain pion en fonction de là où il est placé et d'où l'on souhaite le déplacer
+     * @param coordOriginX la coordonnée d'origine en X à partir de laquelle on veut faire un déplacement
+     * @param coordOriginY la coordonnée d'origine en Y à partir de laquelle on veut faire un déplacement
+     * @param coordDestinationX la coordonnée de destination en X où l'on souhaite déplacer le pion
+     * @param coordDestinationY la coordonnée de destination en Y où l'on souhaite déplacer le pion
+     * @return true si le déplacement voulu est possible pour le pion, false sinon
+     */
     fun deplacementPossible(coordOriginX : Int, coordOriginY : Int, coordDestinationX : Int, coordDestinationY : Int, joueur : Joueur?) : Boolean {
         if (coordOriginX !in 0 until TAILLEHORIZONTALE || coordOriginY !in 0 until TAILLEVERTICALE)
             return false
@@ -172,6 +186,13 @@ class Jeu {
 
     }
 
+    /**
+     * déplace le pion placé sur les coordonnées d'origine vers les coordonnées de destination
+     * @param coordOriginX la coordonnée d'origine en X à partir de laquelle on veut faire un déplacement
+     * @param coordOriginY la coordonnée d'origine en Y à partir de laquelle on veut faire un déplacement
+     * @param coordDestinationX la coordonnée de destination en X où l'on souhaite déplacer le pion
+     * @param coordDestinationY la coordonnée de destination en Y où l'on souhaite déplacer le pion
+     */
     fun deplacer(coordOriginX: Int, coordOriginY: Int, coordDestinationX: Int, coordDestinationY: Int) {
         // le pionArriveDeZone dure qu'un seul tour
         pionArriveDeZone = null
@@ -194,6 +215,10 @@ class Jeu {
         caseOrigine.setPion(null)
     }
 
+    /**
+     * indique le joueur qui a gagné de la partie
+     * @return le joueur gagnant
+     */
     fun joueurVainqueur(): Joueur? {
         if (null in joueurs)
             return null
