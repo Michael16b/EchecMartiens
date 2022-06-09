@@ -8,10 +8,15 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-
 @Suppress("ReplaceCallWithBinaryOperator")
 internal class TestCoordonnee {
 
+    /**
+     * teste l'égalité des cases dans les cas suivant :
+     *    - une case avec elle-même
+     *    - deux cases différentes avec les mêmes coordonnées
+     *   - deux cases différentes avec des coordonnées différentes
+     */
     @Test
     fun testEquals() {
         val c1 = Coordonnee(0, 2)
@@ -26,43 +31,37 @@ internal class TestCoordonnee {
         assertFalse(c1.equals(Case()),"Une case et une coordonnée ne sont pas égaux")
     }
 
-
+    /**
+     * teste si getX renvoie la bonne valeur de l'abscisse d'une coordonnée
+     */
     @ParameterizedTest
     @MethodSource("coordProviderGetX")
     fun testGetX(c:Coordonnee,oracle: Int, message: String){
         assertEquals(oracle, c.getX(), message)
     }
 
+    /**
+     * teste si getY renvoie la bonne valeur de l'ordonnée d'une coordonnée
+     */
     @ParameterizedTest
     @MethodSource("coordProviderGetY")
     fun testGetY(c:Coordonnee,oracle: Int, message: String){
         assertEquals(oracle, c.getY(), message)
-    }
-    @ParameterizedTest
-    @MethodSource("coordProviderEquals")
-    fun testEquals(c1:Coordonnee,c2 :Coordonnee,oracle: Boolean, message: String){
-        assertEquals(oracle, c1.equals(c2), message)
     }
 
     companion object {
         @JvmStatic
         fun coordProviderGetX(): Stream<Arguments?>? {
             return Stream.of(
-                Arguments.of(Coordonnee(0, 2), 0, "La coordonnée en x est 0"),
-                Arguments.of(Coordonnee(5, 2), 5, "La coordonnée en x est 5")
+                Arguments.of(Coordonnee(0, 2), 0, "La coordonnée en x devrait être 0"),
+                Arguments.of(Coordonnee(5, 2), 5, "La coordonnée en x devrait être 5")
             )
         }
         @JvmStatic
         fun coordProviderGetY(): Stream<Arguments?>? {
             return Stream.of(
-                Arguments.of(Coordonnee(0, 2), 2, "La coordonnée en y est 2"),
-                Arguments.of(Coordonnee(5, 8), 8, "La coordonnée en y est 8")
-            )
-        }
-        @JvmStatic
-        fun coordProviderEquals(): Stream<Arguments?>? {
-            return Stream.of(
-                Arguments.of(Coordonnee(5, 2),Coordonnee(0, 2), false, "")
+                Arguments.of(Coordonnee(0, 2), 2, "La coordonnée en y devrait être 2"),
+                Arguments.of(Coordonnee(5, 8), 8, "La coordonnée en y devrait être 8")
             )
         }
     }

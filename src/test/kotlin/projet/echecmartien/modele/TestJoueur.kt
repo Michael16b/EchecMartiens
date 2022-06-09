@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
 
-class TestJoueur{
+internal class TestJoueur{
 
     private var joueur1: Joueur = Joueur("toto")
     private val nbPetit = 7
@@ -14,21 +14,33 @@ class TestJoueur{
     private val nbGrand = 3
     private val nbTotal = nbPetit + nbMoyen + nbGrand
 
+    /**
+     * le joueur doit être réinitialisé avant chaque test
+     */
     @BeforeEach
     fun setUp() {
         joueur1 = Joueur("toto")
     }
 
+    /**
+     * teste si getPseudo renvoie bien le bon nom du joueur
+     */
     @Test
     fun testNom() {
         assertEquals("toto", joueur1.getPseudo(), "le nom du joueur devrait être toto")
     }
 
+    /**
+     * teste si le nombre de pions capturés est bien 0 pour un joueur nouvellement créé
+     */
     @Test
     fun testNbPionsCapturesNul() {
         assertEquals(0, joueur1.getNbPionsCaptures(), "le nombre de pions capturés du joueur devrait être 0")
     }
 
+    /**
+     * teste si le nombre de pions capturés est bien nbGrand lorsqu'on lui ajoute des pions capturés
+     */
     @Test
     fun testNbPionsCapturesNonNul() {
 
@@ -44,11 +56,18 @@ class TestJoueur{
         assertEquals(nbTotal, joueur1.getNbPionsCaptures(), "le nombre de pions capturés du joueur devrait être $nbTotal")
     }
 
+    /**
+     * teste si la taille de la liste des pions capturés est bien 0 pour un joueur nouvellement créé
+     */
     @Test
     fun testPionsCapturesNuls() {
         assertEquals(0, joueur1.getPionsCaptures().size, "Le nombre de pions capturés du joueur devrait être 0")
     }
 
+    /**
+     * teste si la taille de la liste des pions capturés est bien égale au nombre de pions ajoutés
+     * et que cette liste possède bien tous les pions qu'on fait capturer à un joueur
+     */
     @Test
     fun testPionsCapturesNonNuls() {
         val mesPions = mutableSetOf<Pion>()

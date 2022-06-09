@@ -18,20 +18,32 @@ internal class TestPion {
     private var petitpion = PetitPion()
     private val moyenpion = MoyenPion()
     private  val grandpion = GrandPion()
-
+    /**
+    * Test le score des petits pions
+    */
     @Test
     fun testGetScorePetitPion0() {
         assertEquals(1, petitpion.getScore(), "Le petit pion vaut 1")
     }
+    /**
+    * Test le score des pions moyens
+     */
     @Test
     fun testGetScoreMoyenPion0() {
         assertEquals(2, moyenpion.getScore(), "Le moyen pion vaut 2")
     }
+
+    /**
+     * Test le score des grands pions
+     */
     @Test
     fun testGetScoreGrandPion0() {
         assertEquals(3, grandpion.getScore(), "Le grand pion vaut 3")
     }
 
+    /**
+     *  @throws DeplacementException si un petit pion se déplace de plus de 1 case
+     */
     @Test
     fun testDeplacementPetitPionException1(){
         val deplacement = Deplacement(Coordonnee(0,0),Coordonnee(2,2))
@@ -40,6 +52,9 @@ internal class TestPion {
         }
     }
 
+    /**
+     * @throws DeplacementException si un petit pion se déplace verticalement
+     */
     @Test
     fun testDeplacementPetitPionException2(){
         val deplacement = Deplacement(Coordonnee(0,0),Coordonnee(0,1))
@@ -48,6 +63,20 @@ internal class TestPion {
         }
     }
 
+    /**
+     * @throws DeplacementException si un petit pion se déplace horizontalement
+     */
+    @Test
+    fun testDeplacementPetitPionException3(){
+        val deplacement = Deplacement(Coordonnee(0,0),Coordonnee(1,0))
+        assertThrows<DeplacementException>("Une exception devrait être levée"){
+            petitpion.getDeplacement(deplacement)
+        }
+    }
+
+    /**
+     * @throws DeplacementException si un pion moyen se déplace de plus de 2 cases
+     */
     @Test
     fun testDeplacementMoyenPionException(){
         val deplacement = Deplacement(Coordonnee(0,0),Coordonnee(3,3))
@@ -56,6 +85,9 @@ internal class TestPion {
         }
     }
 
+    /**
+     * @throws DeplacementException si un pion moyen se déplace de plus de 2 cases
+     */
     @Test
     fun testDeplacementGrandPionException(){
         assertThrows<DeplacementException>("Une exception devrait être levée"){
@@ -63,6 +95,9 @@ internal class TestPion {
         }
     }
 
+    /**
+     * test qu'un certain déplacement vertical renvoie bien la liste attendue
+     */
     @Test
     fun testDeplacementGrandPiondVertical1(){
         val oracle11 = arrayListOf(Coordonnee(0,1),Coordonnee(0,2),Coordonnee(0,3),Coordonnee(0,4))
@@ -71,6 +106,10 @@ internal class TestPion {
             if (!equalsListCoords(oracle11, coords))
                 fail("$coords devrait être $oracle11")
     }
+
+    /**
+     *  test qu'un certain déplacement vertical de 4 cases renvoie bien la liste attendue
+     */
     @Test
     fun testDeplacementGrandPiondVertical2(){
         val oracle12 = arrayListOf(Coordonnee(0,3),Coordonnee(0,2), Coordonnee(0,1),Coordonnee(0,0))
@@ -79,7 +118,9 @@ internal class TestPion {
         if (!equalsListCoords(oracle12, coords))
             fail("$coords devrait être $oracle12")
     }
-
+    /**
+     *  test qu'un certain déplacement horizontal d'un grand pion de 3 cases renvoie bien la liste attendue
+     */
     @Test
     fun testDeplacementGrandPiondHorizontal1(){
         val deplacement13 = Deplacement(Coordonnee(0,0), Coordonnee(3,0))
@@ -88,6 +129,9 @@ internal class TestPion {
         if (!equalsListCoords(oracle13, coords))
             fail("$coords devrait être $oracle13")
     }
+    /**
+     *  test qu'un certain déplacement d'un grand pion horizontal de 3 cases renvoie bien la liste attendue
+     */
     @Test
     fun testDeplacementGrandPiondHorizontal2(){
         val deplacement14 = Deplacement(Coordonnee(3,0), Coordonnee(0,0))
@@ -96,7 +140,9 @@ internal class TestPion {
         if (!equalsListCoords(oracle14, coords))
             fail("$coords devrait être $oracle14")
     }
-
+    /**
+     *  test qu'un certain déplacement diagonal d'un grand pion de 2 cases renvoie bien la liste attendue
+     */
     @Test
     fun testDeplacementGrandPiondDiagonal1(){
         val oracle15 = arrayListOf(Coordonnee(1,1), Coordonnee(2,2),Coordonnee(3,3))
@@ -105,6 +151,10 @@ internal class TestPion {
         if (!equalsListCoords(oracle15, coords))
             fail("$coords devrait être $oracle15")
     }
+
+    /**
+     * test qu'un certain déplacement diagonal des grands pions de 3 cases renvoie bien la liste attendue
+     */
     @Test
     fun testDeplacementGrandPiondDiagonale2(){
         val oracle16 = arrayListOf(Coordonnee(2,2),Coordonnee(1,1),Coordonnee(0,0))
@@ -114,7 +164,9 @@ internal class TestPion {
             fail("$coords devrait être $oracle16")
     }
 
-
+    /**
+     * test différents déplacements possible du petit pion
+     */
     @ParameterizedTest
     @MethodSource("listCoordProviderPetitPions")
     fun testDeplacementPetitPions(oracle: List<Coordonnee>, deplacement: Deplacement) {
@@ -123,6 +175,9 @@ internal class TestPion {
             fail("$coords devrait être $oracle")
     }
 
+    /**
+     * test différents déplacements possible du moyen pion
+     */
     @ParameterizedTest
     @MethodSource("listCoordProviderMoyenPions")
     fun testDeplacementMoyenPions(oracle: List<Coordonnee>, deplacement: Deplacement) {
