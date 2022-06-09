@@ -42,7 +42,7 @@ internal class TestPion {
     }
 
     /**
-     * test que le déplacement de plus d'1 case des petit pions lève une exception
+     *  @throws DeplacementException si un petit pion se déplace de plus de 1 case
      */
     @Test
     fun testDeplacementPetitPionException1(){
@@ -53,7 +53,7 @@ internal class TestPion {
     }
 
     /**
-     * test qu'un déplacement vertical d'un petit pion lève une exception
+     * @throws DeplacementException si un petit pion se déplace verticalement
      */
     @Test
     fun testDeplacementPetitPionException2(){
@@ -64,7 +64,7 @@ internal class TestPion {
     }
 
     /**
-     * test qu'un déplacement horizontal d'un petit pion lève une exception
+     * @throws DeplacementException si un petit pion se déplace horizontalement
      */
     @Test
     fun testDeplacementPetitPionException3(){
@@ -75,7 +75,7 @@ internal class TestPion {
     }
 
     /**
-     *
+     * @throws DeplacementException si un pion moyen se déplace de plus de 2 cases
      */
     @Test
     fun testDeplacementMoyenPionException(){
@@ -86,7 +86,7 @@ internal class TestPion {
     }
 
     /**
-     *
+     * @throws DeplacementException si un pion moyen se déplace de plus de 2 cases
      */
     @Test
     fun testDeplacementGrandPionException(){
@@ -96,7 +96,7 @@ internal class TestPion {
     }
 
     /**
-     *
+     * test qu'un certain déplacement vertical renvoie bien la liste attendue
      */
     @Test
     fun testDeplacementGrandPiondVertical1(){
@@ -108,7 +108,7 @@ internal class TestPion {
     }
 
     /**
-     *
+     *  test qu'un certain déplacement vertical de 4 cases renvoie bien la liste attendue
      */
     @Test
     fun testDeplacementGrandPiondVertical2(){
@@ -119,7 +119,7 @@ internal class TestPion {
             fail("$coords devrait être $oracle12")
     }
     /**
-     *
+     *  test qu'un certain déplacement horizontal d'un grand pion de 3 cases renvoie bien la liste attendue
      */
     @Test
     fun testDeplacementGrandPiondHorizontal1(){
@@ -130,7 +130,7 @@ internal class TestPion {
             fail("$coords devrait être $oracle13")
     }
     /**
-     *
+     *  test qu'un certain déplacement d'un grand pion horizontal de 3 cases renvoie bien la liste attendue
      */
     @Test
     fun testDeplacementGrandPiondHorizontal2(){
@@ -141,7 +141,7 @@ internal class TestPion {
             fail("$coords devrait être $oracle14")
     }
     /**
-     *
+     *  test qu'un certain déplacement diagonal d'un grand pion de 2 cases renvoie bien la liste attendue
      */
     @Test
     fun testDeplacementGrandPiondDiagonal1(){
@@ -153,7 +153,7 @@ internal class TestPion {
     }
 
     /**
-     *
+     * test qu'un certain déplacement diagonal des grands pions de 3 cases renvoie bien la liste attendue
      */
     @Test
     fun testDeplacementGrandPiondDiagonale2(){
@@ -164,6 +164,9 @@ internal class TestPion {
             fail("$coords devrait être $oracle16")
     }
 
+    /**
+     * test différents déplacements possible du petit pion
+     */
     @ParameterizedTest
     @MethodSource("listCoordProviderPetitPions")
     fun testDeplacementPetitPions(oracle: List<Coordonnee>, deplacement: Deplacement) {
@@ -172,6 +175,9 @@ internal class TestPion {
             fail("$coords devrait être $oracle")
     }
 
+    /**
+     * test différents déplacements possible du moyen pion
+     */
     @ParameterizedTest
     @MethodSource("listCoordProviderMoyenPions")
     fun testDeplacementMoyenPions(oracle: List<Coordonnee>, deplacement: Deplacement) {
