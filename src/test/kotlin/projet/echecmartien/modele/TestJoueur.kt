@@ -97,6 +97,9 @@ internal class TestJoueur{
 
     }
 
+    /**
+     * teste si la fonction calculerScore renvoie le bon score d'un joueur en fonction de ses pions capturés
+     */
     @Test
     fun testCalculScoreJoueur() {
         for (i in 0 until nbPetit) {
