@@ -10,6 +10,7 @@
         <module name="sae-dev-ihm-test" />
         <module name="Modele" />
         <module name="eq_1_03_besily-michael_bleuet-matthis_le-juge-julien_painter-louis" />
+        <module name="EchecMartiens" />
       </profile>
     </annotationProcessing>
   </component>

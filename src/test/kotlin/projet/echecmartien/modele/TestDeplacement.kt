@@ -1,13 +1,12 @@
 package projet.echecmartien.modele
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.lang.IllegalArgumentException
 import java.util.stream.Stream
 
 internal class TestDeplacement {
@@ -310,13 +309,7 @@ internal class TestDeplacement {
     }
 
     @Test
-    fun testGetCheminVertical() {
-
-        val deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(1, 0))
-        assertThrows<DeplacementException>("getCheminVertical de $deplacement devrait lancer une exception DeplacementException ") {
-            deplacement.getCheminVertical()
-        }
-
+    fun testGetCheminVerticalVrai() {
         val calcul1 = Deplacement(Coordonnee(0, 1), Coordonnee(0, 4))
         val attendu1 = mutableListOf(Coordonnee(0, 2), Coordonnee(0, 3), Coordonnee(0, 4))
         for (i in 0 until calcul1.getCheminVertical().size) {
@@ -328,4 +321,43 @@ internal class TestDeplacement {
             assertEquals(calcul2.getCheminVertical()[i], attendu2[i])
         }
     }
+
+    @Test
+    fun testGetCheminVerticalFaux() {
+        var deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(1, 0))
+        assertThrows<DeplacementException>("getCheminVertical de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminVertical()
+        }
+        deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(1, 1))
+        assertThrows<DeplacementException>("getCheminVertical de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminVertical()
+        }
+    }
+
+    @Test
+    fun testGetCheminHorizontalVrai() {
+        val calcul1 = Deplacement(Coordonnee(0, 0), Coordonnee(3, 0))
+        val attendu1 = mutableListOf(Coordonnee(1, 0), Coordonnee(2, 0), Coordonnee(3, 0))
+        for (i in 0 until calcul1.getCheminHorizontal().size) {
+            assertEquals(calcul1.getCheminHorizontal()[i], attendu1[i])
+        }
+        val calcul2 = Deplacement(Coordonnee(1, 2), Coordonnee(0, 2))
+        val attendu2 = mutableListOf(Coordonnee(0, 2))
+        for (i in 0 until calcul2.getCheminHorizontal().size) {
+            assertEquals(calcul2.getCheminHorizontal()[i], attendu2[i])
+        }
+    }
+
+    @Test
+    fun testGetCheminHorizontalFaux() {
+        var deplacement = Deplacement(Coordonnee(0, 1), Coordonnee(1, 2))
+        assertThrows<DeplacementException>("getCheminHorizontal de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminHorizontal()
+        }
+        deplacement = Deplacement(Coordonnee(0, 0), Coordonnee(0, 3))
+        assertThrows<DeplacementException>("getCheminHorizontal de $deplacement devrait lancer une exception DeplacementException ") {
+            deplacement.getCheminHorizontal()
+        }
+    }
+
 }

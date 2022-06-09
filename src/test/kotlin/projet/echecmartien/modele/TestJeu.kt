@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
 
-internal class TestJeu {
+internal class
+TestJeu {
 
     private var jeu = Jeu()
     private var plateau = Plateau()
