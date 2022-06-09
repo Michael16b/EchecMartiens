@@ -223,27 +223,12 @@ class Jeu {
         if (null in joueurs)
             return null
 
-        if (nombreCoupsSansPrise >=  nombreCoupsSansPriseMax)
-            return joueurMeilleurScore()
-
-        if (joueurs[0]!!.getNbPionsCaptures() + joueurs[1]!!.getNbPionsCaptures() >= 17)
-            return joueurMeilleurScore()
-
-        return null
-    }
-
-    /**
-     * permet de savoir le joueur ayant le meilleur score
-     * @return le joueur ayant le meilleur score, null si joueurs non initialisés
-     */
-    private fun joueurMeilleurScore(): Joueur? {
-        if (null in joueurs)
-            return null
-
-        return if (joueurs[0]!!.calculerScore() > joueurs[1]!!.calculerScore()) {
-            joueurs[0]
-        } else {
-            joueurs[1]
+        val scoreJ1 = joueurs[0]!!.calculerScore()
+        val scoreJ2 = joueurs[1]!!.calculerScore()
+        return when {
+            scoreJ1>scoreJ2 -> joueurs[0]
+            scoreJ1<scoreJ2 -> joueurs[1]
+            else -> null
         }
     }
 
@@ -252,7 +237,13 @@ class Jeu {
      * @return true si la partie est finie, false sinon
      */
     fun arretPartie(): Boolean {
-        return joueurVainqueur() != null
+        if (nombreCoupsSansPrise >=  nombreCoupsSansPriseMax)
+            return true
+
+        if (joueurs[0]!!.getNbPionsCaptures() + joueurs[1]!!.getNbPionsCaptures() >= 17)
+            return true
+
+        return false
     }
 
     /**

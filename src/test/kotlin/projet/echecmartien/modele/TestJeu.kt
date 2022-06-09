@@ -119,5 +119,60 @@ internal class TestJeu {
         assertTrue(jeu.deplacementPossible(0, 1), "le grand pion en 0, 1 devrait pouvoir se déplacer")
     }
 
+    /**
+     * teste le joueur vainqueur
+     */
+    @Test
+    fun TestJoueurVainqueurPartieNonInit() {
+        val game = Jeu()
+        assertNull(game.joueurVainqueur())
+    }
 
+    /**
+     * teste le joueur vainqueur
+     */
+    @Test
+    fun TestJoueurVainqueurPartieInit1() {
+        val game = Jeu()
+        val joueur1 = Joueur("Matthis")
+        val joueur2 = Joueur("Louis")
+        game.initialiserPartie(joueur1, joueur2, 2)
+        joueur1.ajouterPionCaptures(GrandPion())
+        joueur2.ajouterPionCaptures(MoyenPion())
+        assertEquals(joueur1, game.joueurVainqueur())
+    }
+
+    /**
+     * teste le joueur vainqueur
+     */
+    @Test
+    fun TestJoueurVainqueurPartieInit2() {
+        val game = Jeu()
+        val joueur1 = Joueur("Matthis")
+        val joueur2 = Joueur("Louis")
+        game.initialiserPartie(joueur1, joueur2, 2)
+        joueur1.ajouterPionCaptures(PetitPion())
+        joueur2.ajouterPionCaptures(MoyenPion())
+        assertEquals(joueur2, game.joueurVainqueur())
+    }
+
+    /**
+     * teste le joueur vainqueur
+     */
+    @Test
+    fun TestJoueurVainqueurPartieInit3() {
+        val game = Jeu()
+        val joueur1 = Joueur("Matthis")
+        val joueur2 = Joueur("Louis")
+        game.initialiserPartie(joueur1, joueur2, 2)
+        joueur1.ajouterPionCaptures(MoyenPion())
+        joueur2.ajouterPionCaptures(MoyenPion())
+        assertEquals(null, game.joueurVainqueur())
+    }
+
+    fun testArretPartie() {
+        val game = Jeu()
+        game.initialiserPartie(Joueur("Matthis"), Joueur("Louis"), 2)
+
+    }
 }
