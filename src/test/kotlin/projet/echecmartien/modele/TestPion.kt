@@ -161,7 +161,6 @@ internal class TestPion {
             fail("$coords devrait être $oracle16")
     }
 
-
     /**
      * test différents déplacements possible du petit pion
      */
