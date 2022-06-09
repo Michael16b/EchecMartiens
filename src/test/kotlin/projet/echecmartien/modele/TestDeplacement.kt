@@ -325,4 +325,5 @@ internal class TestDeplacement {
             assertEquals(calcul2.getCheminVertical()[i], attendu2[i])
         }
     }
+
 }
