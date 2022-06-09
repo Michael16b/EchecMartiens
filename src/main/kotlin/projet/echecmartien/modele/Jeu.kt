@@ -182,6 +182,8 @@ class Jeu {
 
         if (!caseDestination.estLibre())
             joueurCourant?.ajouterPionCaptures(caseDestination.getPion()!!)
+        else
+            nombreCoupsSansPrise++
 
         // si le pion change de zone il devient le dernier pion arrivé de zone
         if (caseDestination.getJoueur() != joueurCourant) {
