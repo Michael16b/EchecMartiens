@@ -1,7 +1,6 @@
 package projet.echecmartien.modele
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -386,5 +385,41 @@ internal class TestDeplacement {
             deplacement.getCheminDiagonal()
         }
     }
+
+    /**
+     * teste que 2 déplacement sont égaux
+     */
+    @Test
+    fun testEqualsDeplacement1() {
+        assertTrue(Deplacement(Coordonnee(0,0),Coordonnee(2,2)).equals(Deplacement(Coordonnee(0,0), Coordonnee(2,2))))
+    }
+
+    /**
+     * vérifie qu'un ndéplacement et une coordonnées ne sont pas égaux
+     */
+    @Test
+    fun testEqualsDeplacement2() {
+        assertFalse(Deplacement(Coordonnee(0,0),Coordonnee(2,2)).equals(Coordonnee(0,0)))
+    }
+    /**
+     * Test que 2 deplacements avec des origines différentes ne sont pas égaux
+     */
+    @Test
+    fun testEqualsDeplacement3() {
+        val deplacement1 = Deplacement(Coordonnee(0,0), Coordonnee(2,2))
+        val deplacement2 = Deplacement(Coordonnee(1,1),Coordonnee(2,2))
+        assertFalse(deplacement1.getOrigine().equals(deplacement2.getOrigine()))
+    }
+    /**
+     * Test que 2 déplacement avec 2 destinations différentes ne sont pas égaux
+     */
+    @Test
+    fun testEqualsDeplacement4() {
+        val deplacement1 = Deplacement(Coordonnee(0,0), Coordonnee(1,1))
+        val deplacement2 = Deplacement(Coordonnee(0,0),Coordonnee(2,2))
+        assertFalse(deplacement1.getDestination().equals(deplacement2.getDestination()))
+    }
+
+
 
 }
