@@ -8,12 +8,14 @@ import javafx.scene.layout.*
 import javafx.scene.paint.Color
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Rectangle
+import projet.echecmartien.librairie.EnumPion
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
 
 class GameVue: BorderPane() {
 
     val playGrid: GridPane
+    val cells: Array<Array<StackPane>>
     val gridHorizontalCenterContainer: HBox
     val gridVerticalCenterContainer: VBox
     val leftContainer: BorderPane
@@ -48,6 +50,7 @@ class GameVue: BorderPane() {
         /* Initialisation des attributs */
 
         playGrid = GridPane()
+        cells = Array(TAILLEHORIZONTALE) { Array(TAILLEVERTICALE) { StackPane() } }
         gridHorizontalCenterContainer = HBox()
         gridVerticalCenterContainer = VBox()
         leftContainer = BorderPane()
@@ -84,7 +87,7 @@ class GameVue: BorderPane() {
             for (j in 0 until TAILLEHORIZONTALE) {
                 val r = Rectangle(cellWidth, cellHeight)
                 r.fill = Color.WHITESMOKE
-                val s = StackPane()
+                val s = cells[j][i]
 
                 // les cellules sur les côtés doivent avoir une bordure de taille 2
                 var borderTop = if (i == 0) 2 else 1
@@ -185,6 +188,21 @@ class GameVue: BorderPane() {
         c.radius = 18.0
         c.stroke = Color.BLACK
         return c
+    }
+
+    fun setPion(row: Int, column: Int, type: EnumPion) {
+        require(row in 0 until TAILLEHORIZONTALE)
+        require(column in 0 until TAILLEVERTICALE)
+
+        val c: Circle? = when (type) {
+            EnumPion.GRANDPION -> getGrandPionCircle()
+            EnumPion.MOYENPION -> getMoyenPionCircle()
+            EnumPion.PETITPION -> getPetitPionCircle()
+            else -> null
+        }
+
+        cells[row][column].children.clear()
+        cells[row][column].children.add(c)
     }
 
 }

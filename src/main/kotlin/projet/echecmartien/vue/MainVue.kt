@@ -65,6 +65,8 @@ class MainVue: BorderPane() {
         textFieldPseudo2 = TextField()
 
         comboBoxIA = ComboBox<String>()
+        comboBoxIA.items.addAll(arrayOf("Sans", "Avec"))
+        comboBoxIA.selectionModel.select(0)
 
         /* Arbre de la scène */
 
