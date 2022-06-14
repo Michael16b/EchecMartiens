@@ -13,8 +13,8 @@ class AppliJeuEchecMartien: Application() {
 
         val root = MainVue()
 
-        val sceneWidth = 600.0
-        val sceneHeight = 500.0
+        val sceneWidth = 1100.0
+        val sceneHeight = 700.0
         val scene = Scene(root, sceneWidth, sceneHeight)
 
         primaryStage.minHeight = sceneHeight+40.0
