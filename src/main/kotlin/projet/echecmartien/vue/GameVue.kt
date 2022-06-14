@@ -83,7 +83,7 @@ class GameVue: BorderPane() {
         for (i in 0 until TAILLEVERTICALE) {
             for (j in 0 until TAILLEHORIZONTALE) {
                 val r = Rectangle(cellWidth, cellHeight)
-                r.fill = Color.LIGHTGRAY
+                r.fill = Color.WHITESMOKE
                 val s = StackPane()
 
                 // les cellules sur les côtés doivent avoir une bordure de taille 2
@@ -175,6 +175,7 @@ class GameVue: BorderPane() {
         val c = Circle()
         c.fill = Color.GRAY
         c.radius = 25.0
+        c.stroke = Color.BLACK
         return c
     }
 
@@ -182,6 +183,7 @@ class GameVue: BorderPane() {
         val c = Circle()
         c.fill = Color.LIGHTGRAY
         c.radius = 18.0
+        c.stroke = Color.BLACK
         return c
     }
 
