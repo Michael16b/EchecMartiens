@@ -5,7 +5,7 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.layout.BorderPane
 
-class ControleurRules(scene: Scene , vue: BorderPane): EventHandler<ActionEvent> {
+class ControleurVueBorderPane(scene: Scene , vue: BorderPane): EventHandler<ActionEvent> {
     val scene: Scene
     val vue: BorderPane
 
@@ -16,6 +16,5 @@ class ControleurRules(scene: Scene , vue: BorderPane): EventHandler<ActionEvent>
 
     override fun handle(Event: ActionEvent) {
         scene.root = vue
-        println("ça passe ici")
     }
 }
