@@ -1,20 +1,23 @@
 package projet.echecmartien.vue
 
+import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
-import javafx.scene.layout.BorderPane
-import javafx.scene.layout.GridPane
-import javafx.scene.layout.HBox
-import javafx.scene.layout.VBox
+import javafx.scene.layout.*
 import javafx.scene.paint.Color
 import javafx.scene.shape.Rectangle
+import projet.echecmartien.librairie.TAILLEHORIZONTALE
+import projet.echecmartien.librairie.TAILLEVERTICALE
 
 class GameVue: BorderPane() {
 
     val playGrid: GridPane
     val gridHorizontalCenterContainer: HBox
     val gridVerticalCenterContainer: VBox
+    val leftContainer: BorderPane
+    val p1Container: VBox
+    val buttonsContainer: HBox
 
     val labelScore1: Label
     val labelScore2: Label
@@ -44,11 +47,14 @@ class GameVue: BorderPane() {
         playGrid = GridPane()
         gridHorizontalCenterContainer = HBox()
         gridVerticalCenterContainer = VBox()
+        leftContainer = BorderPane()
+        buttonsContainer = HBox()
+        p1Container = VBox()
 
-        labelScore1 = Label()
-        labelScore2 = Label()
-        labelPlayer1 = Label()
-        labelPlayer2 = Label()
+        labelScore1 = Label("Score :")
+        labelScore2 = Label("Score :")
+        labelPlayer1 = Label("NomJ1")
+        labelPlayer2 = Label("NomJ2")
 
         buttonBack = Button("Retour")
         buttonSave = Button("Sauvegarder Partie")
@@ -67,16 +73,30 @@ class GameVue: BorderPane() {
 
         /* center */
 
-        val cellWidth = 95.0
-        val cellHeight = 85.0
-        for (i in 0..7) {
-            for (j in 0..3) {
+        val cellWidth = 90.0
+        val cellHeight = 80.0
+        for (i in 0 until TAILLEVERTICALE) {
+            for (j in 0 until TAILLEHORIZONTALE) {
                 val r = Rectangle(cellWidth, cellHeight)
                 r.fill = Color.LIGHTGRAY
-                playGrid.add(r, j, i)
+                val s = StackPane()
+
+                // les cellules sur les côtés doivent avoir une bordure de taille 2
+                var borderTop = if (i == 0) 2 else 1
+                val borderBottom = if (i == TAILLEVERTICALE-1) 2 else 1
+                val borderLeft = if (j == 0) 2 else 1
+                val borderRight = if (j == TAILLEHORIZONTALE-1) 2 else 1
+
+                // pour délimiter les deux zones
+                if (i == 4) {
+                    borderTop = 5
+                }
+
+                s.style = "-fx-border-color: black; -fx-border-width: $borderTop $borderRight $borderBottom $borderLeft;"
+                s.children.add(r)
+                playGrid.add(s, j, i)
             }
         }
-        playGrid.isGridLinesVisible = true
 
         gridHorizontalCenterContainer.children.add(playGrid)
         gridHorizontalCenterContainer.alignment = Pos.CENTER
@@ -85,8 +105,18 @@ class GameVue: BorderPane() {
         gridVerticalCenterContainer.alignment = Pos.CENTER
         this.center = gridVerticalCenterContainer
 
-
         /* left */
+        buttonsContainer.children.addAll(buttonBack, buttonSave)
+        buttonsContainer.alignment = Pos.BOTTOM_LEFT
+        buttonsContainer.spacing = 20.0
+        buttonsContainer.padding = Insets(0.0, 0.0, 10.0, 10.0)
+
+        leftContainer.bottom = buttonsContainer
+
+        p1Container.children.addAll(labelPlayer1, pionsP1, labelScore1)
+        leftContainer.top = p1Container
+
+        this.left = leftContainer
 
         /* right */
 
