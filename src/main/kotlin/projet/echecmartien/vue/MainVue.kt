@@ -120,7 +120,7 @@ class MainVue: BorderPane() {
             null
         }
 
-        textFieldCoups.textFormatter = TextFormatter(IntegerStringConverter(), 1, integerFilter)
+        textFieldCoups.textFormatter = TextFormatter(IntegerStringConverter(), 10, integerFilter)
 
         playerGrid.add(gridPlayer1Container, 0, 0)
         playerGrid.add(gridPlayer2Container, 1, 0)

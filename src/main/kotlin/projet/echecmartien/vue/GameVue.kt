@@ -20,10 +20,11 @@ class GameVue: BorderPane() {
     val gridHorizontalCenterContainer: HBox
     val gridVerticalCenterContainer: VBox
     val leftContainer: BorderPane
-    val rightContainer: VBox
+    val rightContainer: BorderPane
     val p1Container: VBox
     val p2Container: VBox
     val buttonsContainer: HBox
+    val coupsRestantContainer: HBox
 
     val labelScore1: Label
     val labelScore2: Label
@@ -48,6 +49,8 @@ class GameVue: BorderPane() {
     val labelMP2: Label
     val labelPP2: Label
 
+    val labelCoupsRestants: Label
+
     init {
 
         /* Initialisation des attributs */
@@ -58,14 +61,17 @@ class GameVue: BorderPane() {
         gridVerticalCenterContainer = VBox()
         leftContainer = BorderPane()
         buttonsContainer = HBox()
+        coupsRestantContainer = HBox()
         p1Container = VBox()
         p2Container = VBox()
-        rightContainer = VBox()
+        rightContainer = BorderPane()
 
         labelScore1 = Label("Score : 0 pts")
         labelScore2 = Label("Score : 0 pts")
         labelPlayer1 = Label("NomJ1")
         labelPlayer2 = Label("NomJ2")
+
+        labelCoupsRestants = Label()
 
         buttonBack = Button("Retour")
         buttonSave = Button("Sauvegarder Partie")
@@ -165,9 +171,14 @@ class GameVue: BorderPane() {
         p2Container.alignment = Pos.BOTTOM_RIGHT
         p2Container.spacing = 10.0
 
-        rightContainer.children.add(p2Container)
+        coupsRestantContainer.children.add(labelCoupsRestants)
+        coupsRestantContainer.alignment = Pos.TOP_RIGHT
+        coupsRestantContainer.padding = Insets(10.0, 10.0, 0.0, 0.0)
+        coupsRestantContainer.prefWidth = 200.0
+        labelCoupsRestants.isWrapText = true
+        rightContainer.top = coupsRestantContainer
+        rightContainer.bottom = p2Container
         rightContainer.padding = Insets(0.0, 20.0, 20.0, 0.0)
-        rightContainer.alignment = Pos.BOTTOM_RIGHT
         this.right = rightContainer
 
     }

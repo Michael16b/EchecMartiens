@@ -57,6 +57,7 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
 
         val controleurClick = ControleurJeu(scene, gameVue, jeu)
         gameVue.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
+        gameVue.labelCoupsRestants.text = "Nb coups sans prise avant fin de la partie : ${jeu.nbCoupsSansPriseRestants()}"
         gameVue.remplirCases(jeu.getPLateau().getCases())
         scene.root = gameVue
 

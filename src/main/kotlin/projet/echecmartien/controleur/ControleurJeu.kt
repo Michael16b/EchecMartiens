@@ -30,7 +30,9 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mouse
     }
 
     override fun handle(e: MouseEvent) {
-
+        println(modele.getJoueurs()[0]!!.calculerScore())
+        println(modele.getJoueurs()[1]!!.calculerScore())
+        println("----")
         var source = e.pickResult.intersectedNode
 
         if (source is Rectangle || source is Circle)
@@ -107,6 +109,9 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mouse
 
     }
 
+    /**
+     * fonction qui fait passer le jeu au tour suivant et vérifie si la partie doit se poursuivre ou non
+     */
     private fun tourSuivant() {
         modele.changeJoueurCourant()
         vue.resetCouleur()
@@ -116,14 +121,42 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mouse
 
         if (modele.arretPartie())
             finPartie()
+
+        vue.labelCoupsRestants.text = "Nb coups sans prise avant fin de la partie : ${modele.nbCoupsSansPriseRestants()}"
+
+        if (!tourJouable())
+            modele.changeJoueurCourant()
     }
 
+    /**
+     * renvoie vrai si le joueur courant peut joueur ou non
+     */
+    private fun tourJouable(): Boolean {
+        val colMin = if (modele.getJoueurCourant() == modele.getJoueurs()[0]) 0 else 4
+        val colMax = if (colMin == 0) 3 else 7
+        for (i in colMin..colMax) {
+            for (j in 0 until TAILLEHORIZONTALE) {
+                if (modele.deplacementPossible(j, i))
+                    return true
+            }
+        }
+        return false
+    }
+
+    /**
+     * fonction pour terminer la partie et afficher le gagnant ou égalité
+     */
     private fun finPartie() {
         val winVue = WinVue()
         winVue.setJoueurVainqueur(modele.joueurVainqueur(), modele.getJoueurs()[0]?.calculerScore()?:0)
         scene.root = winVue
     }
 
+    /**
+     * fonction pour mettre à jour le nombre de prises par pion suivant un joueur
+     * @param type: pion capturé
+     * @param joueur: joueur qui a capturé le pion
+     */
     private fun majPrises(joueur: Joueur?, type: Pion?){
 
         val decalageJoueur = if (joueur == modele.getJoueurs()[0]) 0 else 1
@@ -137,17 +170,25 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mouse
 
         val labelValue = labelNb.text.toInt()
         labelNb.text = "${labelValue + 1}"
-
     }
 
+    /**
+     * fonction qui met à jour les scores des deux joueurs
+     */
     private fun majScores() {
         val joueurs = modele.getJoueurs()
 
         vue.labelScore1.text = "Score : ${joueurs[0]?.calculerScore()?:0} pts"
-        vue.labelScore1.text = "Score : ${joueurs[1]?.calculerScore()?:0} pts"
+        vue.labelScore2.text = "Score : ${joueurs[1]?.calculerScore()?:0} pts"
 
     }
 
+    /**
+     * fonction qui colorie les cases du plateau de jeu pour montrer les déplacements
+     * possibles à partir de coordonnées
+     * @param row: abscisse d'origine
+     * @param col: ordonnée d'origine
+     */
     private fun montrerDeplacementsPossibles(row: Int, col: Int) {
         vue.resetCouleur()
         if (!modele.deplacementPossible(row, col))
