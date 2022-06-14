@@ -17,7 +17,9 @@ class GameVue: BorderPane() {
     val gridHorizontalCenterContainer: HBox
     val gridVerticalCenterContainer: VBox
     val leftContainer: BorderPane
+    val rightContainer: VBox
     val p1Container: VBox
+    val p2Container: VBox
     val buttonsContainer: HBox
 
     val labelScore1: Label
@@ -41,10 +43,6 @@ class GameVue: BorderPane() {
     val labelMP2: Label
     val labelPP2: Label
 
-    val circleGP: Circle
-    val circleMP: Circle
-    val circlePP: Circle
-
     init {
 
         /* Initialisation des attributs */
@@ -55,6 +53,8 @@ class GameVue: BorderPane() {
         leftContainer = BorderPane()
         buttonsContainer = HBox()
         p1Container = VBox()
+        p2Container = VBox()
+        rightContainer = VBox()
 
         labelScore1 = Label("Score :")
         labelScore2 = Label("Score :")
@@ -73,18 +73,6 @@ class GameVue: BorderPane() {
         labelGP2 = Label("0")
         labelMP2 = Label("0")
         labelPP2 = Label("0")
-
-        circleGP = Circle()
-        circleGP.fill = Color.BLACK
-        circleGP.radius = 35.0
-
-        circleMP = Circle()
-        circleMP.fill = Color.GRAY
-        circleMP.radius = 25.0
-
-        circlePP = Circle()
-        circlePP.fill = Color.LIGHTGRAY
-        circlePP.radius = 18.0
 
         /* Arbre de la scène */
 
@@ -130,9 +118,9 @@ class GameVue: BorderPane() {
 
         leftContainer.bottom = buttonsContainer
 
-        pionsP1.add(StackPane(circleGP), 0, 0)
-        pionsP1.add(StackPane(circleMP), 0, 1)
-        pionsP1.add(StackPane(circlePP), 0, 2)
+        pionsP1.add(StackPane(getGrandPionCircle()), 0, 0)
+        pionsP1.add(StackPane(getMoyenPionCircle()), 0, 1)
+        pionsP1.add(StackPane(getPetitPionCircle()), 0, 2)
         pionsP1.add(labelGP1, 1, 0)
         pionsP1.add(labelMP1, 1, 1)
         pionsP1.add(labelPP1, 1, 2)
@@ -141,6 +129,7 @@ class GameVue: BorderPane() {
         pionsP1.hgap = 25.0
         pionsP1.style = "-fx-border-color: black;"
         pionsP1.padding = Insets(10.0)
+        pionsP1.prefWidth = 200.0
 
         p1Container.children.addAll(labelPlayer1, pionsP1, labelScore1)
         p1Container.spacing = 10.0
@@ -148,11 +137,52 @@ class GameVue: BorderPane() {
         leftContainer.padding = Insets(20.0, 0.0, 0.0, 20.0)
         leftContainer.top = p1Container
 
-
         this.left = leftContainer
 
         /* right */
+        pionsP2.add(StackPane(getGrandPionCircle()), 0, 0)
+        pionsP2.add(StackPane(getMoyenPionCircle()), 0, 1)
+        pionsP2.add(StackPane(getPetitPionCircle()), 0, 2)
+        pionsP2.add(labelGP2, 1, 0)
+        pionsP2.add(labelMP2, 1, 1)
+        pionsP2.add(labelPP2, 1, 2)
 
+        pionsP2.vgap = 10.0
+        pionsP2.hgap = 25.0
+        pionsP2.style = "-fx-border-color: black;"
+        pionsP2.padding = Insets(10.0)
+        pionsP2.prefWidth = 200.0
+
+        p2Container.children.addAll(labelScore2, pionsP2, labelPlayer2)
+        p2Container.alignment = Pos.BOTTOM_RIGHT
+        p2Container.spacing = 10.0
+
+        rightContainer.children.add(p2Container)
+        rightContainer.padding = Insets(0.0, 20.0, 20.0, 0.0)
+        rightContainer.alignment = Pos.BOTTOM_RIGHT
+        this.right = rightContainer
 
     }
+
+    private fun getGrandPionCircle(): Circle {
+        val c = Circle()
+        c.fill = Color.BLACK
+        c.radius = 35.0
+        return c
+    }
+
+    private fun getMoyenPionCircle(): Circle {
+        val c = Circle()
+        c.fill = Color.GRAY
+        c.radius = 25.0
+        return c
+    }
+
+    private fun getPetitPionCircle(): Circle {
+        val c = Circle()
+        c.fill = Color.LIGHTGRAY
+        c.radius = 18.0
+        return c
+    }
+
 }
