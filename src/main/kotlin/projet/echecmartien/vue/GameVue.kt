@@ -30,6 +30,8 @@ class GameVue: BorderPane() {
     val labelPlayer1: Label
     val labelPlayer2: Label
 
+    val labelNbPionsArray: Array<Label>
+
     val buttonBack: Button
     val buttonSave: Button
 
@@ -60,8 +62,8 @@ class GameVue: BorderPane() {
         p2Container = VBox()
         rightContainer = VBox()
 
-        labelScore1 = Label("Score :")
-        labelScore2 = Label("Score :")
+        labelScore1 = Label("Score : 0 pts")
+        labelScore2 = Label("Score : 0 pts")
         labelPlayer1 = Label("NomJ1")
         labelPlayer2 = Label("NomJ2")
 
@@ -78,6 +80,7 @@ class GameVue: BorderPane() {
         labelMP2 = Label("0")
         labelPP2 = Label("0")
 
+        labelNbPionsArray = arrayOf(labelGP1, labelMP1, labelPP1, labelGP2, labelMP2, labelPP2)
         /* Arbre de la scène */
 
         /* center */

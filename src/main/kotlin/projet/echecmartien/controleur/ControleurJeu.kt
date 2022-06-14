@@ -1,25 +1,31 @@
 package projet.echecmartien.controleur
 
 import javafx.event.EventHandler
+import javafx.scene.Scene
+import javafx.scene.control.Label
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.StackPane
 import javafx.scene.paint.Color
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Rectangle
-import projet.echecmartien.modele.Coordonnee
-import projet.echecmartien.modele.Jeu
+import projet.echecmartien.librairie.TAILLEHORIZONTALE
+import projet.echecmartien.librairie.TAILLEVERTICALE
+import projet.echecmartien.modele.*
 import projet.echecmartien.vue.GameVue
+import projet.echecmartien.vue.WinVue
 
-class ControleurClick(vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
+class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
 
     private val vue: GameVue
     private val modele: Jeu
+    private val scene: Scene
     private var origineSelected: Boolean
 
     init {
         this.vue = vue
         this.modele = modele
+        this.scene = scene
         this.origineSelected = false
     }
 
@@ -44,16 +50,13 @@ class ControleurClick(vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
          */
         if (!origineSelected) {
 
-            println(modele.getJoueurCourant())
-            println(case.getJoueur())
-            println(modele.deplacementPossible(row, col))
             if (!modele.deplacementPossible(col,row) || case.getJoueur() != modele.getJoueurCourant())
                 return
 
             origineSelected = true
             vue.resetCouleur()
-            vue.colorierCase(row, col, Color.LIGHTGREEN)
             modele.setCoordOrigineDeplacement(Coordonnee(col, row))
+            montrerDeplacementsPossibles(col, row)
             return
         }
 
@@ -66,8 +69,12 @@ class ControleurClick(vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
             // si le déplacement dans la propre zone du joueur est possible
             if (case.estLibre()) {
 
-                if (!modele.deplacementPossible(oldOrigine!!.getX(), oldOrigine.getY(), col, row, modele.getJoueurCourant()))
+                if (!modele.deplacementPossible(oldOrigine!!.getX(), oldOrigine.getY(), col, row, modele.getJoueurCourant())) {
+
+                    vue.colorierCase(row, col, Color.RED)
                     return
+                }
+
 
                 modele.deplacer(oldOrigine.getX(), oldOrigine.getY(), col, row)
                 tourSuivant()
@@ -76,9 +83,9 @@ class ControleurClick(vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
 
             // si le joueur clique sur un de ses pions, alors on change la coordonnée d'origine
             vue.resetCouleur()
-            vue.colorierCase(row, col, Color.LIGHTGREEN)
             val newOrigine = Coordonnee(col, row)
             modele.setCoordOrigineDeplacement(newOrigine)
+            montrerDeplacementsPossibles(col, row)
 
             if (oldOrigine != null && oldOrigine != newOrigine)
                 vue.colorierCase(oldOrigine.getY(), oldOrigine.getX(), Color.WHITESMOKE)
@@ -88,9 +95,13 @@ class ControleurClick(vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
         // on sait que la case de destination n'appartient pas au joueur courant
         val origine = modele.getCoordOrigineDeplacement()
 
-        if (!modele.deplacementPossible(origine!!.getX(), origine.getY(), col, row, modele.getJoueurCourant()))
+        if (!modele.deplacementPossible(origine!!.getX(), origine.getY(), col, row, modele.getJoueurCourant())) {
+            vue.colorierCase(row, col, Color.RED)
             return
+        }
 
+        // il y a une prise
+        majPrises(modele.getJoueurCourant(), modele.getPLateau().getCases()[col][row].getPion())
         modele.deplacer(origine.getX(), origine.getY(), col, row)
         tourSuivant()
 
@@ -100,6 +111,61 @@ class ControleurClick(vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
         modele.changeJoueurCourant()
         vue.resetCouleur()
         vue.remplirCases(modele.getPLateau().getCases())
+        majScores()
         origineSelected = false
+
+        if (modele.arretPartie())
+            finPartie()
+    }
+
+    private fun finPartie() {
+        val winVue = WinVue()
+        winVue.setJoueurVainqueur(modele.joueurVainqueur(), modele.getJoueurs()[0]?.calculerScore()?:0)
+        scene.root = winVue
+    }
+
+    private fun majPrises(joueur: Joueur?, type: Pion?){
+
+        val decalageJoueur = if (joueur == modele.getJoueurs()[0]) 0 else 1
+        val decalagePion = when (type) {
+            is MoyenPion -> 1
+            is GrandPion -> 0
+            is PetitPion -> 2
+            else -> 0
+        }
+        val labelNb = vue.labelNbPionsArray[decalageJoueur * 3 + decalagePion]
+
+        val labelValue = labelNb.text.toInt()
+        labelNb.text = "${labelValue + 1}"
+
+    }
+
+    private fun majScores() {
+        val joueurs = modele.getJoueurs()
+
+        vue.labelScore1.text = "Score : ${joueurs[0]?.calculerScore()?:0} pts"
+        vue.labelScore1.text = "Score : ${joueurs[1]?.calculerScore()?:0} pts"
+
+    }
+
+    private fun montrerDeplacementsPossibles(row: Int, col: Int) {
+        vue.resetCouleur()
+        if (!modele.deplacementPossible(row, col))
+            return
+        vue.colorierCase(col, row, Color.GREEN)
+
+        for (i in 0 until TAILLEVERTICALE) {
+            for (j in 0 until TAILLEHORIZONTALE) {
+
+                if (j == row && i == col) {
+                    continue
+                }
+                if (modele.deplacementPossible(row, col, j, i, modele.getJoueurCourant())) {
+                    vue.colorierCase(i, j, Color.LIGHTGREEN)
+                }
+
+            }
+        }
+
     }
 }

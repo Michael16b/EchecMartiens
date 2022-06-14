@@ -264,4 +264,10 @@ class Jeu {
      */
     fun getPLateau() : Plateau = this.plateau
 
+    /**
+     * retourna la liste des joueurs du jeu qui peuvent être null
+     * @return array des joueurs
+     */
+    fun getJoueurs() : Array<Joueur?> = this.joueurs
+
 }

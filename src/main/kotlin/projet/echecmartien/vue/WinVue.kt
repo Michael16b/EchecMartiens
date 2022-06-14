@@ -5,6 +5,7 @@ import javafx.scene.control.Label
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import projet.echecmartien.modele.Joueur
 
 class WinVue : BorderPane() {
     val infos : VBox
@@ -26,10 +27,21 @@ class WinVue : BorderPane() {
         Boutons.children.addAll(BoutonRejouer, BoutonQuitter)
         Boutons.spacing = 50.0
 
-        labelJoueur = Label("a remporté la partie")
-        labelScore = Label("Score : pts")
+        labelJoueur = Label()
+        labelScore = Label()
 
         infos.children.addAll(labelJoueur, Boutons, labelScore)
         infos.spacing = 20.0
+    }
+
+    fun setJoueurVainqueur(joueur: Joueur?, scoreJ1: Int) {
+
+        if (joueur == null) {
+            labelJoueur.text = "Egalité !"
+            labelScore.text = "Score des joueurs : $scoreJ1 pts"
+            return
+        }
+        labelJoueur.text = "${joueur.getPseudo()} a remporté la partie"
+        labelScore.text = "Score : ${joueur.calculerScore()} pts"
     }
 }

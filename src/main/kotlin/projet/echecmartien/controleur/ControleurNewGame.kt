@@ -5,26 +5,22 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.control.Alert
 import javafx.scene.input.MouseEvent
-import javafx.scene.layout.BorderPane
 import projet.echecmartien.modele.Jeu
 import projet.echecmartien.modele.Joueur
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.vue.MainVue
 
-class ControleurNewGame(scene: Scene): EventHandler<ActionEvent> {
+class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
 
     val scene: Scene
+    val vue: MainVue
 
     init {
         this.scene = scene
+        this.vue = vue
     }
 
     override fun handle(Event: ActionEvent) {
-
-        if (scene.root !is MainVue)
-            return
-
-        val vue = scene.root as MainVue
 
         val pseudo1 = vue.textFieldPseudo1.text
         val pseudo2 = vue.textFieldPseudo2.text
@@ -55,11 +51,11 @@ class ControleurNewGame(scene: Scene): EventHandler<ActionEvent> {
         val j2 = Joueur(pseudo2)
 
         val jeu = Jeu()
-        jeu.initialiserPartie(j1, j2, 10)
+        jeu.initialiserPartie(j1, j2, coupsMax)
 
         val gameVue = GameVue()
 
-        val controleurClick = ControleurClick(gameVue, jeu)
+        val controleurClick = ControleurJeu(scene, gameVue, jeu)
         gameVue.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
         gameVue.remplirCases(jeu.getPLateau().getCases())
         scene.root = gameVue
