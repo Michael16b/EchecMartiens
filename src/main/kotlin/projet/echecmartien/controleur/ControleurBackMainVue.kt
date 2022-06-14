@@ -5,7 +5,7 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.layout.BorderPane
 
-class ControleurRules(scene: Scene , vue: BorderPane): EventHandler<ActionEvent> {
+class ControleurBackMainVue(scene: Scene, vue: BorderPane): EventHandler<ActionEvent> {
     val scene: Scene
     val vue: BorderPane
 
