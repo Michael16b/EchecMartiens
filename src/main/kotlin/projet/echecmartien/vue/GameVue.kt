@@ -87,6 +87,7 @@ class GameVue: BorderPane() {
             for (j in 0 until TAILLEHORIZONTALE) {
                 val r = Rectangle(cellWidth, cellHeight)
                 r.fill = Color.WHITESMOKE
+                r.isPickOnBounds = false
                 val s = cells[j][i]
 
                 // les cellules sur les côtés doivent avoir une bordure de taille 2

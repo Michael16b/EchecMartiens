@@ -28,8 +28,9 @@ class AppliJeuEchecMartien: Application() {
 
 
         val rootGameVue = GameVue()
-        val controleurGameVue = ControleurNewGame(scene,rootGameVue)
-        root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurGameVue)
+        val controleurNewGame = ControleurNewGame(scene)
+        root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNewGame)
+
         val controleurBackGameToMainVue = ControleurBackMainVue(scene,root)
         rootGameVue.buttonBack.addEventHandler(ActionEvent.ACTION,controleurBackGameToMainVue)
 
