@@ -183,6 +183,10 @@ class GameVue: BorderPane() {
 
     }
 
+    /**
+     * fonction qui retourne un grand pion (cercle noir de taille 35)
+     * @return Circle
+     */
     private fun getGrandPionCircle(): Circle {
         val c = Circle()
         c.fill = Color.BLACK
@@ -190,6 +194,10 @@ class GameVue: BorderPane() {
         return c
     }
 
+    /**
+     * fonction qui retourne un moyen pion (cerlce gris de taille 25)
+     * @return Circle
+     */
     private fun getMoyenPionCircle(): Circle {
         val c = Circle()
         c.fill = Color.GRAY
@@ -198,6 +206,10 @@ class GameVue: BorderPane() {
         return c
     }
 
+    /**
+     * fonction qui retourne un petit pion (cercle gris clair de taille 18)
+     * @return Circle
+     */
     private fun getPetitPionCircle(): Circle {
         val c = Circle()
         c.fill = Color.LIGHTGRAY
@@ -206,6 +218,12 @@ class GameVue: BorderPane() {
         return c
     }
 
+    /**
+     * fonction qui affiche un pion dans une case du plateau
+     * @param row: abscisse de la case
+     * @param column: ordonnée de la case
+     * @param pion: pion à afficher
+     */
     fun setPion(row: Int, column: Int, pion: Pion?) {
         require(row in 0 until TAILLEHORIZONTALE)
         require(column in 0 until TAILLEVERTICALE)
@@ -226,6 +244,12 @@ class GameVue: BorderPane() {
             cell.children.add(c)
     }
 
+    /**
+     * fonction qui colorie une case du tableau avec une couleur
+     * @param row: abscisse de la case
+     * @param column: ordonnée de la case
+     * @param color: couleur à appliquer sur la case
+     */
     fun colorierCase(row: Int, column: Int, color: Color) {
         require(row in 0 until TAILLEVERTICALE)
         require(column in 0 until TAILLEHORIZONTALE)
@@ -237,6 +261,9 @@ class GameVue: BorderPane() {
         r.fill = color
     }
 
+    /**
+     * fonction qui remet toutes les cases du plateau à la couleur "WHITESMOKE"
+     */
     fun resetCouleur() {
         cells.forEach { row ->
             row.forEach { s ->
@@ -245,6 +272,10 @@ class GameVue: BorderPane() {
         }
     }
 
+    /**
+     * fonction qui remplit les cases du tableau avec les cercles des pions correspondant à une matrice de cases
+     * @param cases: matrice de cases contenant chacun un ou zéro pion
+     */
     fun remplirCases(cases: Array<Array<Case>>) {
         for (i in 0 until TAILLEVERTICALE) {
             for (j in 0 until TAILLEHORIZONTALE) {

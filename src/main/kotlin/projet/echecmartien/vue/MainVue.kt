@@ -136,11 +136,6 @@ class MainVue: BorderPane() {
         gridVerticalAlignContainer.alignment = Pos.CENTER
         this.center = gridVerticalAlignContainer
 
-
-
     }
-
-
-
 
 }

@@ -30,9 +30,6 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mouse
     }
 
     override fun handle(e: MouseEvent) {
-        println(modele.getJoueurs()[0]!!.calculerScore())
-        println(modele.getJoueurs()[1]!!.calculerScore())
-        println("----")
         var source = e.pickResult.intersectedNode
 
         if (source is Rectangle || source is Circle)
