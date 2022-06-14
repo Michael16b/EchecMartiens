@@ -320,4 +320,17 @@ internal class TestJeu {
     }
 
 
+    /**
+     * teste le joueur vainqueur
+     */
+
+    @Test
+    fun TestJoueurDeplacerZone() {
+        val game = Jeu()
+        game.initialiserPartie(Joueur("Matthis"), Joueur("Louis"), 2)
+        game.deplacer(2,1,3,1)
+        game.deplacer(1,5,0,5)
+        assertNull(game.joueurVainqueur())
+    }
+
 }
