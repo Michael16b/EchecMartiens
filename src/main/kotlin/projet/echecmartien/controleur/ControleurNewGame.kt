@@ -61,7 +61,7 @@ class ControleurNewGame(scene: Scene): EventHandler<ActionEvent> {
 
         val controleurClick = ControleurClick(gameVue, jeu)
         gameVue.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
-
+        gameVue.remplirCases(jeu.getPLateau().getCases())
         scene.root = gameVue
 
     }

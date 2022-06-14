@@ -11,6 +11,7 @@ import javafx.scene.shape.Rectangle
 import projet.echecmartien.librairie.EnumPion
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
+import projet.echecmartien.modele.*
 
 class GameVue: BorderPane() {
 
@@ -191,19 +192,51 @@ class GameVue: BorderPane() {
         return c
     }
 
-    fun setPion(row: Int, column: Int, type: EnumPion) {
+    fun setPion(row: Int, column: Int, pion: Pion?) {
         require(row in 0 until TAILLEHORIZONTALE)
         require(column in 0 until TAILLEVERTICALE)
 
-        val c: Circle? = when (type) {
-            EnumPion.GRANDPION -> getGrandPionCircle()
-            EnumPion.MOYENPION -> getMoyenPionCircle()
-            EnumPion.PETITPION -> getPetitPionCircle()
+        val cell = cells[row][column]
+
+        val c: Circle? = when (pion) {
+            is MoyenPion -> getMoyenPionCircle()
+            is GrandPion -> getGrandPionCircle()
+            is PetitPion -> getPetitPionCircle()
             else -> null
         }
 
-        cells[row][column].children.clear()
-        cells[row][column].children.add(c)
+        if (cell.children.size > 1)
+            cell.children.removeAt(1)
+
+        if (c != null)
+            cell.children.add(c)
+    }
+
+    fun colorierCase(row: Int, column: Int, color: Color) {
+        require(row in 0 until TAILLEVERTICALE)
+        require(column in 0 until TAILLEHORIZONTALE)
+        val r = cells[column][row].children[0]
+
+        if (r !is Rectangle)
+            return
+
+        r.fill = color
+    }
+
+    fun resetCouleur() {
+        cells.forEach { row ->
+            row.forEach { s ->
+                (s.children[0] as Rectangle).fill = Color.WHITESMOKE
+            }
+        }
+    }
+
+    fun remplirCases(cases: Array<Array<Case>>) {
+        for (i in 0 until TAILLEVERTICALE) {
+            for (j in 0 until TAILLEHORIZONTALE) {
+                setPion(j, i, cases[j][i].getPion())
+            }
+        }
     }
 
 }
