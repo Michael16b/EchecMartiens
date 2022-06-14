@@ -18,6 +18,7 @@ class AppliJeuEchecMartien: Application() {
         val sceneWidth = 1100.0
         val sceneHeight = 700.0
         val scene = Scene(root, sceneWidth, sceneHeight)
+
         val rootRules = RulesVue()
         val controleurRulesVue = ControleurVueBorderPane(scene,rootRules)
         root.buttonRules.addEventHandler(ActionEvent.ACTION,controleurRulesVue)
@@ -26,6 +27,9 @@ class AppliJeuEchecMartien: Application() {
         val rootGameVue = GameVue()
         val controleurGameVue = ControleurVueBorderPane(scene,rootGameVue)
         root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurGameVue)
+        val controleurBackGameToMainVue = ControleurVueBorderPane(scene,root)
+        rootGameVue.buttonBack.addEventHandler(ActionEvent.ACTION,controleurBackGameToMainVue)
+
 
         val rootLoadGameVue = LoadGameVue()
         val controleurLoadGameVue = ControleurVueBorderPane(scene,rootLoadGameVue)
