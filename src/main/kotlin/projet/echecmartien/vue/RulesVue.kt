@@ -1,7 +1,6 @@
 package projet.echecmartien.vue
 
 import javafx.geometry.Pos
-import javafx.scene.control.Button
 import javafx.scene.control.ComboBox
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
@@ -10,7 +9,7 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 
-class MainVue: BorderPane() {
+class RulesVue: BorderPane() {
 
     val bottomContainer: HBox
     val topContainer: VBox
@@ -23,9 +22,6 @@ class MainVue: BorderPane() {
     val gridPlayer2Container: HBox
     val gridIAContainer: HBox
 
-    val buttonNewGame: Button
-    val buttonLoadGame: Button
-    val buttonRules: Button
 
     val labelPlayer1: Label
     val labelPlayer2: Label
@@ -52,10 +48,6 @@ class MainVue: BorderPane() {
         gridPlayer2Container = HBox()
         gridIAContainer = HBox()
 
-        buttonNewGame = Button("Nouvelle partie")
-        buttonLoadGame = Button("Charger une partie")
-        buttonRules = Button("Règles du jeu")
-
         labelPlayer1 = Label("Joueur 1:")
         labelPlayer2 = Label("Joueur 2:")
         labelIA = Label("IA:")
@@ -69,7 +61,7 @@ class MainVue: BorderPane() {
         /* Arbre de la scène */
 
         /* top */
-        rulesContainer.children.add(buttonRules)
+
         rulesContainer.alignment = Pos.TOP_RIGHT
 
         titleContainer.children.add(labelTitle)
@@ -79,12 +71,6 @@ class MainVue: BorderPane() {
         topContainer.children.addAll(rulesContainer, titleContainer)
         this.top = topContainer
 
-        /* bottom */
-        buttonNewGame.prefHeight = 70.0
-        buttonNewGame.prefWidth = 150.0
-        buttonLoadGame.prefHeight = 70.0
-        buttonLoadGame.prefWidth = 150.0
-        bottomContainer.children.addAll(buttonNewGame, buttonLoadGame)
         bottomContainer.alignment = Pos.CENTER
         bottomContainer.spacing = 100.0
         bottomContainer.prefHeight = 300.0
@@ -110,12 +96,9 @@ class MainVue: BorderPane() {
         gridVerticalAlignContainer.children.add(gridHorizontalCenterContainer)
         gridVerticalAlignContainer.alignment = Pos.CENTER
         this.center = gridVerticalAlignContainer
-
-
-
     }
-
-
-
-
 }
+
+
+
+
