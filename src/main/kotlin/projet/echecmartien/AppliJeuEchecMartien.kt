@@ -11,10 +11,14 @@ import projet.echecmartien.vue.MainVue
 class AppliJeuEchecMartien: Application() {
     override fun start(primaryStage: Stage) {
 
-       val root = MainVue()
+        val root = MainVue()
 
-        val scene = Scene(root, 500.0, 350.0)
+        val sceneWidth = 600.0
+        val sceneHeight = 500.0
+        val scene = Scene(root, sceneWidth, sceneHeight)
 
+        primaryStage.minHeight = sceneHeight+40.0
+        primaryStage.minWidth = sceneWidth+15.0
         primaryStage.title="Echecs Martiens"
         primaryStage.scene=scene
         primaryStage.show()

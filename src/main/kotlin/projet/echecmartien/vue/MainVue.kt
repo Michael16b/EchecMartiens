@@ -17,7 +17,8 @@ class MainVue: BorderPane() {
     val rulesContainer: HBox
     val titleContainer: HBox
     val playerGrid: GridPane
-    val gridContainer: HBox
+    val gridVerticalAlignContainer: VBox
+    val gridHorizontalCenterContainer: HBox
     val gridPlayer1Container: HBox
     val gridPlayer2Container: HBox
     val gridIAContainer: HBox
@@ -45,7 +46,8 @@ class MainVue: BorderPane() {
         rulesContainer = HBox()
         titleContainer = HBox()
         playerGrid = GridPane()
-        gridContainer = HBox()
+        gridVerticalAlignContainer = VBox()
+        gridHorizontalCenterContainer = HBox()
         gridPlayer1Container = HBox()
         gridPlayer2Container = HBox()
         gridIAContainer = HBox()
@@ -78,25 +80,36 @@ class MainVue: BorderPane() {
         this.top = topContainer
 
         /* bottom */
+        buttonNewGame.prefHeight = 70.0
+        buttonNewGame.prefWidth = 150.0
+        buttonLoadGame.prefHeight = 70.0
+        buttonLoadGame.prefWidth = 150.0
         bottomContainer.children.addAll(buttonNewGame, buttonLoadGame)
         bottomContainer.alignment = Pos.CENTER
         bottomContainer.spacing = 100.0
+        bottomContainer.prefHeight = 300.0
         this.bottom = bottomContainer
 
         /* center */
         gridPlayer1Container.children.addAll(labelPlayer1, textFieldPseudo1)
+        gridPlayer1Container.spacing = 20.0
         gridPlayer2Container.children.addAll(labelPlayer2, textFieldPseudo2)
+        gridPlayer2Container.spacing = 20.0
         gridIAContainer.children.addAll(labelIA, comboBoxIA)
+        gridIAContainer.spacing = 55.0
 
         playerGrid.add(gridPlayer1Container, 0, 0)
         playerGrid.add(gridPlayer2Container, 1, 0)
         playerGrid.add(gridIAContainer, 1, 1)
         playerGrid.hgap = 50.0
+        playerGrid.vgap = 10.0
 
-        gridContainer.children.add(playerGrid)
-        gridContainer.alignment = Pos.CENTER
-        this.center = gridContainer
+        gridHorizontalCenterContainer.children.add(playerGrid)
+        gridHorizontalCenterContainer.alignment = Pos.CENTER
 
+        gridVerticalAlignContainer.children.add(gridHorizontalCenterContainer)
+        gridVerticalAlignContainer.alignment = Pos.CENTER
+        this.center = gridVerticalAlignContainer
     }
 
 
