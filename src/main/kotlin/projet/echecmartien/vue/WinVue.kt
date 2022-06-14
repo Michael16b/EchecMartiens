@@ -32,6 +32,7 @@ class WinVue : BorderPane() {
 
         infos.children.addAll(labelJoueur, Boutons, labelScore)
         infos.spacing = 20.0
+        this.children.add(infos)
     }
 
     fun setJoueurVainqueur(joueur: Joueur?, scoreJ1: Int) {

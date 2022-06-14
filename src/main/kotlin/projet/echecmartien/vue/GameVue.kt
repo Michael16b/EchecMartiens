@@ -284,4 +284,12 @@ class GameVue: BorderPane() {
         }
     }
 
+    /**
+     * fonction qui met en valeur le côté du joueur courant pour savoir le tour est à qui
+     * @param joueur: entier entre 0 et 1, 0 signifiant le joueur 1 et 1 le joueur 2
+     */
+    fun montrerOutlineJoueur(joueur: Int) {
+
+    }
+
 }
