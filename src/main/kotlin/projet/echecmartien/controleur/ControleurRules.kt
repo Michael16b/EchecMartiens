@@ -16,6 +16,5 @@ class ControleurRules(scene: Scene , vue: BorderPane): EventHandler<ActionEvent>
 
     override fun handle(Event: ActionEvent) {
         scene.root = vue
-        println("ça passe ici")
     }
 }
