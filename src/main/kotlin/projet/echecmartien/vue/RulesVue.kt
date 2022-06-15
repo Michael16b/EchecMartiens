@@ -28,6 +28,7 @@ class RulesVue: BorderPane() {
     init {
         this.styleClass.add("rules")
         boutonRetour = Button("Retour")
+        this.styleClass.add("main")
 
         labelTitreGeneral = Label("Règles & composition du jeu")
         labelTitreGeneral.style = "-fx-font-style : 'Cambria'"
