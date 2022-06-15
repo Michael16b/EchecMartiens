@@ -1,5 +1,6 @@
 package projet.echecmartien.vue
 
+import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.layout.BorderPane
@@ -24,15 +25,26 @@ class WinVue : BorderPane() {
         BoutonQuitter = Button("Quitter")
 
         Boutons = HBox()
+        Boutons.alignment = Pos.CENTER
         Boutons.children.addAll(BoutonRejouer, BoutonQuitter)
         Boutons.spacing = 50.0
 
         labelJoueur = Label()
+        labelJoueur.alignment = Pos.CENTER
         labelScore = Label()
+        labelScore.alignment = Pos.CENTER
 
-        infos.children.addAll(labelJoueur, Boutons, labelScore)
+        labelJoueur.style = "-fx-font-style : 'Cambria'"
+        labelJoueur.style = "-fx-font-size : 50"
+
+        labelScore.style = "-fx-font-style : 'Cambria'"
+        labelScore.style = "-fx-font-size : 50"
+
+        infos.children.addAll(labelJoueur, labelScore, Boutons)
         infos.spacing = 20.0
+        infos.alignment = Pos.CENTER
         this.center = infos
+
     }
 
     fun setJoueurVainqueur(joueur: Joueur?, scoreJ1: Int) {
@@ -42,7 +54,7 @@ class WinVue : BorderPane() {
             labelScore.text = "Score des joueurs : $scoreJ1 pts"
             return
         }
-        labelJoueur.text = "${joueur.getPseudo()} a remporté la partie"
+        labelJoueur.text = "${joueur.getPseudo()} a remporté la partie !"
         labelScore.text = "Score : ${joueur.calculerScore()} pts"
     }
 }
