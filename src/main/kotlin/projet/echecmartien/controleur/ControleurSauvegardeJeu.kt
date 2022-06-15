@@ -20,7 +20,6 @@ class ControleurSauvegardeJeu (modele: Jeu, ia: Boolean): EventHandler<ActionEve
     override fun handle(Event: ActionEvent) {
         val file = File(System.getProperty("user.home")+ "/.echecsMartiens"+"/.sauvegardes")
         createSaves(file)
-        println(file.toString())
         val nameSave : String = chooseNameSave(file)
         modele.serialiser("$file/$nameSave", ia)
 
@@ -31,11 +30,9 @@ class ControleurSauvegardeJeu (modele: Jeu, ia: Boolean): EventHandler<ActionEve
     private fun chooseNameSave(file : File) : String {
         var name = "test.json"
         var i = 1
-        println("PASS")
         while (searchSaves(file,name)) {
             i += 1
             name = "test$i.json"
-            println(name)
         }
         return name
     }
