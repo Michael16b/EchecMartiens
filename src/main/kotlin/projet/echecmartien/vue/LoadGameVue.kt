@@ -39,7 +39,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
 
         this.TitrePage = Label("Charger la partie")
         this.TitrePage.style = "-fx-font-style : 'Cambria'"
-        this.TitrePage.style = "-fx-font-size : 22"
+        this.TitrePage.style = "-fx-font-size : 50"
         this.top = this.TitrePage
         BorderPane.setAlignment(this.TitrePage,Pos.TOP_CENTER)
         this.TitrePage.padding = Insets(40.0,0.0,100.0,0.0)

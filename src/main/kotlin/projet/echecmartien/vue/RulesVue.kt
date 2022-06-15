@@ -4,16 +4,14 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
-import javafx.scene.layout.BorderPane
-import javafx.scene.layout.ColumnConstraints
-import javafx.scene.layout.GridPane
-import javafx.scene.layout.VBox
+import javafx.scene.layout.*
 import javafx.scene.text.TextAlignment
 
 class RulesVue: BorderPane() {
 
     val orga : GridPane
     val vboxBouton : VBox
+    val compositionHbox : HBox
 
     val boutonRetour : Button
     val labelDeroulementTitre : Label
@@ -25,7 +23,7 @@ class RulesVue: BorderPane() {
     val labelFinPartie : Label
     val labelPreparation : Label
     val labelDeroulement : Label
-    val labelCompostition : Label
+    val labelComposition : Label
 
     init {
         this.styleClass.add("rules")
@@ -67,10 +65,14 @@ class RulesVue: BorderPane() {
         labelPreparation.isWrapText = true
         labelPreparation.textAlignment = TextAlignment.JUSTIFY
 
-        labelCompostition = Label("1 plateau de jeu & 18 pions")
+        labelComposition = Label("1 plateau de jeu et 18 pions")
 
         orga = GridPane()
-        orga.add(labelCompostition, 0, 3)
+        compositionHbox = HBox()
+        compositionHbox.children.addAll(labelComposition)
+        compositionHbox.alignment = Pos.BOTTOM_CENTER
+        orga.add(compositionHbox, 0, 3)
+
         orga.add(labelDeroulementTitre, 1, 0)
         orga.add(labelDeroulement, 1, 1)
         orga.add(labelPreparationTitre, 0, 4)
@@ -81,10 +83,11 @@ class RulesVue: BorderPane() {
         orga.add(labelFinTitre, 1, 4)
         orga.add(labelFinPartie, 1, 5)
 
+        orga.isGridLinesVisible = true
+
         orga.vgap = 20.0
         orga.hgap = 20.0
         orga.padding = Insets(0.0, 20.0, 0.0, 20.0)
-        orga.isGridLinesVisible = true
 
         val c1 = ColumnConstraints()
         c1.percentWidth = 50.0
