@@ -6,6 +6,7 @@ import javafx.scene.layout.BorderPane
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import javafx.scene.text.Font
 import javafx.util.converter.IntegerStringConverter
 import java.util.function.UnaryOperator
 
@@ -75,11 +76,14 @@ class MainVue: BorderPane() {
         comboBoxIA.selectionModel.select(0)
 
         /* Arbre de la scène */
-
+        val textFont = Font.font(Font.getDefault().toString(), 17.0)
+        val buttonFont = Font.font(Font.getDefault().toString(), 15.0)
         /* top */
         rulesContainer.children.add(buttonRules)
         rulesContainer.alignment = Pos.TOP_RIGHT
+        buttonRules.font = buttonFont
 
+        labelTitle.font = Font.font(Font.getDefault().toString(), 50.0)
         titleContainer.children.add(labelTitle)
         titleContainer.alignment = Pos.CENTER
         titleContainer.prefHeight = 200.0
@@ -92,6 +96,8 @@ class MainVue: BorderPane() {
         buttonNewGame.prefWidth = 150.0
         buttonLoadGame.prefHeight = 70.0
         buttonLoadGame.prefWidth = 150.0
+        buttonNewGame.font = buttonFont
+        buttonLoadGame.font = buttonFont
         bottomContainer.children.addAll(buttonNewGame, buttonLoadGame)
         bottomContainer.alignment = Pos.CENTER
         bottomContainer.spacing = 100.0
@@ -99,10 +105,17 @@ class MainVue: BorderPane() {
         this.bottom = bottomContainer
 
         /* center */
+        labelPlayer1.font = textFont
+        labelPlayer2.font = textFont
+        labelIA.font = textFont
+        labelCoups.font = Font.font(Font.getDefault().toString(), 13.0)
+
         gridPlayer1Container.children.addAll(labelPlayer1, textFieldPseudo1)
         gridPlayer1Container.spacing = 20.0
+        gridPlayer1Container.alignment = Pos.CENTER_RIGHT
         gridPlayer2Container.children.addAll(labelPlayer2, textFieldPseudo2)
         gridPlayer2Container.spacing = 20.0
+        gridPlayer2Container.alignment = Pos.CENTER_LEFT
         gridIAContainer.children.addAll(labelIA, comboBoxIA)
         gridIAContainer.spacing = 55.0
 

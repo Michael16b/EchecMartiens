@@ -74,7 +74,7 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
     }
 
     /**
-     * fonction qui affiche une boîte de dialogue (erreur) pour dire que les deux joueurs ont le même nom
+     * fonction qui affiche une boîte de dialogue (erreur) pour informer que les deux joueurs ont le même nom
      */
     fun memePseudo() {
         val dialog = Alert(Alert.AlertType.ERROR)
@@ -85,7 +85,7 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
     }
 
     /**
-     * fonction qui affiche une boîte de dialogue (erreur) pour dire que le nom du joueur n est invalide
+     * fonction qui affiche une boîte de dialogue (erreur) pour informer que le nom du joueur n est invalide
      * @param: numéro de joueur affiché dans la boîte de dialogue dont le nom est invalide (1 ou 2)
      */
     fun mauvaisPseudo(n: Int) {
@@ -96,6 +96,9 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
         dialog.showAndWait()
     }
 
+    /**
+     * fonction qui affiche une boîte de dialogue (erreur) pour informer que le nombre de coups sans prise maximum est invalide
+     */
     fun mauvaisCoupMax() {
         val dialog = Alert(Alert.AlertType.ERROR)
         dialog.title = "Mauvais nombre de coups sans prise max"
