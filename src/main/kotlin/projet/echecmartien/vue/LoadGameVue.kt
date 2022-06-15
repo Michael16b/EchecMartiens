@@ -9,7 +9,7 @@ import org.controlsfx.control.textfield.CustomTextField
 
 
 
-class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
+class LoadGameVue(str : String = "LoadGames"): BorderPane()  {
 
     var TitrePageBandeau = str
 
@@ -42,24 +42,24 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         // Création radio buttons et titre de parties //
 
         val radioButton1 = RadioButton()
-        radioButton1.padding = Insets(40.0,10.0,40.0,5.0)
+        radioButton1.padding = Insets(30.0,10.0,40.0,5.0)
         val titreLigne1 = Label("nom de partie1")
-        titreLigne1.padding = Insets(40.0,0.0,40.0,20.0)
+        titreLigne1.padding = Insets(30.0,0.0,40.0,20.0)
 
         val radioButton2 = RadioButton()
-        radioButton2.padding = Insets(40.0,10.0,40.0,5.0)
+        radioButton2.padding = Insets(30.0,10.0,40.0,5.0)
         val titreLigne2 = Label("nom de partie2")
-        titreLigne2.padding = Insets(40.0,0.0,40.0,20.0)
+        titreLigne2.padding = Insets(30.0,0.0,40.0,20.0)
 
         val radioButton3 = RadioButton()
-        radioButton3.padding = Insets(40.0,10.0,40.0,5.0)
+        radioButton3.padding = Insets(30.0,10.0,40.0,5.0)
         val titreLigne3 = Label("nom de partie3")
-        titreLigne3.padding = Insets(40.0,0.0,40.0,20.0)
+        titreLigne3.padding = Insets(30.0,0.0,40.0,20.0)
 
         val radioButton4 = RadioButton()
-        radioButton4.padding = Insets(40.0,10.0,40.0,5.0)
+        radioButton4.padding = Insets(30.0,10.0,40.0,5.0)
         val titreLigne4 = Label("nom de partie4")
-        titreLigne4.padding = Insets(40.0,0.0,40.0,20.0)
+        titreLigne4.padding = Insets(30.0,0.0,40.0,20.0)
 
         // caseboutonradio : vBox contenant les boutons radio et et les noms ds parties //
 
@@ -73,8 +73,8 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         this.CasesBoutonRadio.add(titreLigne3,1,3)
         this.CasesBoutonRadio.add(radioButton4,0,4)
         this.CasesBoutonRadio.add(titreLigne4,1,4)
-        this.CasesBoutonRadio.maxHeight(200.0)
-        this.CasesBoutonRadio.minWidth(100.0)
+        this.CasesBoutonRadio.maxHeight(100.0)
+        this.CasesBoutonRadio.minWidth(200.0)
 
         CasesBoutonRadio.padding = Insets(0.0,0.0,0.0,0.0)
         CasesBoutonRadio.prefWidth = 100.0
@@ -100,7 +100,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         this.CasesBoutonRadio.rowConstraints.addAll(row)
 
         CasesBoutons.padding = Insets(20.0,100.0,0.0,0.0)
-        CasesBoutons.spacing = 30.0
+        CasesBoutons.spacing = 40.0
         boutonRetour.setPrefSize(150.0,70.0)
         boutonChargerPartie.setPrefSize(150.0,70.0)
         boutonSupprimerPartie.setPrefSize(150.0,70.0)
