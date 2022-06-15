@@ -1,5 +1,6 @@
 package projet.echecmartien.vue
 
+import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
@@ -9,15 +10,17 @@ import javafx.scene.layout.VBox
 
 class RulesVue: BorderPane() {
 
-    val vboxGenerale: VBox
+    /*val vboxGenerale: VBox
     val hboxHaut : HBox
     val hboxBas : HBox
 
     val vboxHautGauche : VBox
     val vboxHautDroit : VBox
     val vboxBasGauche : VBox
-    val vboxBasDroit : VBox
+    val vboxBasDroit : VBox*/
 
+    val vboxDroite : VBox
+    val vboxGauche : VBox
 
     val boutonRetour : Button
     val labelDeroulementTitre : Label
@@ -41,7 +44,7 @@ class RulesVue: BorderPane() {
         labelTitreGeneral.style = "-fx-font-style : 'Cambria'"
         labelTitreGeneral.style = "-fx-font-size : 40"
 
-        labelDeroulementTitre = Label("DEROULELEMENT")
+        labelDeroulementTitre = Label("DEROULEMENT")
         labelDeroulementTitre.style = "-fx-font-style : 'Cambria'"
         labelDeroulementTitre.style = "-fx-font-size : 22"
 
@@ -56,8 +59,6 @@ class RulesVue: BorderPane() {
         labelPreparationTitre = Label("PREPARATION")
         labelPreparationTitre.style = "-fx-font-style : 'Cambria'"
         labelPreparationTitre.style = "-fx-font-size : 22"
-
-
 
         labelDeroulement = Label("Chaque joueur, à son tour de jeu, déplace une de ses pièces.\n" +
                 "Les grands pions se déplacent verticalement, horizontalement et diagonalement de n cases.\n" +
@@ -85,7 +86,7 @@ class RulesVue: BorderPane() {
 
         labelCompostition = Label("1 plateau de jeu & 18 pions")
 
-        hboxHaut = HBox()
+        /*hboxHaut = HBox()
 
         vboxHautGauche = VBox()
         vboxHautGauche.children.addAll(labelCompostition)
@@ -113,7 +114,31 @@ class RulesVue: BorderPane() {
         vboxGenerale.children.addAll(labelTitreGeneral, hboxHaut, hboxBas, boutonRetour)
         vboxGenerale.spacing = 50.0
         vboxGenerale.alignment = Pos.TOP_CENTER
-        this.center = vboxGenerale
+        this.center = vboxGenerale*/
+
+        vboxGauche = VBox()
+        vboxGauche.children.addAll(labelCompostition, labelPreparationTitre, labelPreparation)
+        vboxGauche.spacing = 30.0
+        vboxGauche.padding = Insets(0.0, 0.0, 0.0, 20.0)
+
+        vboxDroite = VBox()
+        vboxDroite.children.addAll(labelDeroulementTitre, labelDeroulement, labelExceptionTitre, labelException, labelFinTitre, labelFinPartie)
+        vboxDroite.spacing = 30.0
+        vboxDroite.padding = Insets(0.0, 20.0, 0.0, 0.0)
+
+
+        labelTitreGeneral.padding = Insets(10.0, 0.0, 50.0, 0.0)
+        setAlignment(labelTitreGeneral, Pos.CENTER)
+        setAlignment(boutonRetour, Pos.TOP_CENTER)
+
+        this.left = vboxGauche
+        this.left.prefWidth(300.0)
+        this.right = vboxDroite
+        this.right.prefWidth(300.0)
+        this.top = labelTitreGeneral
+        this.bottom = boutonRetour
+
+
     }
 }
 
