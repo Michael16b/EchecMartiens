@@ -8,6 +8,7 @@ import javafx.scene.layout.*
 import javafx.scene.paint.Color
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Rectangle
+import javafx.scene.text.TextAlignment
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
 import projet.echecmartien.modele.*
@@ -69,7 +70,6 @@ class GameVue: BorderPane() {
         labelScore2 = Label("Score : 0 pts")
         labelPlayer1 = Label("NomJ1")
         labelPlayer2 = Label("NomJ2")
-
         labelCoupsRestants = Label()
 
         buttonBack = Button("Quitter")

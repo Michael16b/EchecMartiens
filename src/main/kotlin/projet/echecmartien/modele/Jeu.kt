@@ -84,15 +84,9 @@ class Jeu {
 
         // Joueur 1, partie "haute" du plateau
         for (i in 0 until TAILLEHORIZONTALE) {
-            for (j in 0 until TAILLEVERTICALE/2) {
-                plateau.getCases()[i][j].setJoueur(joueur1)
-            }
-        }
-
-        // Joueur 2, partie "basse" du plateau
-        for (i in 0 until TAILLEHORIZONTALE) {
-            for (j in TAILLEVERTICALE/2 until TAILLEVERTICALE) {
-                plateau.getCases()[i][j].setJoueur(joueur2)
+            for (j in 0 until TAILLEVERTICALE) {
+                val joueur = if(j in 0..3) joueur1 else joueur2
+                plateau.getCases()[i][j].setJoueur(joueur)
             }
         }
     }
