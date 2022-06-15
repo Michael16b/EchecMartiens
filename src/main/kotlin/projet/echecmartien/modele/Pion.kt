@@ -1,5 +1,8 @@
 package projet.echecmartien.modele
 
+import com.google.gson.*
+import java.lang.reflect.Type
+
 
 /**
  * Classe Pion
@@ -24,4 +27,34 @@ abstract class Pion {
 	 */
 	abstract fun getDeplacement(deplacement: Deplacement): List<Coordonnee>
 
+}
+
+class PionAdapter : JsonSerializer<Pion?>, JsonDeserializer<Pion?> {
+	override fun serialize(p0: Pion?, p1: Type?, context: JsonSerializationContext?): JsonElement {
+		val pion = JsonObject()
+		if (p0 == null)
+			return pion
+		val className: String = p0::class.java.toString()
+		pion.addProperty(CLASSNAME, className)
+		return pion
+	}
+
+	@Throws(JsonParseException::class)
+	override fun deserialize(
+		json: JsonElement, typeOfT: Type?,
+		context: JsonDeserializationContext): Pion {
+		val jsonObject = json.asJsonObject
+		val prim = jsonObject[CLASSNAME] as JsonPrimitive
+		val className = prim.asString
+		return when {
+			"GrandPion" in className -> GrandPion()
+			"MoyenPion" in className -> MoyenPion()
+			"PetitPion" in className -> PetitPion()
+			else -> throw JsonParseException("")
+		}
+	}
+
+	companion object {
+		private const val CLASSNAME = "CLASSNAME"
+	}
 }

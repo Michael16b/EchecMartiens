@@ -1,7 +1,11 @@
 package projet.echecmartien.modele
 
+import com.google.gson.*
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
+import java.io.FileNotFoundException
+import java.io.FileReader
+import java.io.FileWriter
 
 
 class Jeu {
@@ -271,4 +275,39 @@ class Jeu {
      */
     fun nbCoupsSansPriseRestants() : Int = this.nombreCoupsSansPriseMax - this.nombreCoupsSansPrise
 
+    /**
+     * Sérialise le jeu en fichier json
+     * @param filepath: fichier du jeu sérialisé
+     */
+    fun serialiser(filepath: String): Boolean {
+        val writer: FileWriter
+        try {
+            writer = FileWriter(filepath)
+        } catch (_: java.io.IOException) {
+            return false
+        }
+
+        val gson = Gson().newBuilder()
+        gson.serializeNulls()
+        gson.registerTypeAdapter(Pion::class.java, PionAdapter())
+        gson.setPrettyPrinting().create().toJson(this, writer)
+        writer.flush()
+        writer.close()
+        return true
+    }
+}
+
+fun deserialiser(filepath: String): Jeu? {
+    val reader: FileReader
+    try {
+        reader = FileReader(filepath)
+    } catch(_: FileNotFoundException) {
+        return null
+    }
+    val gson = Gson().newBuilder()
+    gson.serializeNulls()
+    gson.registerTypeAdapter(Pion::class.java, PionAdapter())
+    val jeu = gson.create().fromJson(reader, Jeu::class.java)
+    reader.close()
+    return jeu
 }
