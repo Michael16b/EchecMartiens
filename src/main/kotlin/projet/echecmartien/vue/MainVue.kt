@@ -136,7 +136,7 @@ class MainVue: BorderPane() {
         this.buttonNewGame.styleClass.add("button")
         this.buttonLoadGame.styleClass.add("button")
         // Label
-        this.labelTitle.styleClass.add("title")
+        this.labelTitle.styleClass.add("MainTitle")
         this.labelPlayer1.styleClass.add("LabelBase")
         this.labelPlayer2.styleClass.add("LabelBase")
         this.labelIA.styleClass.add("LabelBase")
