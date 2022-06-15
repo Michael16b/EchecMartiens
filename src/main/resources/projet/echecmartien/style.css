@@ -6,6 +6,16 @@
  -fx-background-size: cover;
 }
 
+
+.rules {
+ -fx-background-color: white;
+ -fx-background-image: url("RulesBg.png");
+ -fx-background-position: center;
+ -fx-background-repeat:  no-repeat;
+ -fx-background-size: cover;
+}
+
+
 .button {
  -fx-font-weight : bold;
  -fx-background-color: #2196f3;
