@@ -4,6 +4,36 @@
  -fx-background-position: center;
  -fx-background-repeat:  no-repeat;
  -fx-background-size: cover;
+}
 
+.button {
+ -fx-font-weight : bold;
+ -fx-background-color: #2196f3;
+ -fx-background-radius: 22;
+ -fx-font-size: 16;
+ -fx-text-fill: white;
+}
+.button:hover {
+ -fx-font-weight: bold;
+ -fx-background-color: white;
+ -fx-background-radius: 22;
+ -fx-font-size: 16;
+ -fx-text-fill: #2196f3;
+ -fx-border-color: #2196f3;
+ -fx-border-radius: 22;
+ -fx-border-width: 3;
+}
 
+.title {
+    -fx-font-weight : bold;
+    -fx-font-size: 75;
+    -fx-text-fill: black;
+    -fx-font: handwriting;
+}
+
+.LabelBase {
+    -fx-font-weight : bold;
+    -fx-font-size: 20;
+    -fx-text-fill: black;
+    -fx-font: handwriting;
 }

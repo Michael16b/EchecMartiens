@@ -54,7 +54,6 @@ class GameVue: BorderPane() {
     init {
 
         /* Initialisation des attributs */
-
         playGrid = GridPane()
         cells = Array(TAILLEHORIZONTALE) { Array(TAILLEVERTICALE) { StackPane() } }
         gridHorizontalCenterContainer = HBox()
@@ -76,6 +75,10 @@ class GameVue: BorderPane() {
         buttonBack = Button("Quitter")
         buttonSave = Button("Sauvegarder")
         buttonRules = Button("Règles")
+
+        buttonBack.id = "buttonBack"
+        buttonSave.id = "buttonSave"
+        buttonRules.id = "buttonRules"
 
         pionsP1 = GridPane()
         pionsP2 = GridPane()
