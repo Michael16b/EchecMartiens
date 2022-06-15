@@ -3,10 +3,7 @@ package projet.echecmartien.vue
 import javafx.geometry.HPos
 import javafx.geometry.Insets
 import javafx.geometry.Pos
-import javafx.scene.control.Button
-import javafx.scene.control.Label
-import javafx.scene.control.RadioButton
-import javafx.scene.control.TextField
+import javafx.scene.control.*
 import javafx.scene.layout.*
 
 class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
@@ -37,6 +34,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         this.nomPartie.alignment = Pos.TOP_LEFT
 
         this.left = this.CasesBoutonRadio
+
 
         //val ligne1 = HBox()
         //ligne1.style = "-fx-border-color: black"
@@ -69,8 +67,15 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         this.CasesBoutonRadio.add(radioButton4,0,4)
         this.CasesBoutonRadio.add(titreLigne4,1,4)
         this.CasesBoutonRadio.vgap = 30.0
+        this.CasesBoutonRadio.maxHeight(400.0)
+        this.CasesBoutonRadio.minWidth(300.0)
+        val radioGroup = ToggleGroup()
+        radioButton1.toggleGroup = radioGroup
+        radioButton2.toggleGroup = radioGroup
+        radioButton3.toggleGroup = radioGroup
+        radioButton4.toggleGroup = radioGroup
 
-        BorderPane.setMargin(CasesBoutonRadio,Insets(20.0))
+        setMargin(CasesBoutonRadio,Insets(20.0))
 
         val column = ColumnConstraints()
         column.percentWidth = 50.0
@@ -78,7 +83,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         row.maxHeight= Double.MAX_VALUE
         this.CasesBoutonRadio.columnConstraints.addAll(column)
         this.CasesBoutonRadio.rowConstraints.addAll(row)
-        this.CasesBoutonRadio.style = "-fx-border-color: black"
+        //this.CasesBoutonRadio.style = "-fx-border-color: black"
 
         this.right = this.CasesBoutons
         CasesBoutons.padding = Insets(100.0,0.0,0.0,0.0)
@@ -88,8 +93,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         boutonSupprimerPartie.setPrefSize(200.0,25.0)
         boutonRenommerPartie.setPrefSize(200.0,25.0)
         this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRenommerPartie,boutonRetour)
-        BorderPane.setMargin(CasesBoutons,Insets(20.0))
-
+        setMargin(CasesBoutons,Insets(20.0))
 
     }
 }

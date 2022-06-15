@@ -8,7 +8,6 @@ import javafx.scene.layout.*
 import javafx.scene.paint.Color
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Rectangle
-import projet.echecmartien.librairie.EnumPion
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
 import projet.echecmartien.modele.*

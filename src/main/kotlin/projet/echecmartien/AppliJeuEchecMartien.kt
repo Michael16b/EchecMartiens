@@ -38,8 +38,7 @@ class AppliJeuEchecMartien: Application() {
         val controleurLoadGameVue = ControleurLoadGame(scene,rootLoadGameVue)
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadGameVue)
 
-        scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
-        root.styleClass.add("AppliJeuEchecMartien")
+
 
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0
