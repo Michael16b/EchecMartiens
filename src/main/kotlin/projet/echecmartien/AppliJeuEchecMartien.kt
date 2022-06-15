@@ -6,10 +6,7 @@ import javafx.application.Application
 import javafx.event.ActionEvent
 import javafx.scene.Scene
 import javafx.stage.Stage
-import projet.echecmartien.controleur.ControleurBackFromRules
-import projet.echecmartien.controleur.ControleurLoadJeu
-import projet.echecmartien.controleur.ControleurNewJeu
-import projet.echecmartien.controleur.ControleurRules
+import projet.echecmartien.controleur.*
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.vue.MainVue
 
@@ -35,7 +32,8 @@ class AppliJeuEchecMartien: Application() {
         val controleurLoadJeuVue = ControleurLoadJeu(scene, root)
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadJeuVue)
 
-
+        val controleurQuitterJeu = ControleurQuitterJeu(scene)
+        root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurQuitterJeu)
 
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
         root.styleClass.add("main")
