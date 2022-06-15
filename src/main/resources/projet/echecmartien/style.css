@@ -6,6 +6,10 @@
  -fx-background-size: cover;
 }
 
+.win {
+    -fx-font-color: yellow;
+}
+
 
 .rules {
  -fx-background-color: white;

@@ -44,6 +44,9 @@ class MainVue: BorderPane() {
 
     init {
 
+
+
+
         /* Initialisation des attributs */
 
         bottomContainer = HBox()
@@ -125,6 +128,19 @@ class MainVue: BorderPane() {
         coupsMaxContainer.spacing = 20.0
         textFieldCoups.maxWidth = 50.0
 
+        // Ajout du CSS des boutons des différentes vues
+
+        // MainVue
+        // Bouton
+        this.buttonRules.styleClass.add("button")
+        this.buttonNewGame.styleClass.add("button")
+        this.buttonLoadGame.styleClass.add("button")
+        // Label
+        this.labelTitle.styleClass.add("title")
+        this.labelPlayer1.styleClass.add("LabelBase")
+        this.labelPlayer2.styleClass.add("LabelBase")
+        this.labelIA.styleClass.add("LabelBase")
+        this.labelCoups.styleClass.add("LabelBase")
 
         val integerFilter: UnaryOperator<TextFormatter.Change?> = UnaryOperator { change: TextFormatter.Change? ->
             val newText: String = change!!.controlNewText

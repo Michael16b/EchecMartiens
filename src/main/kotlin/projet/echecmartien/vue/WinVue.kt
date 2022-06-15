@@ -20,7 +20,10 @@ class WinVue : BorderPane() {
 
     init {
         infos = VBox()
+        this.styleClass.add("main")
+        this.styleClass.add("win")
 
+        this.
         BoutonRejouer = Button("Rejouer")
         BoutonQuitter = Button("Quitter")
 
@@ -36,6 +39,7 @@ class WinVue : BorderPane() {
 
         labelJoueur.style = "-fx-font-style : 'Cambria'"
         labelJoueur.style = "-fx-font-size : 50"
+        labelJoueur.style = "-fx-font-color : yellow"
 
         labelScore.style = "-fx-font-style : 'Cambria'"
         labelScore.style = "-fx-font-size : 50"
