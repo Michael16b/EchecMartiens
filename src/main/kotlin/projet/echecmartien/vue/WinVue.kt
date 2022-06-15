@@ -37,12 +37,11 @@ class WinVue : BorderPane() {
         labelScore = Label()
         labelScore.alignment = Pos.CENTER
 
-        labelJoueur.style = "-fx-font-style : 'Cambria'"
-        labelJoueur.style = "-fx-font-size : 50"
-        labelJoueur.style = "-fx-font-color : yellow"
 
-        labelScore.style = "-fx-font-style : 'Cambria'"
-        labelScore.style = "-fx-font-size : 50"
+
+        this.labelJoueur.styleClass.add("winLabel")
+        this.labelScore.styleClass.add("winScore")
+
 
         infos.children.addAll(labelJoueur, labelScore, Boutons)
         infos.spacing = 20.0
@@ -54,7 +53,7 @@ class WinVue : BorderPane() {
     fun setJoueurVainqueur(joueur: Joueur?, scoreJ1: Int) {
 
         if (joueur == null) {
-            labelJoueur.text = "Egalité !"
+            labelJoueur.text = "Égalité !"
             labelScore.text = "Score des joueurs : $scoreJ1 pts"
             return
         }
