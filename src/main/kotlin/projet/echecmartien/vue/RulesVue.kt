@@ -4,8 +4,10 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
-import javafx.scene.layout.*
-import javafx.scene.text.TextAlignment
+import javafx.scene.layout.BorderPane
+import javafx.scene.layout.ColumnConstraints
+import javafx.scene.layout.GridPane
+import javafx.scene.layout.VBox
 
 class RulesVue: BorderPane() {
 
@@ -25,7 +27,7 @@ class RulesVue: BorderPane() {
     val labelCompostition : Label
 
     init {
-
+        this.styleClass.add("rules")
         boutonRetour = Button("Retour")
 
         labelTitreGeneral = Label("Règles & composition du jeu")
