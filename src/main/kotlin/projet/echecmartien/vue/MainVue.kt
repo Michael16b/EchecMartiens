@@ -67,7 +67,7 @@ class MainVue: BorderPane() {
         labelPlayer1 = Label("Joueur 1:")
         labelPlayer2 = Label("Joueur 2:")
         labelIA = Label("IA:")
-        labelTitle = Label("Echecs Martiens")
+        labelTitle = Label("Échecs Martiens")
         labelCoups = Label("Coups sans prise max (1-99):")
 
         textFieldPseudo1 = TextField()
