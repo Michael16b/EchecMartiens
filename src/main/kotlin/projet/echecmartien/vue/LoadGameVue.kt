@@ -23,8 +23,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
     val CasesBoutons = VBox()
     val boutonChargerPartie = Button("Charger partie")
     val boutonSupprimerPartie = Button("Supprimer partie")
-    val boutonRenommerPartie = Button("Renommer partie")
-    val boutonRetour = Button("retour")
+    val boutonRetour = Button("Retour")
 
     init{
         this.style="-fx-background-color: #c3b9ea "
@@ -114,8 +113,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         boutonRetour.setPrefSize(150.0,70.0)
         boutonChargerPartie.setPrefSize(150.0,70.0)
         boutonSupprimerPartie.setPrefSize(150.0,70.0)
-        boutonRenommerPartie.setPrefSize(150.0,70.0)
-        this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRenommerPartie,boutonRetour)
+        this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRetour)
         setMargin(CasesBoutons,Insets(0.0))
 
     }
