@@ -1,5 +1,6 @@
 package projet.echecmartien.controleur
 
+import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.control.Alert
@@ -164,6 +165,7 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, joueur1: Joueur, jo
         dialog.headerText = "La partie est terminée !"
         dialog.showAndWait()
         val winVue = WinVue()
+        winVue.addEventHandler(ActionEvent.ACTION, ControleurQuitterJeu(scene))
         winVue.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
         scene.root = winVue
     }
