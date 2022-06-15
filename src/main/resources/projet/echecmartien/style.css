@@ -9,7 +9,7 @@
 
 .rules {
  -fx-background-color: white;
- -fx-background-image: url("https://cutewallpaper.org/21/wallpaper-of-anime/74+-Fantasy-Anime-Wallpapers-on-WallpaperPlay.jpg");
+ -fx-background-image: url("RulesBg.png");
  -fx-background-position: center;
  -fx-background-repeat:  no-repeat;
  -fx-background-size: cover;
@@ -26,12 +26,9 @@
 .button:hover {
  -fx-font-weight: bold;
  -fx-background-color: white;
- -fx-background-radius: 22;
- -fx-font-size: 16;
+    -fx-font-size: 16;
  -fx-text-fill: #2196f3;
- -fx-border-color: #2196f3;
- -fx-border-radius: 22;
- -fx-border-width: 3;
+
 }
 
 .title {

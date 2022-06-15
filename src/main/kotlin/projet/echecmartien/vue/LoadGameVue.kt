@@ -21,9 +21,9 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
 
     val CasesBoutonRadio = GridPane()
     val CasesBoutons = VBox()
-    val boutonChargerPartie = Button("Charger la partie")
-    val boutonSupprimerPartie = Button("Supprimer la partie")
-    val boutonRenommerPartie = Button("Renommer la partie")
+    val boutonChargerPartie = Button("Charger partie")
+    val boutonSupprimerPartie = Button("Supprimer partie")
+    val boutonRenommerPartie = Button("Renommer partie")
     val boutonRetour = Button("retour")
 
     init{
