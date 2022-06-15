@@ -24,7 +24,7 @@ class AppliJeuEchecMartien: Application() {
         val controleurNouveauJeu = ControleurNouveauJeu(scene, root)
         root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNouveauJeu)
 
-        val controleurChargerJeuVue = ControleurChargerJeu(scene, root)
+        val controleurChargerJeuVue = ControleurChargerJeuVue(scene, root)
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurChargerJeuVue)
 
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())

@@ -22,7 +22,7 @@ class ControleurQuitterJeu(scene: Scene): EventHandler<ActionEvent> {
         val controleurNouveauJeu = ControleurNouveauJeu(scene, vue)
         vue.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNouveauJeu)
 
-        val controleurChargerJeuVue = ControleurChargerJeu(scene, vue)
+        val controleurChargerJeuVue = ControleurChargerJeuVue(scene, vue)
         vue.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurChargerJeuVue)
 
         scene.root = vue
