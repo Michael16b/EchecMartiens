@@ -7,8 +7,8 @@ import javafx.event.ActionEvent
 import javafx.scene.Scene
 import javafx.stage.Stage
 import projet.echecmartien.controleur.ControleurBackFromRules
-import projet.echecmartien.controleur.ControleurLoadGame
-import projet.echecmartien.controleur.ControleurNewGame
+import projet.echecmartien.controleur.ControleurLoadJeu
+import projet.echecmartien.controleur.ControleurNewJeu
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.controleur.ControleurRules
 import projet.echecmartien.vue.LoadGameVue
@@ -27,7 +27,7 @@ class AppliJeuEchecMartien: Application() {
         root.buttonRules.addEventHandler(ActionEvent.ACTION,controleurRulesVue)
 
         val rootGameVue = GameVue()
-        val controleurNewGame = ControleurNewGame(scene, root)
+        val controleurNewGame = ControleurNewJeu(scene, root)
         root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNewGame)
 
         val controleurBackGameToMainVue = ControleurBackFromRules(scene,root)
@@ -35,7 +35,7 @@ class AppliJeuEchecMartien: Application() {
 
 
         val rootLoadGameVue = LoadGameVue()
-        val controleurLoadGameVue = ControleurLoadGame(scene,rootLoadGameVue)
+        val controleurLoadGameVue = ControleurLoadJeu(scene,rootLoadGameVue)
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadGameVue)
 
 
