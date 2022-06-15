@@ -125,8 +125,10 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, joueur1: Joueur, jo
         majScores()
         origineSelected = false
         vue.setCoupsRestants(modele.nbCoupsSansPriseRestants())
-        if (modele.arretPartie())
+        if (modele.arretPartie()) {
             finPartie()
+            return
+        }
 
         if (!tourJouable())
             modele.changeJoueurCourant()
@@ -165,7 +167,7 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, joueur1: Joueur, jo
         dialog.headerText = "La partie est terminée !"
         dialog.showAndWait()
         val winVue = WinVue()
-        winVue.addEventHandler(ActionEvent.ACTION, ControleurQuitterJeu(scene))
+        winVue.BoutonQuitter.addEventHandler(ActionEvent.ACTION, ControleurQuitterJeu(scene))
         winVue.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
         scene.root = winVue
     }
