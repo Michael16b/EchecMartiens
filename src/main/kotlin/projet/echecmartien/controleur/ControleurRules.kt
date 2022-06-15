@@ -19,7 +19,7 @@ class ControleurRules(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
     override fun handle(Event: ActionEvent) {
         val rulesVue = RulesVue()
         val controleurBackFromRules = ControleurBackFromRules(scene, oldVue)
-        rulesVue.buttonBack.addEventHandler(ActionEvent.ACTION, controleurBackFromRules)
+        rulesVue.boutonRetour.addEventHandler(ActionEvent.ACTION, controleurBackFromRules)
         scene.root = rulesVue
     }
 }
