@@ -27,8 +27,8 @@ class JoueurIA(pseudo: String): Joueur(pseudo) {
         for (origineX in 0 until TAILLEHORIZONTALE) {
             for (origineY in 4 until TAILLEVERTICALE) {
 
-                for (destX in origineX-1 until origineX+2) {
-                    for (destY in origineY - 1 until origineY + 2) {
+                for (destX in 0 until TAILLEHORIZONTALE) {
+                    for (destY in 0 until TAILLEVERTICALE) {
                         if (destX == origineX && destY == origineY)
                             continue
 

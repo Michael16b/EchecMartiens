@@ -2,6 +2,8 @@ package projet.echecmartien.controleur
 
 import javafx.event.EventHandler
 import javafx.scene.Scene
+import javafx.scene.control.Alert
+import javafx.scene.control.Alert.AlertType
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.StackPane
@@ -132,6 +134,9 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, joueur1: Joueur, jo
 
         if (j2 is JoueurIA && modele.getJoueurCourant() == j2) {
             val coup = j2.prochainCoup(modele)
+            val case = modele.getPLateau().getCases()[coup.getDestination().getX()][coup.getDestination().getY()]
+            if (case.getJoueur() != j2 && !case.estLibre())
+                majPrises(j2, case.getPion())
             modele.deplacer(coup.getOrigine().getX(), coup.getOrigine().getY(), coup.getDestination().getX(), coup.getDestination().getY())
             tourSuivant()
         }
@@ -156,6 +161,10 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, joueur1: Joueur, jo
      * fonction pour terminer la partie et afficher le gagnant ou égalité
      */
     private fun finPartie() {
+        val dialog = Alert(AlertType.INFORMATION)
+        dialog.title = "Fin de la partie"
+        dialog.headerText = "La partie est terminée !"
+        dialog.showAndWait()
         val winVue = WinVue()
         winVue.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
         scene.root = winVue
