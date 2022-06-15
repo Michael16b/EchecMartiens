@@ -201,9 +201,10 @@ class Jeu {
         val caseDestination = cases[coordDestinationX][coordDestinationY]
         val caseOrigine = cases[coordOriginX][coordOriginY]
 
-        if (!caseDestination.estLibre())
+        if (!caseDestination.estLibre()) {
             joueurCourant?.ajouterPionCaptures(caseDestination.getPion()!!)
-        else
+            nombreCoupsSansPrise = 0
+        } else
             nombreCoupsSansPrise++
 
         // si le pion change de zone il devient le dernier pion arrivé de zone
@@ -263,5 +264,11 @@ class Jeu {
      * @return le plateau du jeu
      */
     fun getPLateau() : Plateau = this.plateau
+
+    /**
+     * retourne le nombre de coups sans prise restant
+     * @return entier positif ou nul, nombre de coups sans prise max - nombre coups sans prise
+     */
+    fun nbCoupsSansPriseRestants() : Int = this.nombreCoupsSansPriseMax - this.nombreCoupsSansPrise
 
 }

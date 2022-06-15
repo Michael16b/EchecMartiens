@@ -75,7 +75,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         radioButton3.toggleGroup = radioGroup
         radioButton4.toggleGroup = radioGroup
 
-        BorderPane.setMargin(CasesBoutonRadio,Insets(20.0))
+        setMargin(CasesBoutonRadio,Insets(20.0))
 
         val column = ColumnConstraints()
         column.percentWidth = 50.0
@@ -93,8 +93,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         boutonSupprimerPartie.setPrefSize(200.0,25.0)
         boutonRenommerPartie.setPrefSize(200.0,25.0)
         this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRenommerPartie,boutonRetour)
-        BorderPane.setMargin(CasesBoutons,Insets(20.0))
-
+        setMargin(CasesBoutons,Insets(20.0))
 
     }
 }
