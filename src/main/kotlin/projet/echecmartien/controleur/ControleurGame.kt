@@ -2,7 +2,6 @@ package projet.echecmartien.controleur
 
 import javafx.event.EventHandler
 import javafx.scene.Scene
-import javafx.scene.control.Label
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.StackPane
@@ -15,7 +14,7 @@ import projet.echecmartien.modele.*
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.vue.WinVue
 
-class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
+class ControleurGame(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
 
     private val vue: GameVue
     private val modele: Jeu
@@ -119,7 +118,7 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mouse
         if (modele.arretPartie())
             finPartie()
 
-        vue.labelCoupsRestants.text = "Nb coups sans prise avant fin de la partie : ${modele.nbCoupsSansPriseRestants()}"
+        vue.setCoupsRestants(modele.nbCoupsSansPriseRestants())
 
         if (!tourJouable())
             modele.changeJoueurCourant()

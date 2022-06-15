@@ -47,6 +47,11 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
             return
         }
 
+        if (pseudo1 == pseudo2) {
+            memePseudo()
+            return
+        }
+
         val j1 = Joueur(pseudo1)
         val j2 = Joueur(pseudo2)
 
@@ -55,19 +60,35 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
 
         val gameVue = GameVue()
 
-        val controleurClick = ControleurJeu(scene, gameVue, jeu)
+        val controleurClick = ControleurGame(scene, gameVue, jeu)
         gameVue.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
-        gameVue.labelCoupsRestants.text = "Nb coups sans prise avant fin de la partie : ${jeu.nbCoupsSansPriseRestants()}"
+        gameVue.setCoupsRestants(jeu.nbCoupsSansPriseRestants())
+        gameVue.setPseudo(j1, j2)
         gameVue.remplirCases(jeu.getPLateau().getCases())
         scene.root = gameVue
 
     }
 
+    /**
+     * fonction qui affiche une boîte de dialogue (erreur) pour dire que les deux joueurs ont le même nom
+     */
+    fun memePseudo() {
+        val dialog = Alert(Alert.AlertType.ERROR)
+        dialog.title = "Mauvais nom de joueur"
+        dialog.headerText = "Les deux joueurs ont le même nom !"
+        dialog.contentText = "Merci de mettre un pseudo différent aux deux joueurs"
+        dialog.showAndWait()
+    }
+
+    /**
+     * fonction qui affiche une boîte de dialogue (erreur) pour dire que le nom du joueur n est invalide
+     * @param: numéro de joueur affiché dans la boîte de dialogue dont le nom est invalide (1 ou 2)
+     */
     fun mauvaisPseudo(n: Int) {
         val dialog = Alert(Alert.AlertType.ERROR)
         dialog.title = "Mauvais nom de joueur"
         dialog.headerText = "Le nom du joueur ${n} est invalide !"
-        dialog.contentText = "caractères de l'alphabet, espaces et chiffres uniquement"
+        dialog.contentText = "caractères de l'alphabet et chiffres uniquement et sans espaces"
         dialog.showAndWait()
     }
 
@@ -78,4 +99,5 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
         dialog.contentText = "Merci de choisir nombre valide entre 1 et 99"
         dialog.showAndWait()
     }
+    
 }

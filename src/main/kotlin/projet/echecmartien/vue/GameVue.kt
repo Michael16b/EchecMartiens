@@ -35,6 +35,7 @@ class GameVue: BorderPane() {
 
     val buttonBack: Button
     val buttonSave: Button
+    val buttonRules: Button
 
     val pionsP1: GridPane
     val pionsP2: GridPane
@@ -73,8 +74,9 @@ class GameVue: BorderPane() {
 
         labelCoupsRestants = Label()
 
-        buttonBack = Button("Retour")
-        buttonSave = Button("Sauvegarder Partie")
+        buttonBack = Button("Quitter")
+        buttonSave = Button("Sauvegarder")
+        buttonRules = Button("Règles")
 
         pionsP1 = GridPane()
         pionsP2 = GridPane()
@@ -125,7 +127,7 @@ class GameVue: BorderPane() {
         this.center = gridVerticalCenterContainer
 
         /* left */
-        buttonsContainer.children.addAll(buttonBack, buttonSave)
+        buttonsContainer.children.addAll(buttonBack, buttonSave, buttonRules)
         buttonsContainer.alignment = Pos.BOTTOM_LEFT
         buttonsContainer.spacing = 20.0
         buttonsContainer.padding = Insets(0.0, 0.0, 10.0, 10.0)
@@ -174,8 +176,9 @@ class GameVue: BorderPane() {
         coupsRestantContainer.children.add(labelCoupsRestants)
         coupsRestantContainer.alignment = Pos.TOP_RIGHT
         coupsRestantContainer.padding = Insets(10.0, 10.0, 0.0, 0.0)
-        coupsRestantContainer.prefWidth = 200.0
+
         labelCoupsRestants.isWrapText = true
+        labelCoupsRestants.prefWidth = 240.0
         rightContainer.top = coupsRestantContainer
         rightContainer.bottom = p2Container
         rightContainer.padding = Insets(0.0, 20.0, 20.0, 0.0)
@@ -290,6 +293,24 @@ class GameVue: BorderPane() {
      */
     fun montrerOutlineJoueur(joueur: Int) {
 
+    }
+
+    /**
+     * fonction qui remplit les labels des pseudos des deux joueurs avec ceux donnés en argument
+     * @param joueur1: premier joueur de la partie
+     * @param joueur2: second joueur de la partie
+     */
+    fun setPseudo(joueur1: Joueur, joueur2: Joueur) {
+        labelPlayer1.text = joueur1.getPseudo()
+        labelPlayer2.text = joueur2.getPseudo()
+    }
+
+    /**
+     * fonction qui met à jour le label contenant le nombre de coups sans prise restant
+     * @param coups: nombre de coups sans prise restant
+     */
+    fun setCoupsRestants(coups: Int) {
+        labelCoupsRestants.text = "Nb coups sans prise avant fin de la partie : $coups"
     }
 
 }
