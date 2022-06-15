@@ -59,7 +59,7 @@ class MainVue: BorderPane() {
         coupsMaxContainer = HBox()
 
         buttonNewGame = Button("Nouvelle partie")
-        buttonLoadGame = Button("Charger une partie")
+        buttonLoadGame = Button("Charger partie")
         buttonRules = Button("Règles du jeu")
 
         labelPlayer1 = Label("Joueur 1:")
