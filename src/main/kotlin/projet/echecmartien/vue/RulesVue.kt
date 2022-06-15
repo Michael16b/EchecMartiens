@@ -30,25 +30,20 @@ class RulesVue: BorderPane() {
         boutonRetour = Button("Retour")
         this.styleClass.add("main")
 
-        labelTitreGeneral = Label("Règles & composition du jeu")
-        labelTitreGeneral.style = "-fx-font-style : 'Cambria'"
-        labelTitreGeneral.style = "-fx-font-size : 40"
+        labelTitreGeneral = Label("RÈGLE & COMPOSITION DU JEU")
+        this.labelTitreGeneral.styleClass.add("MainTitleRules")
 
-        labelDeroulementTitre = Label("DEROULEMENT")
-        labelDeroulementTitre.style = "-fx-font-style : 'Cambria'"
-        labelDeroulementTitre.style = "-fx-font-size : 22"
+        labelDeroulementTitre = Label("DÉROULEMENT")
+        this.labelDeroulementTitre.styleClass.add("SubtitleRules")
 
         labelExceptionTitre = Label("EXCEPTION")
-        labelExceptionTitre.style = "-fx-font-style : 'Cambria'"
-        labelExceptionTitre.style = "-fx-font-size : 22"
+        this.labelExceptionTitre.styleClass.add("SubtitleRules")
 
         labelFinTitre = Label("FIN DE LA PARTIE")
-        labelFinTitre.style = "-fx-font-style : 'Cambria'"
-        labelFinTitre.style = "-fx-font-size : 22"
+        this.labelFinTitre.styleClass.add("SubtitleRules")
 
-        labelPreparationTitre = Label("PREPARATION")
-        labelPreparationTitre.style = "-fx-font-style : 'Cambria'"
-        labelPreparationTitre.style = "-fx-font-size : 22"
+        labelPreparationTitre = Label("PRÉPARATION")
+        this.labelPreparationTitre.styleClass.add("SubtitleRules")
 
         labelDeroulement = Label("Chaque joueur, à son tour de jeu, déplace une de ses pièces. Les grands pions se déplacent verticalement, horizontalement et diagonalement de n cases. Les petits pions se déplacent diagonalement de 1 case. A son tour de jeu un joueur peut déplacer n'importe quel pion de son camp, soit à l'intérieur de sa zone soit vers la zone adverse.")
         labelDeroulement.isWrapText = true

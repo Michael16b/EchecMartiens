@@ -12,6 +12,11 @@
     -fx-font-size: 75;
     -fx-text-fill: black;
 }
+.LabelBase {
+    -fx-font-weight : bold;
+    -fx-font-size: 20;
+    -fx-text-fill: black;
+}
 
 
 /* WinVue */
@@ -28,7 +33,7 @@
 }
 
 
-/* WinVue */
+/* RulesVue */
 .rules {
  -fx-background-color: white;
  -fx-background-image: url("RulesBg.png");
@@ -36,16 +41,22 @@
  -fx-background-repeat:  no-repeat;
  -fx-background-size: cover;
 }
-
-
-
-
-
-.LabelBase {
-    -fx-font-weight : bold;
-    -fx-font-size: 20;
-    -fx-text-fill: black;
+.MainTitleRules {
+    -fx-font-size: 50;
+    -fx-text-fill: white;
+    -fx-font-family: 'Berlin Sans FB';
 }
+.SubtitleRules {
+    -fx-font-size: 22;
+    -fx-text-fill: white;
+    -fx-font-family: 'Comic Sans';
+    -fx-font-weight : bold;
+}
+
+
+
+
+
 
 
 /* Boutons */
