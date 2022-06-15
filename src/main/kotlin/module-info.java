@@ -7,5 +7,6 @@ module projet.echecmartien {
     requires com.google.gson;
 
     opens projet.echecmartien to javafx.fxml;
+    opens projet.echecmartien.modele to com.google.gson;
     exports projet.echecmartien;
 }

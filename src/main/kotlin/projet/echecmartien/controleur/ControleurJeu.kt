@@ -185,9 +185,8 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joue
      * fonction qui met à jour les scores des deux joueurs
      */
     private fun majScores() {
-        vue.labelScore1.text = "Score : ${j1.calculerScore()?:0} pts"
-        vue.labelScore2.text = "Score : ${j2.calculerScore()?:0} pts"
-
+        vue.labelScore1.text = "Score : ${j1.calculerScore()} pts"
+        vue.labelScore2.text = "Score : ${j2.calculerScore()} pts"
     }
 
     /**
