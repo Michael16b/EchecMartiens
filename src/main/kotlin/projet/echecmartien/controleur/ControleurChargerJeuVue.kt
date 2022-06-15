@@ -5,9 +5,9 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.Region
-import projet.echecmartien.vue.LoadGameVue
+import projet.echecmartien.vue.VueChargerJeu
 
-class ControleurLoadJeu(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
+class ControleurChargerJeuVue(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
 
     val scene: Scene
     val oldVue: Region
@@ -18,9 +18,9 @@ class ControleurLoadJeu(scene: Scene, oldVue: Region): EventHandler<ActionEvent>
     }
 
     override fun handle(Event: ActionEvent) {
-        val vueLoadGame = LoadGameVue()
-        val controleurBackFromLoad = ControleurBackFromLoad(scene, oldVue)
-        vueLoadGame.boutonRetour.addEventHandler(ActionEvent.ACTION, controleurBackFromLoad)
+        val vueLoadGame = VueChargerJeu()
+        val controleurRetourDepuisCharger = ControleurRetourDepuisCharger(scene, oldVue)
+        vueLoadGame.boutonRetour.addEventHandler(ActionEvent.ACTION, controleurRetourDepuisCharger)
         scene.root = vueLoadGame
     }
 

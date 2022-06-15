@@ -6,17 +6,15 @@ import javafx.scene.Scene
 import javafx.scene.control.Alert
 import javafx.scene.input.MouseEvent
 import projet.echecmartien.librairie.JoueurIA
-import projet.echecmartien.modele.GrandPion
 import projet.echecmartien.modele.Jeu
 import projet.echecmartien.modele.Joueur
-import projet.echecmartien.modele.deserialiser
-import projet.echecmartien.vue.GameVue
-import projet.echecmartien.vue.MainVue
+import projet.echecmartien.vue.VueJeu
+import projet.echecmartien.vue.VuePrincipale
 
-class ControleurNewJeu(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
+class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<ActionEvent> {
 
     val scene: Scene
-    val vue: MainVue
+    val vue: VuePrincipale
 
     init {
         this.scene = scene
@@ -60,18 +58,18 @@ class ControleurNewJeu(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
         val j2 = if (vue.comboBoxIA.selectionModel.selectedIndex == 0) Joueur(pseudo2) else JoueurIA(pseudo2)
 
         jeu.initialiserPartie(j1, j2, coupsMax)
-        val gameVue = GameVue()
+        val vueJeu = VueJeu()
 
-        val controleurClick = ControleurJeu(scene, gameVue, jeu, j1, j2)
-        val controleurRules = ControleurRules(scene, gameVue)
+        val controleurClick = ControleurJeu(scene, vueJeu, jeu, j1, j2)
+        val controleurRegles = ControleurRegles(scene, vueJeu)
         val controleurSave = ControleurSauvegardeJeu(jeu, j2 is JoueurIA)
-        gameVue.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
-        gameVue.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRules)
-        gameVue.buttonSave.addEventHandler(ActionEvent.ACTION, controleurSave)
-        gameVue.setCoupsRestants(jeu.nbCoupsSansPriseRestants())
-        gameVue.setPseudo(j1, j2)
-        gameVue.remplirCases(jeu.getPLateau().getCases())
-        scene.root = gameVue
+        vueJeu.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
+        vueJeu.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRegles)
+        vueJeu.buttonSave.addEventHandler(ActionEvent.ACTION, controleurSave)
+        vueJeu.setCoupsRestants(jeu.nbCoupsSansPriseRestants())
+        vueJeu.setPseudo(j1, j2)
+        vueJeu.remplirCases(jeu.getPLateau().getCases())
+        scene.root = vueJeu
 
     }
 

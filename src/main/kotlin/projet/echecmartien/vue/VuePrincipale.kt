@@ -12,7 +12,7 @@ import javafx.util.converter.IntegerStringConverter
 import java.util.function.UnaryOperator
 
 
-class MainVue: BorderPane() {
+class VuePrincipale: BorderPane() {
 
     val bottomContainer: HBox
     val topContainer: VBox

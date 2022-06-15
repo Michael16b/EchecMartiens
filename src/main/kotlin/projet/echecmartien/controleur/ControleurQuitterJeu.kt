@@ -3,8 +3,7 @@ package projet.echecmartien.controleur
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
-import projet.echecmartien.vue.GameVue
-import projet.echecmartien.vue.MainVue
+import projet.echecmartien.vue.VuePrincipale
 
 class ControleurQuitterJeu(scene: Scene): EventHandler<ActionEvent> {
     private val scene : Scene
@@ -15,16 +14,16 @@ class ControleurQuitterJeu(scene: Scene): EventHandler<ActionEvent> {
     }
 
     override fun handle(p0: ActionEvent?) {
-        val vue = MainVue()
+        val vue = VuePrincipale()
 
-        val controleurRulesVue = ControleurRules(scene, vue)
-        vue.buttonRules.addEventHandler(ActionEvent.ACTION,controleurRulesVue)
+        val controleurReglesVue = ControleurRegles(scene, vue)
+        vue.buttonRules.addEventHandler(ActionEvent.ACTION,controleurReglesVue)
 
-        val controleurNewJeu = ControleurNewJeu(scene, vue)
-        vue.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNewJeu)
+        val controleurNouveauJeu = ControleurNouveauJeu(scene, vue)
+        vue.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNouveauJeu)
 
-        val controleurLoadJeuVue = ControleurLoadJeu(scene, vue)
-        vue.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadJeuVue)
+        val controleurChargerJeuVue = ControleurChargerJeuVue(scene, vue)
+        vue.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurChargerJeuVue)
 
         scene.root = vue
     }

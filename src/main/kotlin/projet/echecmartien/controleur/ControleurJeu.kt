@@ -15,12 +15,12 @@ import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
 import projet.echecmartien.modele.*
-import projet.echecmartien.vue.GameVue
-import projet.echecmartien.vue.WinVue
+import projet.echecmartien.vue.VueJeu
+import projet.echecmartien.vue.VuePartieTerminee
 
-class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, joueur1: Joueur, joueur2: Joueur): EventHandler<MouseEvent> {
+class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, joueur2: Joueur): EventHandler<MouseEvent> {
 
-    private val vue: GameVue
+    private val vue: VueJeu
     private val modele: Jeu
     private val scene: Scene
     private val j1: Joueur
@@ -166,10 +166,11 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, joueur1: Joueur, jo
         dialog.title = "Fin de la partie"
         dialog.headerText = "La partie est terminée !"
         dialog.showAndWait()
-        val winVue = WinVue()
-        winVue.BoutonQuitter.addEventHandler(ActionEvent.ACTION, ControleurQuitterJeu(scene))
-        winVue.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
-        scene.root = winVue
+        val vuePartieTerminee = VuePartieTerminee()
+        vuePartieTerminee.BoutonQuitter.addEventHandler(ActionEvent.ACTION, ControleurQuitterJeu(scene))
+        vuePartieTerminee.BoutonRejouer.addEventHandler(ActionEvent.ACTION, ControleurRejouer(modele, scene, j2 is JoueurIA, j1.getPseudo(), j2.getPseudo()))
+        vuePartieTerminee.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
+        scene.root = vuePartieTerminee
     }
 
     /**
