@@ -5,10 +5,11 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.control.Alert
 import javafx.scene.input.MouseEvent
-import projet.echecmartien.librairie.GameSaveManager
 import projet.echecmartien.librairie.PlayerIA
+import projet.echecmartien.modele.GrandPion
 import projet.echecmartien.modele.Jeu
 import projet.echecmartien.modele.Joueur
+import projet.echecmartien.modele.deserialiser
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.vue.MainVue
 
@@ -56,7 +57,7 @@ class ControleurNewJeu(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
 
         val j1 = Joueur(pseudo1)
         val j2 = Joueur(pseudo2)
-
+        j1.ajouterPionCaptures(GrandPion())
         val jeu = Jeu()
         jeu.initialiserPartie(j1, j2, coupsMax)
         val gameVue = GameVue()
