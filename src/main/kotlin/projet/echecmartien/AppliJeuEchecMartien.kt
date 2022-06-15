@@ -1,18 +1,22 @@
 package projet.echecmartien
 
 import javafx.application.Application
+import javafx.event.ActionEvent
 import javafx.scene.Scene
-
 import javafx.stage.Stage
-import projet.echecmartien.modele.Jeu
-import projet.echecmartien.modele.Joueur
+import projet.echecmartien.controleur.ControleurBackMainVue
+import projet.echecmartien.controleur.ControleurLoadGame
+import projet.echecmartien.controleur.ControleurNewGame
+import projet.echecmartien.controleur.ControleurRules
 import projet.echecmartien.vue.GameVue
+import projet.echecmartien.vue.LoadGameVue
 import projet.echecmartien.vue.MainVue
+import projet.echecmartien.vue.RulesVue
 
 class AppliJeuEchecMartien: Application() {
     override fun start(primaryStage: Stage) {
 
-        val root = GameVue()
+        val root = MainVue()
 
         val sceneWidth = 1100.0
         val sceneHeight = 700.0
