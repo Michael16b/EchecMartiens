@@ -1,6 +1,7 @@
 package projet.echecmartien.modele
 
 import com.google.gson.*
+import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
 import java.io.FileNotFoundException
@@ -18,6 +19,7 @@ class Jeu {
     private var joueurs : Array<Joueur?>
     private var plateau : Plateau
     private var pionArriveDeZone: Pion?
+    private var coordPionArriveDeZone : Coordonnee?
 
     init {
         nombreCoupsSansPrise = 0
@@ -26,6 +28,7 @@ class Jeu {
         coordDest = null
         joueurCourant = null
         pionArriveDeZone = null
+        coordPionArriveDeZone = null
         joueurs = arrayOfNulls(2)
         plateau = Plateau()
     }
@@ -194,6 +197,7 @@ class Jeu {
     fun deplacer(coordOriginX: Int, coordOriginY: Int, coordDestinationX: Int, coordDestinationY: Int) {
         // le pionArriveDeZone dure qu'un seul tour
         pionArriveDeZone = null
+        coordPionArriveDeZone = null
 
         val cases = plateau.getCases()
         val caseDestination = cases[coordDestinationX][coordDestinationY]
@@ -208,6 +212,7 @@ class Jeu {
         // si le pion change de zone il devient le dernier pion arrivé de zone
         if (caseDestination.getJoueur() != joueurCourant) {
             pionArriveDeZone = caseOrigine.getPion()
+            coordPionArriveDeZone = Coordonnee(coordDestinationX, coordDestinationY)
         }
 
         caseDestination.setPion(caseOrigine.getPion())
@@ -272,22 +277,55 @@ class Jeu {
     /**
      * Sérialise le jeu en fichier json
      * @param filepath: fichier du jeu sérialisé
+     * @param présence d'une IA en joueur 2 ou non
      */
-    fun serialiser(filepath: String): Boolean {
+    fun serialiser(filepath: String, ia: Boolean): Boolean {
+        val builder = Gson().newBuilder()
+        builder.serializeNulls()
+        builder.registerTypeAdapter(Pion::class.java, PionAdapter())
+        builder.setPrettyPrinting()
+        val gson = builder.create()
+        val jeu = gson.toJsonTree(this).asJsonObject
+
+        val pions = mutableListOf<String?>()
+        plateau.getCases().forEach { row ->
+            row.forEach { case ->
+                val s = when (case.getPion()) {
+                    is MoyenPion -> "MoyenPion"
+                    is GrandPion -> "GrandPion"
+                    is PetitPion -> "PetitPion"
+                    else -> null
+                }
+                pions.add(s)
+            }
+        }
+        jeu.remove("plateau")
+        jeu.add("plateau", gson.toJsonTree(pions))
+        jeu.remove("joueurCourant")
+        jeu.addProperty("joueurCourant", this.joueurCourant!!.getPseudo())
+        jeu.remove("pionArriveDeZone")
+        jeu.add("pionArriveDeZone", gson.toJsonTree(coordPionArriveDeZone))
+        jeu.addProperty("ia", ia)
         val writer: FileWriter
         try {
             writer = FileWriter(filepath)
-        } catch (_: java.io.IOException) {
+        } catch (_: java.lang.Exception){
             return false
         }
-
-        val gson = Gson().newBuilder()
-        gson.serializeNulls()
-        gson.registerTypeAdapter(Pion::class.java, PionAdapter())
-        gson.setPrettyPrinting().create().toJson(this, writer)
-        writer.flush()
-        writer.close()
+        try {
+            gson.toJson(jeu, writer)
+        } catch (_: java.lang.Exception) {
+            return false
+        } finally {
+            writer.flush()
+            writer.close()
+        }
         return true
+    }
+
+    fun setPionArriveDeZone(pion: Pion?, coordonnee : Coordonnee?) {
+        pionArriveDeZone = pion
+        coordPionArriveDeZone = coordonnee
     }
 }
 
@@ -301,7 +339,54 @@ fun deserialiser(filepath: String): Jeu? {
     val gson = Gson().newBuilder()
     gson.serializeNulls()
     gson.registerTypeAdapter(Pion::class.java, PionAdapter())
-    val jeu = gson.create().fromJson(reader, Jeu::class.java)
-    reader.close()
+    val data: JsonObject
+
+    try {
+        data = gson.create().fromJson(reader, JsonElement::class.java).asJsonObject
+    } catch (_: JsonSyntaxException ) {
+        reader.close()
+        return null
+    }
+
+    val jeu = Jeu()
+    try {
+        val joueurs = data.get("joueurs").asJsonArray
+        val j1 = Joueur(joueurs[0].asJsonObject.get("pseudo").asString)
+        val pseudo2 = joueurs[1].asJsonObject.get("pseudo").asString
+        val ia = data.get("ia").asBoolean
+        val j2 = if (!ia) Joueur(pseudo2) else JoueurIA(pseudo2)
+        jeu.initialiserPartie(j1, j2, data.get("nombreCoupsSansPriseMax").asInt)
+
+        val jcourant = data.get("joueurCourant").asString
+        if (jeu.getJoueurCourant()!!.getPseudo() != jcourant)
+            jeu.changeJoueurCourant()
+        val cases = jeu.getPLateau().getCases()
+        val pions = data.get("plateau").asJsonArray
+        for (i in 0 until TAILLEHORIZONTALE) {
+            for (j in 0 until TAILLEVERTICALE) {
+                val joueur = if(j in 0..3) j1 else j2
+                cases[i][j].setJoueur(joueur)
+                val p = when(pions[i+j*i].asString) {
+                    "MoyenPion" -> MoyenPion()
+                    "GrandPion" -> GrandPion()
+                    "PetitPion" -> PetitPion()
+                    else -> null
+                }
+                cases[i][j].setPion(p)
+            }
+        }
+
+        val coordPionZone : Coordonnee? = gson.create().fromJson(data.get("pionArriveDeZone"), Coordonnee::class.java)
+        if (coordPionZone != null) {
+            val pion = jeu.getPLateau().getCases()[coordPionZone.getX()][coordPionZone.getY()].getPion()
+            jeu.setPionArriveDeZone(pion, coordPionZone)
+        }
+
+    } catch (_: java.lang.Exception) {
+        return null
+    } finally {
+        reader.close()
+    }
+
     return jeu
 }

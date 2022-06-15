@@ -3,6 +3,7 @@ package projet.echecmartien.librairie
 import projet.echecmartien.modele.Coordonnee
 import projet.echecmartien.modele.Deplacement
 import projet.echecmartien.modele.Jeu
+import projet.echecmartien.modele.Joueur
 
 /**
  * Classe qui permet par la méthode prochainCoup() de connaître le coup de l'adversaire
@@ -10,20 +11,15 @@ import projet.echecmartien.modele.Jeu
  *
  * privilégie d'abord les coups avec prise, puis les coups vers le terrain de l'autre joueur
  */
-class PlayerIA(modele: Jeu) {
-
-    private val modele: Jeu
-
-    init {
-        this.modele = modele
-    }
+class JoueurIA(pseudo: String): Joueur(pseudo) {
 
     /**
      * fonction qui renvoie le prochain coup que fera l'IA
      * on suppose qu'au moins un déplacement est possible
      * @return Deplacement correspondant au déplacement du prochain coup effectué par l'ia
+     * @param modele: instance du jeu
      */
-    fun prochainCoup(): Deplacement {
+    fun prochainCoup(modele: Jeu): Deplacement {
         val coupsAvecPrise = mutableListOf<Deplacement>()
         val coupsSansPriseHaut = mutableListOf<Deplacement>()
         val coupsAutres = mutableListOf<Deplacement>()

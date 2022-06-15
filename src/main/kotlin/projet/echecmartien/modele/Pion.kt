@@ -34,8 +34,12 @@ class PionAdapter : JsonSerializer<Pion?>, JsonDeserializer<Pion?> {
 		val pion = JsonObject()
 		if (p0 == null)
 			return pion
-		val className: String = p0::class.java.toString()
-		pion.addProperty(CLASSNAME, className)
+		val type = when (p0) {
+			is MoyenPion -> "MoyenPion"
+			is GrandPion -> "GrandPion"
+			else -> "PetitPion"
+		}
+		pion.addProperty(TYPE, type)
 		return pion
 	}
 
@@ -44,7 +48,7 @@ class PionAdapter : JsonSerializer<Pion?>, JsonDeserializer<Pion?> {
 		json: JsonElement, typeOfT: Type?,
 		context: JsonDeserializationContext): Pion {
 		val jsonObject = json.asJsonObject
-		val prim = jsonObject[CLASSNAME] as JsonPrimitive
+		val prim = jsonObject[TYPE] as JsonPrimitive
 		val className = prim.asString
 		return when {
 			"GrandPion" in className -> GrandPion()
@@ -55,6 +59,6 @@ class PionAdapter : JsonSerializer<Pion?>, JsonDeserializer<Pion?> {
 	}
 
 	companion object {
-		private const val CLASSNAME = "CLASSNAME"
+		private const val TYPE = "TYPE"
 	}
 }

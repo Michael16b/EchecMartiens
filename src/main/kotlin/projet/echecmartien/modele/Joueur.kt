@@ -1,6 +1,11 @@
 package projet.echecmartien.modele
 
-class Joueur(pseudo: String) {
+import com.google.gson.*
+import projet.echecmartien.librairie.JoueurIA
+import java.lang.reflect.Type
+
+
+open class Joueur(pseudo: String) {
     private val pseudo: String
     private val pionsCaptures: MutableSet<Pion>
 
