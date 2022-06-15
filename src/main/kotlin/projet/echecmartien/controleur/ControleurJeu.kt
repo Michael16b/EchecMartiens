@@ -123,11 +123,9 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, joueur1: Joueur, jo
         vue.remplirCases(modele.getPLateau().getCases())
         majScores()
         origineSelected = false
-
+        vue.setCoupsRestants(modele.nbCoupsSansPriseRestants())
         if (modele.arretPartie())
             finPartie()
-
-        vue.setCoupsRestants(modele.nbCoupsSansPriseRestants())
 
         if (!tourJouable())
             modele.changeJoueurCourant()
