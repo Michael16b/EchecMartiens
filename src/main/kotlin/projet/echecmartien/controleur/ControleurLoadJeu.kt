@@ -24,7 +24,4 @@ class ControleurLoadJeu(scene: Scene, oldVue: Region): EventHandler<ActionEvent>
         scene.root = vueLoadGame
     }
 
-    fun handle(act : MouseEvent) {
-
-    }
 }
