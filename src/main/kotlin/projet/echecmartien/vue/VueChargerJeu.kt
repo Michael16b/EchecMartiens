@@ -4,12 +4,9 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.layout.*
-import org.controlsfx.control.textfield.CustomTextField
 
 
-
-
-class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
+class VueChargerJeu(str : String = "LoadGame-s Martiens"): BorderPane()  {
 
     var TitrePageBandeau = str
 

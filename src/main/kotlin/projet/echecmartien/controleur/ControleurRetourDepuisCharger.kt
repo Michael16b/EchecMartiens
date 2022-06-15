@@ -3,10 +3,9 @@ package projet.echecmartien.controleur
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
-import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Region
 
-class ControleurBackFromRules(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
+class ControleurRetourDepuisCharger(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
 
     private val scene: Scene
     private val oldVue: Region
