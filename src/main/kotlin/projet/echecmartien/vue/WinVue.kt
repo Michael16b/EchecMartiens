@@ -31,7 +31,5 @@ class WinVue : BorderPane() {
 
         infos.children.addAll(labelJoueur, Boutons, labelScore)
         infos.spacing = 20.0
-
-        this.center = infos
     }
 }

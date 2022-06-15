@@ -2,6 +2,7 @@ package projet.echecmartien.vue
 
 import javafx.scene.control.Button
 import javafx.scene.control.Label
+import javafx.scene.control.Button
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
@@ -30,7 +31,12 @@ class RulesVue: BorderPane() {
     val labelDeroulement : Label
     val labelCompostition : Label
 
+    val buttonBack: Button
+
     init {
+        buttonBack = Button("Retour")
+        this.center = buttonBack
+
         this.style = "fx-background-image: url(\"https://images7.alphacoders.com/856/thumb-1920-856231.jpg\");"
         boutonRetour = Button("Retour")
         labelTitreGeneral = Label("Règles & composition du jeu")

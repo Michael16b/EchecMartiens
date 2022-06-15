@@ -1,5 +1,6 @@
 package projet.echecmartien.vue
 
+import javafx.geometry.HPos
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
@@ -15,19 +16,21 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
     val nomPartie = TextField()
     val CasesBoutonRadio = GridPane()
     val CasesBoutons = VBox()
-    val boutonChargerPartie = Button()
-    val boutonSupprimerPartie = Button()
-    val boutonRenommerPartie = Button()
-    val boutonRetour = Button()
+    val boutonChargerPartie = Button("Charger la partie")
+    val boutonSupprimerPartie = Button("Supprimer la partie")
+    val boutonRenommerPartie = Button("Renommer la partie")
+    val boutonRetour = Button("retour")
 
     init{
         this.style="-fx-background-color: #c3b9ea "
 
+
         this.TitrePage = Label("Charger la partie")
+        this.TitrePage.style = "-fx-font-style : 'Cambria'"
+        this.TitrePage.style = "-fx-font-size : 22"
         this.top = this.TitrePage
         this.left = this.nomPartie
-        //BorderPane.setAlignment(this.TitrePage,Pos.TOP_CENTER)
-        this.TitrePage.alignment = Pos.TOP_CENTER
+        BorderPane.setAlignment(this.TitrePage,Pos.TOP_CENTER)
 
         this.nomPartie.minWidth(120.0)
         this.nomPartie.maxHeight(30.0)
@@ -56,9 +59,8 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         val titreLigne4 = Label("nom de partie4")
         //ligne4.children.addAll(radioButton4,titreLigne4)
 
-        this.CasesBoutonRadio.isGridLinesVisible = true
+        this.CasesBoutonRadio.isGridLinesVisible = false
         this.CasesBoutonRadio.add(radioButton1,0,1)
-        radioButton1.maxHeight = Double.MAX_VALUE
         this.CasesBoutonRadio.add(titreLigne1,1,1)
         this.CasesBoutonRadio.add(radioButton2,0,2)
         this.CasesBoutonRadio.add(titreLigne2,1,2)
@@ -68,18 +70,25 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         this.CasesBoutonRadio.add(titreLigne4,1,4)
         this.CasesBoutonRadio.vgap = 30.0
 
-        this.CasesBoutonRadio.maxHeight = Double.MAX_VALUE
-        //val column = ColumnConstraints()
-        //column.percentWidth = 50.0
-        //val row = RowConstraints()
-        //row.percentHeight = 25.5
+        BorderPane.setMargin(CasesBoutonRadio,Insets(20.0))
+
+        val column = ColumnConstraints()
+        column.percentWidth = 50.0
+        val row = RowConstraints()
+        row.maxHeight= Double.MAX_VALUE
+        this.CasesBoutonRadio.columnConstraints.addAll(column)
+        this.CasesBoutonRadio.rowConstraints.addAll(row)
         this.CasesBoutonRadio.style = "-fx-border-color: black"
 
         this.right = this.CasesBoutons
-
-
-
-
+        CasesBoutons.padding = Insets(100.0,0.0,0.0,0.0)
+        CasesBoutons.spacing = 30.0
+        boutonRetour.setPrefSize(200.0,25.0)
+        boutonChargerPartie.setPrefSize(200.0,25.0)
+        boutonSupprimerPartie.setPrefSize(200.0,25.0)
+        boutonRenommerPartie.setPrefSize(200.0,25.0)
+        this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRenommerPartie,boutonRetour)
+        BorderPane.setMargin(CasesBoutons,Insets(20.0))
 
 
     }
