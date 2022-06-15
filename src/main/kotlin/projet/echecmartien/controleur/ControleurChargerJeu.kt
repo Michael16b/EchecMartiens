@@ -16,7 +16,7 @@ class ControleurChargerJeu(scene: Scene): EventHandler<ActionEvent> {
 
     override fun handle(p0: ActionEvent?) {
         //val jeu = deserialiser()
-
+        //jeu.initialiserPartie()
     }
     private fun searchSaves() {
         val file = File(System.getProperty("user.home")+ "/.echecsMartiens"+"/.sauvegardes")

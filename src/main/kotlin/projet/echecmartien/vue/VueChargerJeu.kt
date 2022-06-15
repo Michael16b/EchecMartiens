@@ -1,12 +1,14 @@
 package projet.echecmartien.vue
 
+import javafx.collections.FXCollections
+import javafx.collections.FXCollections.observableArrayList
+import javafx.collections.ObservableList
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.layout.*
 import org.controlsfx.control.textfield.CustomTextField
-
-
+import java.io.File
 
 
 class ChargerJeu(str : String = "LoadGames"): BorderPane()  {
@@ -23,6 +25,10 @@ class ChargerJeu(str : String = "LoadGames"): BorderPane()  {
     val boutonSupprimerPartie = Button("Supprimer partie")
     val boutonRetour = Button("Retour")
 
+    val myListSave: ListView<String>
+    //var tabFichiers : ObservableList<String>
+    var tabFichiers : ObservableList<String>
+
     init{
         this.style="-fx-background-color: #c3b9ea "
 
@@ -35,55 +41,16 @@ class ChargerJeu(str : String = "LoadGames"): BorderPane()  {
         BorderPane.setAlignment(this.TitrePage,Pos.TOP_CENTER)
         this.TitrePage.padding = Insets(40.0,0.0,100.0,0.0)
 
-        conteneurgauche.children.addAll( CasesBoutonRadio)
+
         this.left = conteneurgauche
         BorderPane.setAlignment(conteneurgauche,Pos.CENTER_LEFT)
 
-        // Création radio buttons et titre de parties //
+        tabFichiers = observableArrayList()
+        getSaveName()
+        myListSave = ListView<String>()
+        myListSave.items = tabFichiers
+        conteneurgauche.children.addAll(myListSave)
 
-        val radioButton1 = RadioButton()
-        radioButton1.padding = Insets(30.0,10.0,40.0,5.0)
-        val titreLigne1 = Label("nom de partie1")
-        titreLigne1.padding = Insets(30.0,0.0,40.0,20.0)
-
-        val radioButton2 = RadioButton()
-        radioButton2.padding = Insets(30.0,10.0,40.0,5.0)
-        val titreLigne2 = Label("nom de partie2")
-        titreLigne2.padding = Insets(30.0,0.0,40.0,20.0)
-
-        val radioButton3 = RadioButton()
-        radioButton3.padding = Insets(30.0,10.0,40.0,5.0)
-        val titreLigne3 = Label("nom de partie3")
-        titreLigne3.padding = Insets(30.0,0.0,40.0,20.0)
-
-        val radioButton4 = RadioButton()
-        radioButton4.padding = Insets(30.0,10.0,40.0,5.0)
-        val titreLigne4 = Label("nom de partie4")
-        titreLigne4.padding = Insets(30.0,0.0,40.0,20.0)
-
-        // caseboutonradio : vBox contenant les boutons radio et et les noms ds parties //
-
-
-        this.CasesBoutonRadio.isGridLinesVisible = false
-        this.CasesBoutonRadio.add(radioButton1,0,1)
-        this.CasesBoutonRadio.add(titreLigne1,1,1)
-        this.CasesBoutonRadio.add(radioButton2,0,2)
-        this.CasesBoutonRadio.add(titreLigne2,1,2)
-        this.CasesBoutonRadio.add(radioButton3,0,3)
-        this.CasesBoutonRadio.add(titreLigne3,1,3)
-        this.CasesBoutonRadio.add(radioButton4,0,4)
-        this.CasesBoutonRadio.add(titreLigne4,1,4)
-        this.CasesBoutonRadio.maxHeight(100.0)
-        this.CasesBoutonRadio.minWidth(200.0)
-
-        CasesBoutonRadio.padding = Insets(0.0,0.0,0.0,0.0)
-        CasesBoutonRadio.prefWidth = 100.0
-
-        val radioGroup = ToggleGroup()
-        radioButton1.toggleGroup = radioGroup
-        radioButton2.toggleGroup = radioGroup
-        radioButton3.toggleGroup = radioGroup
-        radioButton4.toggleGroup = radioGroup
 
         // Cases Boutons de droite//
 
@@ -108,4 +75,16 @@ class ChargerJeu(str : String = "LoadGames"): BorderPane()  {
         setMargin(CasesBoutons,Insets(0.0))
 
     }
+
+    private fun getSaveName() {
+        val file = File(System.getProperty("user.home")+ "/.echecsMartiens"+"/.sauvegardes")
+        val listFiles = file.listFiles()
+        if (listFiles != null) {
+              for (i in listFiles) {
+                  tabFichiers.add(i.name)
+              }
+        }
+    }
+
+
 }
