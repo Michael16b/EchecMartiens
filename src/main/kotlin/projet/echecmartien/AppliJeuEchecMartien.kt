@@ -22,23 +22,13 @@ class AppliJeuEchecMartien: Application() {
         val controleurRulesVue = ControleurRules(scene, root)
         root.buttonRules.addEventHandler(ActionEvent.ACTION,controleurRulesVue)
 
-        val rootGameVue = GameVue()
         val controleurNewJeu = ControleurNewJeu(scene, root)
         root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNewJeu)
-
-        val controleurBackGameToMainVue = ControleurBackFromRules(scene,root)
-        rootGameVue.buttonBack.addEventHandler(ActionEvent.ACTION,controleurBackGameToMainVue)
 
         val controleurLoadJeuVue = ControleurLoadJeu(scene, root)
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadJeuVue)
 
-        val controleurQuitterJeu = ControleurQuitterJeu(scene)
-        root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurQuitterJeu)
-
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
-        root.styleClass.add("main")
-
-
 
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0
