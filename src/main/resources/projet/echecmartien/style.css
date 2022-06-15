@@ -5,12 +5,14 @@
  -fx-background-position: center;
  -fx-background-repeat:  no-repeat;
  -fx-background-size: cover;
+
 }
 
 .MainTitle {
     -fx-font-weight : bold;
     -fx-font-size: 75;
     -fx-text-fill: black;
+    -fx-font-family: 'Calligraphic';
 }
 .LabelBase {
     -fx-font-weight : bold;
@@ -51,6 +53,13 @@
     -fx-text-fill: white;
     -fx-font-family: 'Comic Sans';
     -fx-font-weight : bold;
+}
+.rulesText {
+    -fx-font-size: 13;
+    -fx-text-fill: white;
+    -fx-font-family: 'Comic Sans';
+    -fx-text-alignment: justify;
+    -fx-wrap-text: true;
 }
 
 

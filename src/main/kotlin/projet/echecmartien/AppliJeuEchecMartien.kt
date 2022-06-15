@@ -32,7 +32,7 @@ class AppliJeuEchecMartien: Application() {
 
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0
-        primaryStage.title="Echecs Martiens"
+        primaryStage.title="Échecs Martiens"
         primaryStage.scene=scene
         primaryStage.show()
     }

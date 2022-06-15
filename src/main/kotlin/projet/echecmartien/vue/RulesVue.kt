@@ -46,22 +46,20 @@ class RulesVue: BorderPane() {
         this.labelPreparationTitre.styleClass.add("SubtitleRules")
 
         labelDeroulement = Label("Chaque joueur, à son tour de jeu, déplace une de ses pièces. Les grands pions se déplacent verticalement, horizontalement et diagonalement de n cases. Les petits pions se déplacent diagonalement de 1 case. A son tour de jeu un joueur peut déplacer n'importe quel pion de son camp, soit à l'intérieur de sa zone soit vers la zone adverse.")
-        labelDeroulement.isWrapText = true
-        labelDeroulement.textAlignment = TextAlignment.JUSTIFY
+        this.labelDeroulement.styleClass.add("rulesText")
+
 
         labelException = Label("Il est interdit de renvoyer dans la zone adverse un pion qui vient d'arriver dans sa zone. Mais on peut déplacer ce même pion à l'intérieur de sa zone. On capture un pion adverse en prenant sa place (donc fatalement en prenant un pion de sa zone et en allant dans la zone adverse). Le pion capturé est retiré du damier. Le saut par dessus un ou n pions adverses ou non n'est pas autorisé.")
-        labelException.isWrapText = true
-        labelException.textAlignment = TextAlignment.JUSTIFY
+        this.labelException.styleClass.add("rulesText")
 
         labelFinPartie = Label("La partie est terminée une fois que tous les pions sont capturés ou que plus aucune prise n'est possible. On compte 3 points par grand pion capturé, 2 par moyen et 1 par petit. Le gagnant est le joueur qui à le plus de points.")
-        labelFinPartie.isWrapText = true
-        labelFinPartie.textAlignment = TextAlignment.JUSTIFY
+        this.labelFinPartie.styleClass.add("rulesText")
 
         labelPreparation = Label("Disposez les 18 pions comme sur la figure ci-contre. Un joueur identifie ses pièces par leur position à un instant donné. Le damier est divisé en 2 zones, une pour chaque joueur. Toute pièce dans la zone d'un joueur est la sienne.")
-        labelPreparation.isWrapText = true
-        labelPreparation.textAlignment = TextAlignment.JUSTIFY
+        this.labelPreparation.styleClass.add("rulesText")
 
         labelComposition = Label("1 plateau de jeu et 18 pions")
+        this.labelComposition.styleClass.add("rulesText")
 
         orga = GridPane()
         compositionHbox = HBox()
