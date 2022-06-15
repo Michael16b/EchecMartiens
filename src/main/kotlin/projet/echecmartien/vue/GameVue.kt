@@ -104,13 +104,16 @@ class GameVue: BorderPane() {
 
                 // les cellules sur les côtés doivent avoir une bordure de taille 2
                 var borderTop = if (i == 0) 2 else 1
-                val borderBottom = if (i == TAILLEVERTICALE-1) 2 else 1
+                var borderBottom = if (i == TAILLEVERTICALE-1) 2 else 1
                 val borderLeft = if (j == 0) 2 else 1
                 val borderRight = if (j == TAILLEHORIZONTALE-1) 2 else 1
 
                 // pour délimiter les deux zones
                 if (i == 4) {
                     borderTop = 5
+                }
+                if (i == 3) {
+                    borderBottom = 5
                 }
 
                 s.style = "-fx-border-color: black; -fx-border-width: $borderTop $borderRight $borderBottom $borderLeft;"
@@ -285,14 +288,6 @@ class GameVue: BorderPane() {
                 setPion(j, i, cases[j][i].getPion())
             }
         }
-    }
-
-    /**
-     * fonction qui met en valeur le côté du joueur courant pour savoir le tour est à qui
-     * @param joueur: entier entre 0 et 1, 0 signifiant le joueur 1 et 1 le joueur 2
-     */
-    fun montrerOutlineJoueur(joueur: Int) {
-
     }
 
     /**

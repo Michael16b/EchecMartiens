@@ -5,6 +5,7 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.control.Alert
 import javafx.scene.input.MouseEvent
+import projet.echecmartien.librairie.PlayerIA
 import projet.echecmartien.modele.Jeu
 import projet.echecmartien.modele.Joueur
 import projet.echecmartien.vue.GameVue
@@ -60,7 +61,8 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
 
         val gameVue = GameVue()
 
-        val controleurClick = ControleurGame(scene, gameVue, jeu)
+        val ia: PlayerIA? = if (vue.comboBoxIA.selectionModel.selectedIndex == 1) PlayerIA(jeu) else null
+        val controleurClick = ControleurGame(scene, gameVue, jeu, ia, j1, j2)
         gameVue.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
         gameVue.setCoupsRestants(jeu.nbCoupsSansPriseRestants())
         gameVue.setPseudo(j1, j2)

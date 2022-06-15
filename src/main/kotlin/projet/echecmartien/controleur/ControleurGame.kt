@@ -8,23 +8,30 @@ import javafx.scene.layout.StackPane
 import javafx.scene.paint.Color
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Rectangle
+import projet.echecmartien.librairie.PlayerIA
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
 import projet.echecmartien.modele.*
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.vue.WinVue
 
-class ControleurGame(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<MouseEvent> {
+class ControleurGame(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joueur1: Joueur, joueur2: Joueur): EventHandler<MouseEvent> {
 
     private val vue: GameVue
     private val modele: Jeu
     private val scene: Scene
+    private val ia: PlayerIA?
+    private val j1: Joueur
+    private val j2: Joueur
     private var origineSelected: Boolean
 
     init {
         this.vue = vue
         this.modele = modele
         this.scene = scene
+        this.j1 = joueur1
+        this.j2 = joueur2
+        this.ia = ia
         this.origineSelected = false
     }
 
@@ -122,13 +129,19 @@ class ControleurGame(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mous
 
         if (!tourJouable())
             modele.changeJoueurCourant()
+
+        if (ia != null && modele.getJoueurCourant() == j2) {
+            val coup = ia.prochainCoup()
+            modele.deplacer(coup.getOrigine().getX(), coup.getOrigine().getY(), coup.getDestination().getX(), coup.getDestination().getY())
+            tourSuivant()
+        }
     }
 
     /**
      * renvoie vrai si le joueur courant peut joueur ou non
      */
     private fun tourJouable(): Boolean {
-        val colMin = if (modele.getJoueurCourant() == modele.getJoueurs()[0]) 0 else 4
+        val colMin = if (modele.getJoueurCourant() == j1) 0 else 4
         val colMax = if (colMin == 0) 3 else 7
         for (i in colMin..colMax) {
             for (j in 0 until TAILLEHORIZONTALE) {
@@ -144,7 +157,7 @@ class ControleurGame(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mous
      */
     private fun finPartie() {
         val winVue = WinVue()
-        winVue.setJoueurVainqueur(modele.joueurVainqueur(), modele.getJoueurs()[0]?.calculerScore()?:0)
+        winVue.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
         scene.root = winVue
     }
 
@@ -155,7 +168,7 @@ class ControleurGame(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mous
      */
     private fun majPrises(joueur: Joueur?, type: Pion?){
 
-        val decalageJoueur = if (joueur == modele.getJoueurs()[0]) 0 else 1
+        val decalageJoueur = if (joueur == j1) 0 else 1
         val decalagePion = when (type) {
             is MoyenPion -> 1
             is GrandPion -> 0
@@ -172,10 +185,8 @@ class ControleurGame(scene: Scene, vue: GameVue, modele: Jeu): EventHandler<Mous
      * fonction qui met à jour les scores des deux joueurs
      */
     private fun majScores() {
-        val joueurs = modele.getJoueurs()
-
-        vue.labelScore1.text = "Score : ${joueurs[0]?.calculerScore()?:0} pts"
-        vue.labelScore2.text = "Score : ${joueurs[1]?.calculerScore()?:0} pts"
+        vue.labelScore1.text = "Score : ${j1.calculerScore()?:0} pts"
+        vue.labelScore2.text = "Score : ${j2.calculerScore()?:0} pts"
 
     }
 

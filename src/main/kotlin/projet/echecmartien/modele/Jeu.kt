@@ -266,12 +266,6 @@ class Jeu {
     fun getPLateau() : Plateau = this.plateau
 
     /**
-     * retourna la liste des joueurs du jeu qui peuvent être null
-     * @return array des joueurs
-     */
-    fun getJoueurs() : Array<Joueur?> = this.joueurs
-
-    /**
      * retourne le nombre de coups sans prise restant
      * @return entier positif ou nul, nombre de coups sans prise max - nombre coups sans prise
      */
