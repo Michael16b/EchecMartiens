@@ -4,17 +4,23 @@ import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.layout.BorderPane
+import javafx.scene.layout.Region
+import projet.echecmartien.vue.LoadGameVue
 
-class ControleurLoadGame(scene: Scene, vue: BorderPane): EventHandler<ActionEvent> {
+class ControleurLoadGame(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
+
     val scene: Scene
-    val vue: BorderPane
+    val oldVue: Region
 
     init {
         this.scene = scene
-        this.vue = vue
+        this.oldVue = oldVue
     }
 
     override fun handle(Event: ActionEvent) {
-        scene.root = vue
+        val vueLoadGame = LoadGameVue()
+        val controleurBackFromLoad = ControleurBackFromLoad(scene, oldVue)
+        vueLoadGame.boutonRetour.addEventHandler(ActionEvent.ACTION, controleurBackFromLoad)
+        scene.root = vueLoadGame
     }
 }

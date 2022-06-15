@@ -1,5 +1,6 @@
 package projet.echecmartien.vue
 
+import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.layout.BorderPane
@@ -81,6 +82,7 @@ class MainVue: BorderPane() {
         /* top */
         rulesContainer.children.add(buttonRules)
         rulesContainer.alignment = Pos.TOP_RIGHT
+        rulesContainer.padding = Insets(2.0)
         buttonRules.font = buttonFont
 
         labelTitle.font = Font.font(Font.getDefault().toString(), 50.0)

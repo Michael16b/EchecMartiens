@@ -33,12 +33,8 @@ class AppliJeuEchecMartien: Application() {
         val controleurBackGameToMainVue = ControleurBackFromRules(scene,root)
         rootGameVue.buttonBack.addEventHandler(ActionEvent.ACTION,controleurBackGameToMainVue)
 
-
-        val rootLoadGameVue = LoadGameVue()
-        val controleurLoadGameVue = ControleurLoadGame(scene,rootLoadGameVue)
+        val controleurLoadGameVue = ControleurLoadGame(scene, root)
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadGameVue)
-
-
 
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0
