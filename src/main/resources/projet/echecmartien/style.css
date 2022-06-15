@@ -1,0 +1,9 @@
+.main {
+ -fx-background-color: white;
+ -fx-background-image: url("main.png");
+ -fx-background-position: center;
+ -fx-background-repeat:  no-repeat;
+ -fx-background-size: cover;
+
+
+}
