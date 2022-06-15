@@ -11,6 +11,7 @@ import projet.echecmartien.controleur.ControleurLoadJeu
 import projet.echecmartien.controleur.ControleurNewJeu
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.controleur.ControleurRules
+import projet.echecmartien.vue.LoadGameVue
 import projet.echecmartien.vue.MainVue
 
 class AppliJeuEchecMartien: Application() {
@@ -26,14 +27,18 @@ class AppliJeuEchecMartien: Application() {
         root.buttonRules.addEventHandler(ActionEvent.ACTION,controleurRulesVue)
 
         val rootGameVue = GameVue()
-        val controleurNewJeu = ControleurNewJeu(scene, root)
-        root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNewJeu)
+        val controleurNewGame = ControleurNewJeu(scene, root)
+        root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNewGame)
 
         val controleurBackGameToMainVue = ControleurBackFromRules(scene,root)
         rootGameVue.buttonBack.addEventHandler(ActionEvent.ACTION,controleurBackGameToMainVue)
 
-        val controleurLoadJeuVue = ControleurLoadJeu(scene, root)
-        root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadJeuVue)
+
+        val rootLoadGameVue = LoadGameVue()
+        val controleurLoadGameVue = ControleurLoadJeu(scene,rootLoadGameVue)
+        root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadGameVue)
+
+
 
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0
