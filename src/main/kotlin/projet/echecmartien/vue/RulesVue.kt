@@ -1,5 +1,6 @@
 package projet.echecmartien.vue
 
+import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.layout.BorderPane
@@ -35,11 +36,28 @@ class RulesVue: BorderPane() {
         this.style = "fx-background-image: url(\"https://images7.alphacoders.com/856/thumb-1920-856231.jpg\");"
 
         boutonRetour = Button("Retour")
+
         labelTitreGeneral = Label("Règles & composition du jeu")
+        labelTitreGeneral.style = "-fx-font-style : 'Cambria'"
+        labelTitreGeneral.style = "-fx-font-size : 40"
+
         labelDeroulementTitre = Label("DEROULELEMENT")
+        labelDeroulementTitre.style = "-fx-font-style : 'Cambria'"
+        labelDeroulementTitre.style = "-fx-font-size : 22"
+
         labelExceptionTitre = Label("EXCEPTION")
+        labelExceptionTitre.style = "-fx-font-style : 'Cambria'"
+        labelExceptionTitre.style = "-fx-font-size : 22"
+
         labelFinTitre = Label("FIN DE LA PARTIE")
+        labelFinTitre.style = "-fx-font-style : 'Cambria'"
+        labelFinTitre.style = "-fx-font-size : 22"
+
         labelPreparationTitre = Label("PREPARATION")
+        labelPreparationTitre.style = "-fx-font-style : 'Cambria'"
+        labelPreparationTitre.style = "-fx-font-size : 22"
+
+
 
         labelDeroulement = Label("Chaque joueur, à son tour de jeu, déplace une de ses pièces.\n" +
                 "Les grands pions se déplacent verticalement, horizontalement et diagonalement de n cases.\n" +
@@ -71,6 +89,7 @@ class RulesVue: BorderPane() {
 
         vboxHautGauche = VBox()
         vboxHautGauche.children.addAll(labelCompostition)
+        vboxHautGauche.spacing = 10.0
 
         vboxHautDroit = VBox()
         vboxHautDroit.children.addAll(labelDeroulementTitre, labelDeroulement, labelExceptionTitre, labelException)
@@ -82,14 +101,18 @@ class RulesVue: BorderPane() {
 
         vboxBasGauche = VBox()
         vboxBasGauche.children.addAll(labelPreparationTitre, labelPreparation)
+        vboxBasGauche.spacing = 10.0
 
         vboxBasDroit = VBox()
         vboxBasDroit.children.addAll(labelFinTitre, labelFinPartie)
+        vboxBasDroit.spacing = 10.0
 
         hboxBas.children.addAll(vboxBasGauche, vboxBasDroit)
 
         vboxGenerale = VBox()
         vboxGenerale.children.addAll(labelTitreGeneral, hboxHaut, hboxBas, boutonRetour)
+        vboxGenerale.spacing = 50.0
+        vboxGenerale.alignment = Pos.TOP_CENTER
         this.center = vboxGenerale
     }
 }

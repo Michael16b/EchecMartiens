@@ -3,10 +3,7 @@ package projet.echecmartien.vue
 import javafx.geometry.HPos
 import javafx.geometry.Insets
 import javafx.geometry.Pos
-import javafx.scene.control.Button
-import javafx.scene.control.Label
-import javafx.scene.control.RadioButton
-import javafx.scene.control.TextField
+import javafx.scene.control.*
 import javafx.scene.layout.*
 
 class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
@@ -36,29 +33,29 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         this.nomPartie.maxHeight(30.0)
         this.nomPartie.alignment = Pos.TOP_LEFT
 
-        this.left = this.CasesBoutonRadio
-
         //val ligne1 = HBox()
         //ligne1.style = "-fx-border-color: black"
-        val radioButton1 = RadioButton("1")
+        val radioButton1 = RadioButton()
         val titreLigne1 = Label("nom de partie1")
         //ligne1.children.addAll(radioButton1,titreLigne1)
         //val ligne2 = HBox()
         //ligne2.style = "-fx-border-color: black"
-        val radioButton2 = RadioButton("1")
+        val radioButton2 = RadioButton()
         val titreLigne2 = Label("nom de partie2")
         //ligne2.children.addAll(radioButton2,titreLigne2)
         //val ligne3 = HBox()
         //ligne3.style = "-fx-border-color: black"
-        val radioButton3 = RadioButton("1")
+        val radioButton3 = RadioButton()
         val titreLigne3 = Label("nom de partie3")
         //ligne3.children.addAll(radioButton3,titreLigne3)
         //val ligne4 = HBox()
         //ligne4.style = "-fx-border-color: black"
-        val radioButton4 = RadioButton("2")
+        val radioButton4 = RadioButton()
         val titreLigne4 = Label("nom de partie4")
         //ligne4.children.addAll(radioButton4,titreLigne4)
 
+        this.left = CasesBoutonRadio
+        this.CasesBoutonRadio.alignment = Pos.CENTER_LEFT
         this.CasesBoutonRadio.isGridLinesVisible = false
         this.CasesBoutonRadio.add(radioButton1,0,1)
         this.CasesBoutonRadio.add(titreLigne1,1,1)
@@ -68,9 +65,20 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         this.CasesBoutonRadio.add(titreLigne3,1,3)
         this.CasesBoutonRadio.add(radioButton4,0,4)
         this.CasesBoutonRadio.add(titreLigne4,1,4)
-        this.CasesBoutonRadio.vgap = 30.0
+        this.CasesBoutonRadio.vgap = 70.0
+        this.CasesBoutonRadio.maxHeight(400.0)
+        this.CasesBoutonRadio.minWidth(300.0)
 
-        setMargin(CasesBoutonRadio,Insets(20.0))
+        CasesBoutonRadio.padding = Insets(0.0,40.0,100.0,40.0)
+
+        val radioGroup = ToggleGroup()
+        radioButton1.toggleGroup = radioGroup
+        radioButton2.toggleGroup = radioGroup
+        radioButton3.toggleGroup = radioGroup
+        radioButton4.toggleGroup = radioGroup
+
+        this.right = CasesBoutons
+        this.CasesBoutons.alignment = Pos.CENTER_RIGHT
 
         val column = ColumnConstraints()
         column.percentWidth = 50.0
@@ -78,15 +86,15 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         row.maxHeight= Double.MAX_VALUE
         this.CasesBoutonRadio.columnConstraints.addAll(column)
         this.CasesBoutonRadio.rowConstraints.addAll(row)
-        this.CasesBoutonRadio.style = "-fx-border-color: black"
+        //this.CasesBoutonRadio.style = "-fx-border-color: black"
 
-        this.right = this.CasesBoutons
-        CasesBoutons.padding = Insets(100.0,0.0,0.0,0.0)
+
+        CasesBoutons.padding = Insets(0.0,40.0,40.0,0.0)
         CasesBoutons.spacing = 30.0
-        boutonRetour.setPrefSize(200.0,25.0)
-        boutonChargerPartie.setPrefSize(200.0,25.0)
-        boutonSupprimerPartie.setPrefSize(200.0,25.0)
-        boutonRenommerPartie.setPrefSize(200.0,25.0)
+        boutonRetour.setPrefSize(150.0,70.0)
+        boutonChargerPartie.setPrefSize(150.0,70.0)
+        boutonSupprimerPartie.setPrefSize(150.0,70.0)
+        boutonRenommerPartie.setPrefSize(150.0,70.0)
         this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRenommerPartie,boutonRetour)
         setMargin(CasesBoutons,Insets(20.0))
 

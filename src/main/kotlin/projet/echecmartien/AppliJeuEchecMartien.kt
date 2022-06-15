@@ -9,8 +9,8 @@ import javafx.stage.Stage
 import projet.echecmartien.controleur.ControleurBackFromRules
 import projet.echecmartien.controleur.ControleurLoadJeu
 import projet.echecmartien.controleur.ControleurNewJeu
-import projet.echecmartien.controleur.ControleurRules
 import projet.echecmartien.vue.GameVue
+import projet.echecmartien.controleur.ControleurRules
 import projet.echecmartien.vue.MainVue
 
 class AppliJeuEchecMartien: Application() {
@@ -35,9 +35,6 @@ class AppliJeuEchecMartien: Application() {
         val controleurLoadJeuVue = ControleurLoadJeu(scene, root)
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadJeuVue)
 
-
-        scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
-        root.styleClass.add("main")
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0
         primaryStage.title="Echecs Martiens"
