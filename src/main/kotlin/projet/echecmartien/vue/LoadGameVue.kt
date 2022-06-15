@@ -1,6 +1,5 @@
 package projet.echecmartien.vue
 
-import javafx.geometry.HPos
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
@@ -19,9 +18,6 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
     val boutonRetour = Button("retour")
 
     init{
-        this.style="-fx-background-color: #c3b9ea "
-
-
         this.TitrePage = Label("Charger la partie")
         this.TitrePage.style = "-fx-font-style : 'Cambria'"
         this.TitrePage.style = "-fx-font-size : 22"
