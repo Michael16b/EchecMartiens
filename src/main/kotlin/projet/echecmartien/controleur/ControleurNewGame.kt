@@ -63,7 +63,9 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
 
         val ia: PlayerIA? = if (vue.comboBoxIA.selectionModel.selectedIndex == 1) PlayerIA(jeu) else null
         val controleurClick = ControleurGame(scene, gameVue, jeu, ia, j1, j2)
+        val controleurRules = ControleurRules(scene, gameVue)
         gameVue.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
+        gameVue.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRules)
         gameVue.setCoupsRestants(jeu.nbCoupsSansPriseRestants())
         gameVue.setPseudo(j1, j2)
         gameVue.remplirCases(jeu.getPLateau().getCases())
