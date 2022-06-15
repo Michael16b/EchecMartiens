@@ -4,14 +4,13 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
-import javafx.scene.layout.BorderPane
-import javafx.scene.layout.HBox
-import javafx.scene.layout.VBox
+import javafx.scene.layout.*
+import javafx.scene.text.TextAlignment
 
 class RulesVue: BorderPane() {
 
-    val vboxDroite : VBox
-    val vboxGauche : VBox
+    val orga : GridPane
+    val vboxBouton : VBox
 
     val boutonRetour : Button
     val labelDeroulementTitre : Label
@@ -54,6 +53,7 @@ class RulesVue: BorderPane() {
                 "Les petits pions se déplacent diagonalement de 1 case.\n" +
                 "A son tour de jeu un joueur peut déplacer n'importe quel pion de son camp,\n" +
                 "soit à l'intérieur de sa zone soit vers la zone adverse.")
+        //labelDeroulement.textAlignment = TextAlignment.JUSTIFY
 
         labelException = Label("Il est interdit de renvoyer dans la zone adverse un pion qui vient d'arriver dans sa zone.\n" +
                 "Mais on peut déplacer ce même pion à l'intérieur de sa zone.\n" +
@@ -75,28 +75,38 @@ class RulesVue: BorderPane() {
 
         labelCompostition = Label("1 plateau de jeu & 18 pions")
 
-        vboxGauche = VBox()
-        vboxGauche.children.addAll(labelCompostition, labelPreparationTitre, labelPreparation)
-        vboxGauche.spacing = 30.0
-        vboxGauche.padding = Insets(0.0, 0.0, 0.0, 20.0)
+        orga = GridPane()
+        orga.add(labelCompostition, 0, 0)
+        orga.add(labelDeroulementTitre, 1, 0)
+        orga.add(labelDeroulement, 1, 1)
+        orga.add(labelPreparationTitre, 0, 4)
+        orga.add(labelPreparation, 0, 5)
 
-        vboxDroite = VBox()
-        vboxDroite.children.addAll(labelDeroulementTitre, labelDeroulement, labelExceptionTitre, labelException, labelFinTitre, labelFinPartie)
-        vboxDroite.spacing = 30.0
-        vboxDroite.padding = Insets(0.0, 20.0, 0.0, 0.0)
+        orga.add(labelExceptionTitre, 1, 2)
+        orga.add(labelException, 1, 3)
+        orga.add(labelFinTitre, 1, 4)
+        orga.add(labelFinPartie, 1, 5)
 
+        orga.vgap = 20.0
+        orga.padding = Insets(0.0, 0.0, 0.0, 20.0)
+
+        val c1 = ColumnConstraints()
+        c1.percentWidth = 50.0
+        val c2 = ColumnConstraints()
+        c2.percentWidth = 50.0
+        orga.columnConstraints.addAll(c1, c2)
 
         labelTitreGeneral.padding = Insets(10.0, 0.0, 50.0, 0.0)
         setAlignment(labelTitreGeneral, Pos.CENTER)
-        setAlignment(boutonRetour, Pos.TOP_CENTER)
 
-        this.left = vboxGauche
-        this.left.prefWidth(300.0)
-        this.right = vboxDroite
-        this.right.prefWidth(300.0)
+        vboxBouton = VBox()
+        vboxBouton.children.addAll(boutonRetour)
+        vboxBouton.padding = Insets(0.0, 0.0, 50.0, 0.0)
+        vboxBouton.alignment = Pos.TOP_CENTER
+
+        this.center = orga
         this.top = labelTitreGeneral
-        this.bottom = boutonRetour
-
+        this.bottom = vboxBouton
 
     }
 }
