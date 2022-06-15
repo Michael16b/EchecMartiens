@@ -39,6 +39,21 @@ class AppliJeuEchecMartien: Application() {
 
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
         root.styleClass.add("main")
+
+        // Ajout du CSS des boutons des différentes vues
+
+        // MainVue
+        // Bouton
+        root.buttonRules.styleClass.add("button")
+        root.buttonNewGame.styleClass.add("button")
+        root.buttonLoadGame.styleClass.add("button")
+        // Label
+        root.labelTitle.styleClass.add("title")
+        root.labelPlayer1.styleClass.add("LabelBase")
+        root.labelPlayer2.styleClass.add("LabelBase")
+        root.labelIA.styleClass.add("LabelBase")
+        root.labelCoups.styleClass.add("LabelBase")
+
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0
         primaryStage.title="Echecs Martiens"
