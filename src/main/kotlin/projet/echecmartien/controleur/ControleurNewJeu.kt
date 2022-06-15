@@ -5,13 +5,14 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.control.Alert
 import javafx.scene.input.MouseEvent
+import projet.echecmartien.librairie.GameSaveManager
 import projet.echecmartien.librairie.PlayerIA
 import projet.echecmartien.modele.Jeu
 import projet.echecmartien.modele.Joueur
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.vue.MainVue
 
-class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
+class ControleurNewJeu(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
 
     val scene: Scene
     val vue: MainVue
@@ -58,11 +59,10 @@ class ControleurNewGame(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
 
         val jeu = Jeu()
         jeu.initialiserPartie(j1, j2, coupsMax)
-
         val gameVue = GameVue()
 
         val ia: PlayerIA? = if (vue.comboBoxIA.selectionModel.selectedIndex == 1) PlayerIA(jeu) else null
-        val controleurClick = ControleurGame(scene, gameVue, jeu, ia, j1, j2)
+        val controleurClick = ControleurJeu(scene, gameVue, jeu, ia, j1, j2)
         val controleurRules = ControleurRules(scene, gameVue)
         gameVue.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
         gameVue.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRules)

@@ -15,7 +15,7 @@ import projet.echecmartien.modele.*
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.vue.WinVue
 
-class ControleurGame(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joueur1: Joueur, joueur2: Joueur): EventHandler<MouseEvent> {
+class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joueur1: Joueur, joueur2: Joueur): EventHandler<MouseEvent> {
 
     private val vue: GameVue
     private val modele: Jeu

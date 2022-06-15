@@ -7,11 +7,10 @@ import javafx.event.ActionEvent
 import javafx.scene.Scene
 import javafx.stage.Stage
 import projet.echecmartien.controleur.ControleurBackFromRules
-import projet.echecmartien.controleur.ControleurLoadGame
-import projet.echecmartien.controleur.ControleurNewGame
+import projet.echecmartien.controleur.ControleurLoadJeu
+import projet.echecmartien.controleur.ControleurNewJeu
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.controleur.ControleurRules
-import projet.echecmartien.vue.LoadGameVue
 import projet.echecmartien.vue.MainVue
 
 class AppliJeuEchecMartien: Application() {
@@ -27,14 +26,14 @@ class AppliJeuEchecMartien: Application() {
         root.buttonRules.addEventHandler(ActionEvent.ACTION,controleurRulesVue)
 
         val rootGameVue = GameVue()
-        val controleurNewGame = ControleurNewGame(scene, root)
-        root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNewGame)
+        val controleurNewJeu = ControleurNewJeu(scene, root)
+        root.buttonNewGame.addEventHandler(ActionEvent.ACTION,controleurNewJeu)
 
         val controleurBackGameToMainVue = ControleurBackFromRules(scene,root)
         rootGameVue.buttonBack.addEventHandler(ActionEvent.ACTION,controleurBackGameToMainVue)
 
-        val controleurLoadGameVue = ControleurLoadGame(scene, root)
-        root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadGameVue)
+        val controleurLoadJeuVue = ControleurLoadJeu(scene, root)
+        root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadJeuVue)
 
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0

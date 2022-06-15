@@ -3,11 +3,10 @@ package projet.echecmartien.controleur
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
-import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Region
 import projet.echecmartien.vue.LoadGameVue
 
-class ControleurLoadGame(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
+class ControleurLoadJeu(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
 
     val scene: Scene
     val oldVue: Region
