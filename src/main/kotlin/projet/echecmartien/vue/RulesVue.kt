@@ -84,7 +84,7 @@ class RulesVue: BorderPane() {
         orga.add(labelFinTitre, 1, 4)
         orga.add(labelFinPartie, 1, 5)
 
-        orga.isGridLinesVisible = true
+        //orga.isGridLinesVisible = true
 
         orga.vgap = 20.0
         orga.hgap = 20.0
