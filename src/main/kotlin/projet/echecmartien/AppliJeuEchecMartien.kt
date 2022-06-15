@@ -29,11 +29,6 @@ class AppliJeuEchecMartien: Application() {
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurLoadJeuVue)
 
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
-        root.styleClass.add("main")
-
-
-
-
 
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0

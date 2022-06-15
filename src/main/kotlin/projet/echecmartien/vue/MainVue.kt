@@ -44,8 +44,7 @@ class MainVue: BorderPane() {
 
     init {
 
-
-
+        this.styleClass.add("main")
 
         /* Initialisation des attributs */
 
@@ -122,7 +121,7 @@ class MainVue: BorderPane() {
         gridPlayer2Container.spacing = 20.0
         gridPlayer2Container.alignment = Pos.CENTER_LEFT
         gridIAContainer.children.addAll(labelIA, comboBoxIA)
-        gridIAContainer.spacing = 55.0
+        gridIAContainer.spacing = 80.0
 
         coupsMaxContainer.children.addAll(labelCoups, textFieldCoups)
         coupsMaxContainer.spacing = 20.0
