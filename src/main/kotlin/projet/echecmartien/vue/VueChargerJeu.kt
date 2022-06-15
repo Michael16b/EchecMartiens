@@ -9,7 +9,7 @@ import org.controlsfx.control.textfield.CustomTextField
 
 
 
-class LoadGameVue(str : String = "LoadGames"): BorderPane()  {
+class ChargerJeu(str : String = "LoadGames"): BorderPane()  {
 
     var TitrePageBandeau = str
 
