@@ -30,7 +30,7 @@ class RulesVue: BorderPane() {
         boutonRetour = Button("Retour")
         this.styleClass.add("main")
 
-        labelTitreGeneral = Label("RÈGLE & COMPOSITION DU JEU")
+        labelTitreGeneral = Label("RÈGLES & COMPOSITION DU JEU")
         this.labelTitreGeneral.styleClass.add("MainTitleRules")
 
         labelDeroulementTitre = Label("DÉROULEMENT")
