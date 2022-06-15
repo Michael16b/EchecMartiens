@@ -51,22 +51,22 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         // Création radio buttons et titre de parties //
 
         val radioButton1 = RadioButton()
-        radioButton1.padding = Insets(40.0,10.0,40.0,10.0)
+        radioButton1.padding = Insets(40.0,10.0,40.0,5.0)
         val titreLigne1 = Label("nom de partie1")
         titreLigne1.padding = Insets(40.0,0.0,40.0,20.0)
 
         val radioButton2 = RadioButton()
-        radioButton2.padding = Insets(40.0,10.0,40.0,10.0)
+        radioButton2.padding = Insets(40.0,10.0,40.0,5.0)
         val titreLigne2 = Label("nom de partie2")
         titreLigne2.padding = Insets(40.0,0.0,40.0,20.0)
 
         val radioButton3 = RadioButton()
-        radioButton3.padding = Insets(40.0,10.0,40.0,10.0)
+        radioButton3.padding = Insets(40.0,10.0,40.0,5.0)
         val titreLigne3 = Label("nom de partie3")
         titreLigne3.padding = Insets(40.0,0.0,40.0,20.0)
 
         val radioButton4 = RadioButton()
-        radioButton4.padding = Insets(40.0,10.0,40.0,10.0)
+        radioButton4.padding = Insets(40.0,10.0,40.0,5.0)
         val titreLigne4 = Label("nom de partie4")
         titreLigne4.padding = Insets(40.0,0.0,40.0,20.0)
 
