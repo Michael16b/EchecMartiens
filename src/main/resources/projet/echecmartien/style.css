@@ -28,12 +28,10 @@
     -fx-font-weight : bold;
     -fx-font-size: 75;
     -fx-text-fill: black;
-    -fx-font: handwriting;
 }
 
 .LabelBase {
     -fx-font-weight : bold;
     -fx-font-size: 20;
     -fx-text-fill: black;
-    -fx-font: handwriting;
 }

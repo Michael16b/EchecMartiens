@@ -10,15 +10,6 @@ import javafx.scene.layout.VBox
 
 class RulesVue: BorderPane() {
 
-    /*val vboxGenerale: VBox
-    val hboxHaut : HBox
-    val hboxBas : HBox
-
-    val vboxHautGauche : VBox
-    val vboxHautDroit : VBox
-    val vboxBasGauche : VBox
-    val vboxBasDroit : VBox*/
-
     val vboxDroite : VBox
     val vboxGauche : VBox
 
@@ -35,8 +26,6 @@ class RulesVue: BorderPane() {
     val labelCompostition : Label
 
     init {
-
-        this.style = "fx-background-image: url(\"https://images7.alphacoders.com/856/thumb-1920-856231.jpg\");"
 
         boutonRetour = Button("Retour")
 
@@ -85,36 +74,6 @@ class RulesVue: BorderPane() {
                 "Toute pièce dans la zone d'un joueur est la sienne.")
 
         labelCompostition = Label("1 plateau de jeu & 18 pions")
-
-        /*hboxHaut = HBox()
-
-        vboxHautGauche = VBox()
-        vboxHautGauche.children.addAll(labelCompostition)
-        vboxHautGauche.spacing = 10.0
-
-        vboxHautDroit = VBox()
-        vboxHautDroit.children.addAll(labelDeroulementTitre, labelDeroulement, labelExceptionTitre, labelException)
-        vboxHautDroit.spacing = 10.0
-
-        hboxHaut.children.addAll(vboxHautGauche, vboxHautDroit)
-
-        hboxBas = HBox()
-
-        vboxBasGauche = VBox()
-        vboxBasGauche.children.addAll(labelPreparationTitre, labelPreparation)
-        vboxBasGauche.spacing = 10.0
-
-        vboxBasDroit = VBox()
-        vboxBasDroit.children.addAll(labelFinTitre, labelFinPartie)
-        vboxBasDroit.spacing = 10.0
-
-        hboxBas.children.addAll(vboxBasGauche, vboxBasDroit)
-
-        vboxGenerale = VBox()
-        vboxGenerale.children.addAll(labelTitreGeneral, hboxHaut, hboxBas, boutonRetour)
-        vboxGenerale.spacing = 50.0
-        vboxGenerale.alignment = Pos.TOP_CENTER
-        this.center = vboxGenerale*/
 
         vboxGauche = VBox()
         vboxGauche.children.addAll(labelCompostition, labelPreparationTitre, labelPreparation)
