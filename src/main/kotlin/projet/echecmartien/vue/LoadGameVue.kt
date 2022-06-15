@@ -4,7 +4,6 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.layout.*
-import projet.echecmartien.AppliJeuEchecMartien
 
 class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
     var TitrePageBandeau = str
@@ -19,7 +18,6 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
     val boutonRetour = Button("retour")
 
     init{
-        scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
         this.TitrePage = Label("Charger la partie")
         this.TitrePage.style = "-fx-font-style : 'Cambria'"
         this.TitrePage.style = "-fx-font-size : 22"
