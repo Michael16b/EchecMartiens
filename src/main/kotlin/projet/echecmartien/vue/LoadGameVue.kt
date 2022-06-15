@@ -52,7 +52,8 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
 
         this.left = CasesBoutonRadio
         this.CasesBoutonRadio.alignment = Pos.TOP_LEFT
-        this.CasesBoutonRadio.isGridLinesVisible = true
+        this.CasesBoutonRadio.isGridLinesVisible = false
+        this.CasesBoutonRadio.gridLinesVisibleProperty()
         this.CasesBoutonRadio.add(radioButton1,0,1)
         this.CasesBoutonRadio.add(titreLigne1,1,1)
         this.CasesBoutonRadio.add(radioButton2,0,2)
@@ -65,7 +66,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         this.CasesBoutonRadio.maxHeight(200.0)
         this.CasesBoutonRadio.minWidth(100.0)
 
-        CasesBoutonRadio.padding = Insets(0.0,40.0,0.0,40.0)
+        CasesBoutonRadio.padding = Insets(0.0,0.0,0.0,100.0)
         CasesBoutonRadio.prefWidth = 100.0
 
         val radioGroup = ToggleGroup()
@@ -75,7 +76,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         radioButton4.toggleGroup = radioGroup
 
         this.right = CasesBoutons
-        this.CasesBoutons.alignment = Pos.CENTER_RIGHT
+        this.CasesBoutons.alignment = Pos.TOP_RIGHT
 
         val column1 = ColumnConstraints()
         column1.percentWidth = 5.0
@@ -88,7 +89,7 @@ class LoadGameVue(str : String = "LoadGame-s Martiens"): BorderPane()  {
         //this.CasesBoutonRadio.style = "-fx-border-color: black"
 
 
-        CasesBoutons.padding = Insets(0.0,40.0,0.0,0.0)
+        CasesBoutons.padding = Insets(20.0,100.0,0.0,0.0)
         CasesBoutons.spacing = 30.0
         boutonRetour.setPrefSize(150.0,70.0)
         boutonChargerPartie.setPrefSize(150.0,70.0)
