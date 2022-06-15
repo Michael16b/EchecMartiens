@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="echecMartien" />
         <module name="sae-dev-ihm-test" />
+        <module name="echecMartien" />
         <module name="SAE_EchecMartiens" />
         <module name="Modele" />
         <module name="eq_1_03_besily-michael_bleuet-matthis_le-juge-julien_painter-louis" />

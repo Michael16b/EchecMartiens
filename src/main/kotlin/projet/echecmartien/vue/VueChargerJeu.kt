@@ -12,27 +12,18 @@ class VueChargerJeu(str : String = "LoadGame-s Martiens"): BorderPane()  {
 
     var TitrePage = Label()
 
-    val Renommer = TextField()
-
     val conteneurgauche = VBox()
 
     val CasesBoutonRadio = GridPane()
     val CasesBoutons = VBox()
     val boutonChargerPartie = Button("Charger partie")
     val boutonSupprimerPartie = Button("Supprimer partie")
-    val boutonRenommerPartie = Button("Renommer partie")
-    val boutonRetour = Button("retour")
+    val boutonRetour = Button("Retour")
 
     init{
         this.style="-fx-background-color: #c3b9ea "
 
-        val Renommerlabel = Label("Renommer")
-        Renommerlabel.labelFor = Renommer
-        Renommer.maxWidth = 150.0
-        Renommer.maxHeight = 20.0
-
         conteneurgauche.padding = Insets(0.0,0.0,0.0,100.0)
-        Renommer.alignment = Pos.CENTER_RIGHT
 
         this.TitrePage = Label("Charger la partie")
         this.TitrePage.style = "-fx-font-style : 'Cambria'"
@@ -41,7 +32,7 @@ class VueChargerJeu(str : String = "LoadGame-s Martiens"): BorderPane()  {
         BorderPane.setAlignment(this.TitrePage,Pos.TOP_CENTER)
         this.TitrePage.padding = Insets(40.0,0.0,100.0,0.0)
 
-        conteneurgauche.children.addAll(Renommer, CasesBoutonRadio)
+        conteneurgauche.children.addAll( CasesBoutonRadio)
         this.left = conteneurgauche
         BorderPane.setAlignment(conteneurgauche,Pos.CENTER_LEFT)
 
@@ -71,7 +62,6 @@ class VueChargerJeu(str : String = "LoadGame-s Martiens"): BorderPane()  {
 
 
         this.CasesBoutonRadio.isGridLinesVisible = false
-        this.CasesBoutonRadio.gridLinesVisibleProperty()
         this.CasesBoutonRadio.add(radioButton1,0,1)
         this.CasesBoutonRadio.add(titreLigne1,1,1)
         this.CasesBoutonRadio.add(radioButton2,0,2)
@@ -111,8 +101,7 @@ class VueChargerJeu(str : String = "LoadGame-s Martiens"): BorderPane()  {
         boutonRetour.setPrefSize(150.0,70.0)
         boutonChargerPartie.setPrefSize(150.0,70.0)
         boutonSupprimerPartie.setPrefSize(150.0,70.0)
-        boutonRenommerPartie.setPrefSize(150.0,70.0)
-        this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRenommerPartie,boutonRetour)
+        this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRetour)
         setMargin(CasesBoutons,Insets(0.0))
 
     }

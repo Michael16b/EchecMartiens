@@ -3,23 +3,19 @@ package projet.echecmartien.controleur
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
-import javafx.scene.layout.Region
-import projet.echecmartien.vue.VueChargerJeu
+import projet.echecmartien.modele.deserialiser
 
-class ControleurChargerJeu(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
+class ControleurChargerJeu(scene: Scene): EventHandler<ActionEvent> {
 
-    val scene: Scene
-    val oldVue: Region
+    private val scene : Scene
 
     init {
         this.scene = scene
-        this.oldVue = oldVue
     }
 
-    override fun handle(Event: ActionEvent) {
-        val vueLoadGame = VueChargerJeu()
-        val controleurRetourDepuisCharger = ControleurRetourDepuisCharger(scene, oldVue)
-        vueLoadGame.boutonRetour.addEventHandler(ActionEvent.ACTION, controleurRetourDepuisCharger)
-        scene.root = vueLoadGame
+    override fun handle(p0: ActionEvent?) {
+        //val jeu = deserialiser()
+
     }
+
 }
