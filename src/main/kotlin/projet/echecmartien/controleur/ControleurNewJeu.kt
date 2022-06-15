@@ -5,7 +5,7 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.control.Alert
 import javafx.scene.input.MouseEvent
-import projet.echecmartien.librairie.PlayerIA
+import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.modele.GrandPion
 import projet.echecmartien.modele.Jeu
 import projet.echecmartien.modele.Joueur
@@ -55,18 +55,19 @@ class ControleurNewJeu(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
             return
         }
 
-        val j1 = Joueur(pseudo1)
-        val j2 = Joueur(pseudo2)
-        j1.ajouterPionCaptures(GrandPion())
         val jeu = Jeu()
+        val j1 = Joueur(pseudo1)
+        val j2 = if (vue.comboBoxIA.selectionModel.selectedIndex == 0) Joueur(pseudo2) else JoueurIA(pseudo2)
+
         jeu.initialiserPartie(j1, j2, coupsMax)
         val gameVue = GameVue()
 
-        val ia: PlayerIA? = if (vue.comboBoxIA.selectionModel.selectedIndex == 1) PlayerIA(jeu) else null
-        val controleurClick = ControleurJeu(scene, gameVue, jeu, ia, j1, j2)
+        val controleurClick = ControleurJeu(scene, gameVue, jeu, j1, j2)
         val controleurRules = ControleurRules(scene, gameVue)
+        val controleurSave = ControleurSauvegardeJeu(jeu, j2 is JoueurIA)
         gameVue.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
         gameVue.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRules)
+        gameVue.buttonSave.addEventHandler(ActionEvent.ACTION, controleurSave)
         gameVue.setCoupsRestants(jeu.nbCoupsSansPriseRestants())
         gameVue.setPseudo(j1, j2)
         gameVue.remplirCases(jeu.getPLateau().getCases())

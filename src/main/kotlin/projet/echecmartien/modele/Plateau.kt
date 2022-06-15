@@ -2,10 +2,12 @@
 
 package projet.echecmartien.modele
 
+import com.google.gson.*
 import projet.echecmartien.librairie.EnumPion
 import projet.echecmartien.librairie.GeneralData
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
+import java.lang.reflect.Type
 
 
 class Plateau {
@@ -61,6 +63,5 @@ class Plateau {
      * @return les cases du plateau
      */
     fun getCases(): Array<Array<Case>> = this.cases
-
 
 }

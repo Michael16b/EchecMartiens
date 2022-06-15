@@ -2,25 +2,26 @@ package projet.echecmartien.controleur
 
 import javafx.event.EventHandler
 import javafx.scene.Scene
+import javafx.scene.control.Alert
+import javafx.scene.control.Alert.AlertType
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.StackPane
 import javafx.scene.paint.Color
 import javafx.scene.shape.Circle
 import javafx.scene.shape.Rectangle
-import projet.echecmartien.librairie.PlayerIA
+import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
 import projet.echecmartien.modele.*
 import projet.echecmartien.vue.GameVue
 import projet.echecmartien.vue.WinVue
 
-class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joueur1: Joueur, joueur2: Joueur): EventHandler<MouseEvent> {
+class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, joueur1: Joueur, joueur2: Joueur): EventHandler<MouseEvent> {
 
     private val vue: GameVue
     private val modele: Jeu
     private val scene: Scene
-    private val ia: PlayerIA?
     private val j1: Joueur
     private val j2: Joueur
     private var origineSelected: Boolean
@@ -31,7 +32,6 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joue
         this.scene = scene
         this.j1 = joueur1
         this.j2 = joueur2
-        this.ia = ia
         this.origineSelected = false
     }
 
@@ -106,7 +106,9 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joue
         }
 
         // il y a une prise
-        majPrises(modele.getJoueurCourant(), modele.getPLateau().getCases()[col][row].getPion())
+        if (!case.estLibre())
+            majPrises(modele.getJoueurCourant(), case.getPion())
+
         modele.deplacer(origine.getX(), origine.getY(), col, row)
         tourSuivant()
 
@@ -130,8 +132,11 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joue
         if (!tourJouable())
             modele.changeJoueurCourant()
 
-        if (ia != null && modele.getJoueurCourant() == j2) {
-            val coup = ia.prochainCoup()
+        if (j2 is JoueurIA && modele.getJoueurCourant() == j2) {
+            val coup = j2.prochainCoup(modele)
+            val case = modele.getPLateau().getCases()[coup.getDestination().getX()][coup.getDestination().getY()]
+            if (case.getJoueur() != j2 && !case.estLibre())
+                majPrises(j2, case.getPion())
             modele.deplacer(coup.getOrigine().getX(), coup.getOrigine().getY(), coup.getDestination().getX(), coup.getDestination().getY())
             tourSuivant()
         }
@@ -156,6 +161,10 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joue
      * fonction pour terminer la partie et afficher le gagnant ou égalité
      */
     private fun finPartie() {
+        val dialog = Alert(AlertType.INFORMATION)
+        dialog.title = "Fin de la partie"
+        dialog.headerText = "La partie est terminée !"
+        dialog.showAndWait()
         val winVue = WinVue()
         winVue.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
         scene.root = winVue
@@ -163,6 +172,7 @@ class ControleurJeu(scene: Scene, vue: GameVue, modele: Jeu, ia: PlayerIA?, joue
 
     /**
      * fonction pour mettre à jour le nombre de prises par pion suivant un joueur
+     * ajoute 1 au label du bon pion au bon joueur
      * @param type: pion capturé
      * @param joueur: joueur qui a capturé le pion
      */
