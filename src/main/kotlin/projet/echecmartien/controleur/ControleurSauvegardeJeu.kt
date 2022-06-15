@@ -5,6 +5,7 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.layout.Region
 import projet.echecmartien.modele.Jeu
+import java.io.File
 
 class ControleurSauvegardeJeu (modele: Jeu, ia: Boolean): EventHandler<ActionEvent> {
 
@@ -17,6 +18,39 @@ class ControleurSauvegardeJeu (modele: Jeu, ia: Boolean): EventHandler<ActionEve
     }
 
     override fun handle(Event: ActionEvent) {
-        // modele.serialiser("test.json", ia)
+        val file = File(System.getProperty("user.home")+ "/.echecsMartiens"+"/.sauvegardes")
+        createSaves(file)
+        println(file.toString())
+        val nameSave : String = chooseNameSave(file)
+        modele.serialiser("$file/$nameSave", ia)
+
     }
+    private fun createSaves(file : File) {
+        file.mkdirs()
+    }
+    private fun chooseNameSave(file : File) : String {
+        var name = "test.json"
+        var i = 1
+        println("PASS")
+        while (searchSaves(file,name)) {
+            i += 1
+            name = "test$i.json"
+            println(name)
+        }
+        return name
+    }
+
+    private fun searchSaves(file : File, name : String) : Boolean {
+        file.mkdirs()
+        val listFiles = file.listFiles()
+        if (listFiles != null) {
+            for (f in listFiles) {
+                if (f.name == name) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
 }
