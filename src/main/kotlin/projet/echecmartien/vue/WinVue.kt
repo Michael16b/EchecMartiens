@@ -20,7 +20,7 @@ class WinVue : BorderPane() {
 
     init {
         infos = VBox()
-
+        this.styleClass.add("main")
         BoutonRejouer = Button("Rejouer")
         BoutonQuitter = Button("Quitter")
 
