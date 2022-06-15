@@ -280,7 +280,13 @@ class Jeu {
      * @param filepath: fichier du jeu sérialisé
      */
     fun serialiser(filepath: String): Boolean {
-        val writer = FileWriter(filepath)
+        val writer: FileWriter
+        try {
+            writer = FileWriter(filepath)
+        } catch (_: java.io.IOException) {
+            return false
+        }
+
         val gson = Gson().newBuilder()
         gson.serializeNulls()
         gson.registerTypeAdapter(Pion::class.java, PionAdapter())

@@ -60,8 +60,6 @@ class ControleurNewJeu(scene: Scene, vue: MainVue): EventHandler<ActionEvent> {
         j1.ajouterPionCaptures(GrandPion())
         val jeu = Jeu()
         jeu.initialiserPartie(j1, j2, coupsMax)
-        jeu.serialiser("test.json")
-        println(deserialiser("test.json"))
         val gameVue = GameVue()
 
         val ia: PlayerIA? = if (vue.comboBoxIA.selectionModel.selectedIndex == 1) PlayerIA(jeu) else null
