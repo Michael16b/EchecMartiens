@@ -90,6 +90,7 @@ class RulesVue: BorderPane() {
 
         vboxGenerale = VBox()
         vboxGenerale.children.addAll(labelTitreGeneral, hboxHaut, hboxBas, boutonRetour)
+        this.center = vboxGenerale
     }
 }
 
