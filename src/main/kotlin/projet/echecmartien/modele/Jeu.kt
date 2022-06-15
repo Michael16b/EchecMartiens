@@ -275,6 +275,12 @@ class Jeu {
     fun nbCoupsSansPriseRestants() : Int = this.nombreCoupsSansPriseMax - this.nombreCoupsSansPrise
 
     /**
+     * fonction qui retourne le nombre de coups maximum sans prise
+     * @return nombreCoupsSansPriseMax
+     */
+    fun nbCoupsSansPriseMax() : Int = this.nombreCoupsSansPriseMax
+
+    /**
      * Sérialise le jeu en fichier json
      * @param filepath: fichier du jeu sérialisé
      * @param présence d'une IA en joueur 2 ou non

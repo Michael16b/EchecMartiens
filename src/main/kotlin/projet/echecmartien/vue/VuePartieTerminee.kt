@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import projet.echecmartien.modele.Joueur
 
-class WinVue : BorderPane() {
+class VuePartieTerminee : BorderPane() {
     val infos : VBox
     val BoutonRejouer : Button
     val BoutonQuitter : Button

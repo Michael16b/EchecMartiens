@@ -5,9 +5,8 @@ import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.layout.*
-import javafx.scene.text.TextAlignment
 
-class RulesVue: BorderPane() {
+class VueRegles: BorderPane() {
 
     val orga : GridPane
     val vboxBouton : VBox
