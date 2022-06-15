@@ -19,7 +19,7 @@ class RulesVue: BorderPane() {
 
 
     val boutonRetour : Button
-    val labelTitreDeroulement : Label
+    val labelDeroulementTitre : Label
     val labelExceptionTitre : Label
     val labelFinTitre : Label
     val labelPreparationTitre : Label
@@ -33,9 +33,10 @@ class RulesVue: BorderPane() {
     init {
 
         this.style = "fx-background-image: url(\"https://images7.alphacoders.com/856/thumb-1920-856231.jpg\");"
+
         boutonRetour = Button("Retour")
         labelTitreGeneral = Label("Règles & composition du jeu")
-        labelTitreDeroulement = Label("DEROULELEMENT")
+        labelDeroulementTitre = Label("DEROULELEMENT")
         labelExceptionTitre = Label("EXCEPTION")
         labelFinTitre = Label("FIN DE LA PARTIE")
         labelPreparationTitre = Label("PREPARATION")
@@ -72,11 +73,20 @@ class RulesVue: BorderPane() {
         vboxHautGauche.children.addAll(labelCompostition)
 
         vboxHautDroit = VBox()
-        vboxHautDroit.children.addAll()
+        vboxHautDroit.children.addAll(labelDeroulementTitre, labelDeroulement, labelExceptionTitre, labelException)
+        vboxHautDroit.spacing = 10.0
+
+        hboxHaut.children.addAll(vboxHautGauche, vboxHautDroit)
 
         hboxBas = HBox()
+
         vboxBasGauche = VBox()
+        vboxBasGauche.children.addAll(labelPreparationTitre, labelPreparation)
+
         vboxBasDroit = VBox()
+        vboxBasDroit.children.addAll(labelFinTitre, labelFinPartie)
+
+        hboxBas.children.addAll(vboxBasGauche, vboxBasDroit)
 
         vboxGenerale = VBox()
         vboxGenerale.children.addAll(labelTitreGeneral, hboxHaut, hboxBas, boutonRetour)

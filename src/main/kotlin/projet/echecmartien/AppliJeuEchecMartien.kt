@@ -9,8 +9,8 @@ import javafx.stage.Stage
 import projet.echecmartien.controleur.ControleurBackFromRules
 import projet.echecmartien.controleur.ControleurLoadGame
 import projet.echecmartien.controleur.ControleurNewGame
-import projet.echecmartien.controleur.ControleurRules
 import projet.echecmartien.vue.GameVue
+import projet.echecmartien.controleur.ControleurRules
 import projet.echecmartien.vue.LoadGameVue
 import projet.echecmartien.vue.MainVue
 
