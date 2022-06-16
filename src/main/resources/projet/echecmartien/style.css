@@ -106,6 +106,24 @@
     -fx-wrap-text: true;
 }
 
+/* VueChargerJeu */
+
+.titleChargerJeu {
+    -fx-font-size: 50;
+    -fx-text-fill: white;
+    -fx-font-weight : bold;
+    -fx-font-family: 'Cambria';
+}
+
+.textChargerPartie {
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+    -fx-font-family: 'Berlin Sans FB';
+    -fx-underline: true;
+
+}
+
+
 
 
 /* Boutons */
