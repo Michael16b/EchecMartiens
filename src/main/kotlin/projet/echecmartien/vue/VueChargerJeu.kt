@@ -32,13 +32,13 @@ class VueChargerJeu: BorderPane()  {
 
         conteneurgauche.padding = Insets(0.0,0.0,0.0,100.0)
         val titreConteneurGauche = Label("Liste des parties enregistrées")
-        titreConteneurGauche.style = "-fx-font-style : 'Cambria';-fx-font-size : 18;-fx-underline: true"
+        titreConteneurGauche.style = "-fx-font-family : 'Cambria';-fx-font-size : 18;-fx-underline: true"
         titreConteneurGauche.padding = Insets(0.0,0.0,10.0,0.0)
         //titreConteneurGauche.labelFor = conteneurgauche
         this.conteneurgauche.children.add(titreConteneurGauche)
 
         this.TitrePage = Label("Charger la partie")
-        this.TitrePage.style = "-fx-font-style : 'Cambria'; -fx-font-size : 50; -fx-font-weight : bold"
+        this.TitrePage.style = "-fx-font-family : 'Cambria'; -fx-font-size : 50; -fx-font-weight : bold;"
         this.top = this.TitrePage
         BorderPane.setAlignment(this.TitrePage,Pos.TOP_CENTER)
         this.TitrePage.padding = Insets(40.0,0.0,100.0,0.0)
