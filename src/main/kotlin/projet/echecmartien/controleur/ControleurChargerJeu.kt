@@ -59,10 +59,12 @@ class ControleurChargerJeu(scene: Scene, vue: VueChargerJeu): EventHandler<Actio
         val j2 = joueurs[1]!!
         val controleurClick = ControleurJeu(scene, vueJeu, jeu, j1, j2, saveFile)
         val controleurRegles = ControleurRegles(scene, vueJeu)
+        val controleurParametres = ControleurParametres(scene, vueJeu)
         val controleurSave = ControleurSauvegardeJeu(jeu, j2 is JoueurIA, saveFile)
         val controleurBack = ControleurQuitterJeu(jeu, scene, saveFile, j2 is JoueurIA)
         vueJeu.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
         vueJeu.addEventHandler(KeyEvent.KEY_PRESSED, ControleurParametresRaccourci(scene, vueJeu))
+        vueJeu.buttonParam.addEventHandler(ActionEvent.ACTION, controleurParametres)
         vueJeu.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRegles)
         vueJeu.buttonSave.addEventHandler(ActionEvent.ACTION, controleurSave)
         vueJeu.buttonBack.addEventHandler(ActionEvent.ACTION, controleurBack)
