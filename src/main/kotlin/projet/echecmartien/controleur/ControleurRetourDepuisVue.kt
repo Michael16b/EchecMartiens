@@ -5,7 +5,7 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.layout.Region
 
-class ControleurRetourDepuisCharger(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
+class ControleurRetourDepuisVue(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
 
     private val scene: Scene
     private val oldVue: Region

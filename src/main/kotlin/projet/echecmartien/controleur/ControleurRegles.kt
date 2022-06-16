@@ -17,8 +17,8 @@ class ControleurRegles(scene: Scene, oldVue: Region): EventHandler<ActionEvent> 
 
     override fun handle(Event: ActionEvent) {
         val vueRegles = VueRegles()
-        val controleurRetourDepuisRegles = ControleurRetourDepuisRegles(scene, oldVue)
-        vueRegles.boutonRetour.addEventHandler(ActionEvent.ACTION, controleurRetourDepuisRegles)
+        val controleurRetourDepuisVue = ControleurRetourDepuisVue(scene, oldVue)
+        vueRegles.boutonRetour.addEventHandler(ActionEvent.ACTION, controleurRetourDepuisVue)
         scene.root = vueRegles
     }
 }
