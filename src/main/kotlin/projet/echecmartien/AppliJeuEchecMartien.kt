@@ -1,7 +1,5 @@
 package projet.echecmartien
 
-
-
 import javafx.application.Application
 import javafx.event.ActionEvent
 import javafx.scene.Scene
@@ -12,11 +10,6 @@ import projet.echecmartien.controleur.ControleurFermerJeu
 import projet.echecmartien.controleur.ControleurNouveauJeu
 import projet.echecmartien.controleur.ControleurRegles
 import projet.echecmartien.vue.VuePrincipale
-import javax.print.attribute.standard.Media
-
-
-
-
 
 class AppliJeuEchecMartien: Application() {
     override fun start(primaryStage: Stage) {
@@ -42,7 +35,6 @@ class AppliJeuEchecMartien: Application() {
 
         // Ajouter de la musique
         // val media = javafx.scene.media.Media(AppliJeuEchecMartien::class.java.getResource("/projet/echecmartien/son/son.mp3")!!.toExternalForm())
-
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0
         primaryStage.title="Échecs Martiens"
