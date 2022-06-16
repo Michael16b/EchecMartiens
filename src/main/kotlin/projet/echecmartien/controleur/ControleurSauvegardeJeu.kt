@@ -16,8 +16,6 @@ class ControleurSauvegardeJeu (modele: Jeu, ia: Boolean, saveFile: String): Even
         this.modele = modele
         this.ia = ia
         this.saveFile = saveFile
-        sauvegarderJeu(modele, saveFile, ia)
-
     }
 
     override fun handle(Event: ActionEvent) {
