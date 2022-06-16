@@ -56,12 +56,12 @@ class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<Actio
 
         if( pseudo1.length > 30) {
             afficherDialog("Nom de joueur trop long", raison = "Le nom du joueur 1 a trop de caractères",
-                message = "le nom du joueur ne doit pas dépasser de 30 caractères")
+                message = "le nom du joueur ne doit pas dépasser 30 caractères")
             return
         }
         if(pseudo2.length > 30) {
             afficherDialog("Nom de joueur trop long", raison = "Le nom du joueur 2 a trop de caractères",
-                message = "le nom du joueur ne doit pas dépasser de 30 caractères")
+                message = "le nom du joueur ne doit pas dépasser 30 caractères")
             return
         }
 
