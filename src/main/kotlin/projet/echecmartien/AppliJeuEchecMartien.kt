@@ -8,6 +8,7 @@ import javafx.stage.WindowEvent
 import projet.echecmartien.controleur.*
 import projet.echecmartien.vue.VuePrincipale
 
+
 class AppliJeuEchecMartien: Application() {
     override fun start(primaryStage: Stage) {
 
@@ -31,11 +32,15 @@ class AppliJeuEchecMartien: Application() {
 
         val controleurWindow = ControleurFermerJeu(scene)
         primaryStage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, controleurWindow)
-        scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
+        scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toString())
 
 
         // Ajouter de la musique
-        // val media = javafx.scene.media.Media(AppliJeuEchecMartien::class.java.getResource("/projet/echecmartien/son/son.mp3")!!.toExternalForm())
+        // val media = Media(AppliJeuEchecMartien::class.java.getResource("CRSoundTrack.mp3")!!.toExternalForm())
+
+        //val mediaPlayer = MediaPlayer(media)
+        //mediaPlayer.play();
+
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0
         primaryStage.title="Échecs Martiens"
