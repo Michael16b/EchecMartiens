@@ -23,7 +23,7 @@ class VueChargerJeu: BorderPane()  {
     val boutonChargerPartie = Button("Charger partie")
     val boutonSupprimerPartie = Button("Supprimer partie")
     val boutonRetour = Button("Retour")
-    val boutonRenommer = Button("Renommer partie")
+    val boutonRenommerPartie = Button("Renommer partie")
 
     val myListSave: ListView<String>
     var tabFichiers : ObservableList<String>
@@ -72,7 +72,8 @@ class VueChargerJeu: BorderPane()  {
         boutonRetour.setPrefSize(200.0,70.0)
         boutonChargerPartie.setPrefSize(200.0,70.0)
         boutonSupprimerPartie.setPrefSize(200.0,70.0)
-        this.CasesBoutons.children.addAll(boutonChargerPartie, boutonRenommer, boutonSupprimerPartie,boutonRetour)
+        boutonRenommerPartie.setPrefSize(200.0,70.0)
+        this.CasesBoutons.children.addAll(boutonChargerPartie, boutonRenommerPartie, boutonSupprimerPartie,boutonRetour)
         setMargin(CasesBoutons,Insets(0.0))
     }
 
@@ -80,8 +81,8 @@ class VueChargerJeu: BorderPane()  {
         tabFichiers.addAll(sauvegardes)
     }
 
-    fun showDialog(title: String, headerText: String) {
-        val dialog = Alert(Alert.AlertType.INFORMATION)
+    fun showDialog(title: String, headerText: String, type: Alert.AlertType = Alert.AlertType.INFORMATION) {
+        val dialog = Alert(type)
         dialog.title = title
         dialog.headerText = headerText
         dialog.showAndWait()

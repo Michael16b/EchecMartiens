@@ -21,7 +21,7 @@ class ControleurSupprimerJeu (vue: VueChargerJeu): EventHandler<ActionEvent> {
         val item = vue.myListSave.selectionModel.selectedItem
 
         if (item == null) {
-            vue.showDialog("Supprimer une partie", "Aucune partie n'est sélectionnée")
+            vue.showDialog("Supprimer une partie", "Aucune partie n'est sélectionnée", Alert.AlertType.ERROR)
             return
         }
 
@@ -43,7 +43,7 @@ class ControleurSupprimerJeu (vue: VueChargerJeu): EventHandler<ActionEvent> {
         vue.tabFichiers.remove(item)
 
         if (!file.exists()) {
-            vue.showDialog("Supprimer une partie", "La partie n'existe $item pas ou plus.")
+            vue.showDialog("Supprimer une partie", "La partie n'existe $item pas ou plus.", Alert.AlertType.ERROR)
             return
         }
 
