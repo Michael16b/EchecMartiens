@@ -24,7 +24,7 @@ class AppliJeuEchecMartien: Application() {
         val root = VuePrincipale()
 
         val sceneWidth = 1100.0
-        val sceneHeight = 700.0
+        val sceneHeight = 720.0
         val scene = Scene(root, sceneWidth, sceneHeight)
 
         val controleurReglesVue = ControleurRegles(scene, root)
