@@ -22,6 +22,7 @@ class VueParametres : BorderPane() {
         buttonContainer.alignment = Pos.CENTER
 
         labelTitre = Label("Paramètres")
+        labelTitre.styleClass.add("titleChargerJeu")
         labelTitre.style = "-fx-font-family : 'Cambria'; -fx-font-size : 50; -fx-font-weight : bold"
         labelTitre.alignment = Pos.CENTER
         labelTitre.padding = Insets(40.0,0.0,0.0,0.0)
