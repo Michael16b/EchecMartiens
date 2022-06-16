@@ -38,7 +38,7 @@ class VueChargerJeu: BorderPane()  {
         this.conteneurgauche.children.add(titreConteneurGauche)
 
         this.TitrePage = Label("Charger la partie")
-        this.TitrePage.style = "-fx-font-family : 'Cambria'; -fx-font-size : 50; -fx-font-weight : bold;"
+        this.TitrePage.style = "-fx-font-family : 'Cambria'; -fx-font-size : 50; -fx-font-weight : bold"
         this.top = this.TitrePage
         BorderPane.setAlignment(this.TitrePage,Pos.TOP_CENTER)
         this.TitrePage.padding = Insets(40.0,0.0,100.0,0.0)
