@@ -4,7 +4,6 @@ import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.stage.Stage
 
-
 class ControleurFullScreen(primaryStage: Stage): EventHandler<ActionEvent> {
 
     val stage : Stage
@@ -13,8 +12,7 @@ class ControleurFullScreen(primaryStage: Stage): EventHandler<ActionEvent> {
         this.stage = primaryStage
     }
 
-    override fun handle(actionEvent: ActionEvent){
-
+    override fun handle(e: ActionEvent) {
         stage.isFullScreen = !stage.isFullScreen
     }
 }
