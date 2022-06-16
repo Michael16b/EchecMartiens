@@ -35,6 +35,7 @@ class VueJeu: BorderPane() {
     val buttonBack: Button
     val buttonSave: Button
     val buttonRules: Button
+    val buttonParam : Button
 
     val pionsP1: GridPane
     val pionsP2: GridPane
@@ -83,10 +84,12 @@ class VueJeu: BorderPane() {
         buttonBack = Button("Quitter")
         buttonSave = Button("Sauvegarder")
         buttonRules = Button("Règles")
+        buttonParam = Button("Paramètres")
 
         buttonBack.id = "buttonBack"
         buttonSave.id = "buttonSave"
         buttonRules.id = "buttonRules"
+        buttonParam.id = "buttonParam"
 
         pionsP1 = GridPane()
         this.pionsP1.styleClass.add("textInfo")
@@ -149,10 +152,11 @@ class VueJeu: BorderPane() {
         this.center = gridVerticalCenterContainer
 
         /* left */
-        buttonsContainer.children.addAll( buttonRules, buttonSave, buttonBack)
+        buttonsContainer.children.addAll(buttonParam, buttonRules, buttonSave, buttonBack)
         buttonsContainer.alignment = Pos.BOTTOM_LEFT
         buttonsContainer.spacing = 20.0
         buttonsContainer.padding = Insets(0.0, 0.0, 40.0, 10.0)
+        buttonParam.prefWidth = 200.0
         buttonBack.prefWidth = 200.0
         buttonSave.prefWidth = 200.0
         buttonRules.prefWidth = 200.0
