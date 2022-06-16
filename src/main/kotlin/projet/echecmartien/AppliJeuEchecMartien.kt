@@ -6,7 +6,11 @@ import javafx.application.Application
 import javafx.event.ActionEvent
 import javafx.scene.Scene
 import javafx.stage.Stage
-import projet.echecmartien.controleur.*
+import javafx.stage.WindowEvent
+import projet.echecmartien.controleur.ControleurChargerJeuVue
+import projet.echecmartien.controleur.ControleurFermerJeu
+import projet.echecmartien.controleur.ControleurNouveauJeu
+import projet.echecmartien.controleur.ControleurRegles
 import projet.echecmartien.vue.VuePrincipale
 
 class AppliJeuEchecMartien: Application() {
@@ -27,6 +31,8 @@ class AppliJeuEchecMartien: Application() {
         val controleurChargerJeuVue = ControleurChargerJeuVue(scene, root)
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurChargerJeuVue)
 
+        val controleurWindow = ControleurFermerJeu(scene)
+        primaryStage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, controleurWindow)
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
 
         primaryStage.minHeight = sceneHeight+40.0
