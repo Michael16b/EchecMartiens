@@ -3,7 +3,6 @@ package projet.echecmartien.controleur
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
-import javafx.scene.control.Alert
 import javafx.scene.input.MouseEvent
 import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.modele.GrandPion
@@ -30,7 +29,7 @@ class ControleurChargerJeu(scene: Scene, vue: VueChargerJeu): EventHandler<Actio
         val item = vue.myListSave.selectionModel.selectedItem
 
         if (item == null) {
-            showDialog("Aucune partie n'est sélectionnée")
+            vue.showDialog("Charger une partie", "Aucune partie n'est sélectionnée")
             return
         }
         val saveFile = "$item.json"
@@ -39,7 +38,7 @@ class ControleurChargerJeu(scene: Scene, vue: VueChargerJeu): EventHandler<Actio
 
         if (!file.exists()) {
             vue.tabFichiers.remove(item)
-            showDialog("La partie n'existe $item plus.")
+            vue.showDialog("Charger une partie", "La partie n'existe $item pas ou plus.")
             return
         }
 
@@ -48,7 +47,7 @@ class ControleurChargerJeu(scene: Scene, vue: VueChargerJeu): EventHandler<Actio
         if (jeu == null) {
             vue.tabFichiers.remove(item)
             Files.deleteIfExists(Paths.get(filepath))
-            showDialog("La partie est corrompue et va être effacée.")
+            vue.showDialog("Charger une partie", "La partie est corrompue et va être effacée.")
             return
         }
 
@@ -97,13 +96,6 @@ class ControleurChargerJeu(scene: Scene, vue: VueChargerJeu): EventHandler<Actio
         vueJeu.setScoreJoueurs(j1.calculerScore(), j2.calculerScore())
         scene.root = vueJeu
 
-    }
-
-    private fun showDialog(headerText: String) {
-        val dialog = Alert(Alert.AlertType.INFORMATION)
-        dialog.title = "Charger une partie"
-        dialog.headerText = headerText
-        dialog.showAndWait()
     }
 
 }

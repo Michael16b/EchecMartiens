@@ -31,6 +31,7 @@ class ControleurChargerJeuVue(scene: Scene, oldVue: Region): EventHandler<Action
 
         vueLoadGame.ajouterSauvegardes(sauvegardes)
         vueLoadGame.boutonChargerPartie.addEventHandler(ActionEvent.ACTION, ControleurChargerJeu(scene, vueLoadGame))
+        vueLoadGame.boutonSupprimerPartie.addEventHandler(ActionEvent.ACTION, ControleurSupprimerJeu(scene, vueLoadGame))
         scene.root = vueLoadGame
     }
 

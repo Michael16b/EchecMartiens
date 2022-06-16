@@ -4,6 +4,7 @@ import javafx.collections.FXCollections.observableArrayList
 import javafx.collections.ObservableList
 import javafx.geometry.Insets
 import javafx.geometry.Pos
+import javafx.scene.control.Alert
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.control.ListView
@@ -74,5 +75,11 @@ class VueChargerJeu: BorderPane()  {
         tabFichiers.addAll(sauvegardes)
     }
 
+    fun showDialog(title: String, headerText: String) {
+        val dialog = Alert(Alert.AlertType.INFORMATION)
+        dialog.title = title
+        dialog.headerText = headerText
+        dialog.showAndWait()
+    }
 
 }
