@@ -27,7 +27,7 @@ class VueParametres : HBox() {
 
         buttonContainer.children.addAll(buttonMusic, buttonFullScreen, buttonBack)
         buttonContainer.spacing = 10.0
-        buttonContainer.alignment = Pos.CENTER
+        buttonContainer.alignment = Pos.TOP_CENTER
 
         this.children.add(buttonContainer)
 
