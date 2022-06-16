@@ -1,9 +1,13 @@
 package projet.echecmartien.vue
 
+
+import javafx.event.ActionEvent
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import projet.echecmartien.controleur.ControleurFullScreen
+
 
 class VueParametres : HBox() {
 
@@ -18,6 +22,7 @@ class VueParametres : HBox() {
 
         buttonMusic = Button("Music")
         buttonFullScreen = Button("Plein écran")
+        //buttonFullScreen.addEventHandler(ActionEvent.ACTION, ControleurFullScreen())
         buttonBack = Button("Retour")
 
         buttonContainer.children.addAll(buttonMusic, buttonFullScreen, buttonBack)
@@ -25,6 +30,8 @@ class VueParametres : HBox() {
         buttonContainer.alignment = Pos.CENTER
 
         this.children.add(buttonContainer)
+
+
     }
 
 }
