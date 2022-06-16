@@ -2,8 +2,10 @@ package projet.echecmartien.controleur
 
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
+import javafx.scene.Node
 import javafx.scene.Scene
 import javafx.scene.layout.Region
+import javafx.stage.Stage
 import projet.echecmartien.vue.VueParametres
 
 class ControleurParametres(scene: Scene, oldVue : Region): EventHandler<ActionEvent> {
@@ -17,10 +19,16 @@ class ControleurParametres(scene: Scene, oldVue : Region): EventHandler<ActionEv
 
     }
 
-    override fun handle(p0: ActionEvent?) {
+    override fun handle(e: ActionEvent) {
         val vueParam = VueParametres()
         val controleurRetourDepuisVue = ControleurRetourDepuisVue(scene, oldVue)
         vueParam.buttonBack.addEventHandler(ActionEvent.ACTION, controleurRetourDepuisVue)
+
+        val node = e.source as Node
+        val stage = node.scene.window as Stage
+        val controleurFullScreen = ControleurFullScreen(stage)
+
+        vueParam.buttonFullScreen.addEventHandler(ActionEvent.ACTION, controleurFullScreen)
         scene.root = vueParam
     }
 }
