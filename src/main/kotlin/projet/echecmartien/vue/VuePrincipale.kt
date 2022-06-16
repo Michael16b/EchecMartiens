@@ -3,10 +3,7 @@ package projet.echecmartien.vue
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
-import javafx.scene.layout.BorderPane
-import javafx.scene.layout.GridPane
-import javafx.scene.layout.HBox
-import javafx.scene.layout.VBox
+import javafx.scene.layout.*
 import javafx.scene.text.Font
 import javafx.util.converter.IntegerStringConverter
 import java.util.function.UnaryOperator
@@ -16,7 +13,7 @@ class VuePrincipale: BorderPane() {
 
     val bottomContainer: HBox
     val topContainer: VBox
-    val topButtonsContainer : HBox
+    val topButtonsContainer : GridPane
     val rulesContainer: HBox
     val paramContainer : HBox
     val titleContainer: HBox
@@ -53,7 +50,7 @@ class VuePrincipale: BorderPane() {
 
         bottomContainer = HBox()
         topContainer = VBox()
-        topButtonsContainer = HBox()
+        topButtonsContainer = GridPane()
         rulesContainer = HBox()
         paramContainer = HBox()
         titleContainer = HBox()
@@ -88,19 +85,22 @@ class VuePrincipale: BorderPane() {
         val textFont = Font.font(Font.getDefault().toString(), 17.0)
         val buttonFont = Font.font(Font.getDefault().toString(), 15.0)
         /* top */
-        rulesContainer.children.add(buttonRules)
-        rulesContainer.alignment = Pos.CENTER_RIGHT
-        rulesContainer.padding = Insets(10.0)
         buttonRules.font = buttonFont
+        buttonParam.font = buttonFont
 
         paramContainer.children.add(buttonParam)
         paramContainer.alignment = Pos.CENTER_LEFT
+        paramContainer.maxWidth = Double.MAX_VALUE
+        rulesContainer.maxWidth = Double.MAX_VALUE
+        rulesContainer.alignment = Pos.CENTER_RIGHT
+        rulesContainer.children.add(buttonRules)
+        topButtonsContainer.add(paramContainer, 0, 0)
+        topButtonsContainer.add(rulesContainer, 1, 0)
+        GridPane.setHgrow(paramContainer, Priority.ALWAYS);
+        GridPane.setHgrow(rulesContainer, Priority.ALWAYS);
+        topButtonsContainer.maxWidth = Double.MAX_VALUE
         paramContainer.padding = Insets(10.0)
-        buttonParam.font = buttonFont
-
-        topButtonsContainer.children.addAll(paramContainer, rulesContainer)
-        topButtonsContainer.prefWidth = Double.MAX_VALUE
-        topButtonsContainer.alignment = Pos.CENTER
+        rulesContainer.padding = Insets(10.0)
 
         labelTitle.font = Font.font(Font.getDefault().toString(), 50.0)
         titleContainer.children.add(labelTitle)
