@@ -18,7 +18,7 @@ import projet.echecmartien.modele.*
 import projet.echecmartien.vue.VueJeu
 import projet.echecmartien.vue.VuePartieTerminee
 
-class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, joueur2: Joueur): EventHandler<MouseEvent> {
+class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, joueur2: Joueur, saveFile: String): EventHandler<MouseEvent> {
 
     private val vue: VueJeu
     private val modele: Jeu
@@ -26,6 +26,7 @@ class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, jou
     private val j1: Joueur
     private val j2: Joueur
     private var origineSelected: Boolean
+    private val saveFile: String
 
     init {
         this.vue = vue
@@ -33,6 +34,7 @@ class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, jou
         this.scene = scene
         this.j1 = joueur1
         this.j2 = joueur2
+        this.saveFile = saveFile
         this.origineSelected = false
     }
 
@@ -168,7 +170,8 @@ class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, jou
         dialog.showAndWait()
         val vuePartieTerminee = VuePartieTerminee()
         vuePartieTerminee.BoutonQuitter.addEventHandler(ActionEvent.ACTION, ControleurQuitterJeu(scene))
-        vuePartieTerminee.BoutonRejouer.addEventHandler(ActionEvent.ACTION, ControleurRejouer(modele, scene, j2 is JoueurIA, j1.getPseudo(), j2.getPseudo()))
+        vuePartieTerminee.BoutonRejouer.addEventHandler(ActionEvent.ACTION, ControleurRejouer(modele, scene,
+            j2 is JoueurIA, j1.getPseudo(), j2.getPseudo(), saveFile))
         vuePartieTerminee.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
         scene.root = vuePartieTerminee
     }

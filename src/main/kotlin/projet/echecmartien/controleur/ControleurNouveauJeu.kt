@@ -59,10 +59,10 @@ class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<Actio
 
         jeu.initialiserPartie(j1, j2, coupsMax)
         val vueJeu = VueJeu()
-
-        val controleurClick = ControleurJeu(scene, vueJeu, jeu, j1, j2)
+        val saveFile = chercherNomDispo()
+        val controleurClick = ControleurJeu(scene, vueJeu, jeu, j1, j2, saveFile)
         val controleurRegles = ControleurRegles(scene, vueJeu)
-        val controleurSave = ControleurSauvegardeJeu(jeu, j2 is JoueurIA)
+        val controleurSave = ControleurSauvegardeJeu(jeu, j2 is JoueurIA, saveFile)
         vueJeu.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
         vueJeu.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRegles)
         vueJeu.buttonSave.addEventHandler(ActionEvent.ACTION, controleurSave)
