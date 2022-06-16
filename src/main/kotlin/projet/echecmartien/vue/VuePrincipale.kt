@@ -89,10 +89,12 @@ class VuePrincipale: BorderPane() {
         val buttonFont = Font.font(Font.getDefault().toString(), 15.0)
         /* top */
         rulesContainer.children.add(buttonRules)
+        rulesContainer.alignment = Pos.CENTER_RIGHT
         rulesContainer.padding = Insets(10.0)
         buttonRules.font = buttonFont
 
         paramContainer.children.add(buttonParam)
+        paramContainer.alignment = Pos.CENTER_LEFT
         paramContainer.padding = Insets(10.0)
         buttonParam.font = buttonFont
 
