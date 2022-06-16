@@ -8,15 +8,17 @@ import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.modele.Jeu
 import projet.echecmartien.modele.Joueur
 import projet.echecmartien.vue.VueJeu
+import java.io.File
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
-class ControleurRejouer (modele: Jeu, scene: Scene, ia: Boolean, pseudo1: String, pseudo2: String, saveFile: String): EventHandler<ActionEvent> {
+class ControleurRejouer (modele: Jeu, scene: Scene, ia: Boolean, pseudo1: String, pseudo2: String): EventHandler<ActionEvent> {
 
     private val modele: Jeu
     private val scene: Scene
     private val ia: Boolean
     private val pseudo1: String
     private val pseudo2: String
-    private val saveFile: String
 
     init {
         this.modele = modele
@@ -24,7 +26,6 @@ class ControleurRejouer (modele: Jeu, scene: Scene, ia: Boolean, pseudo1: String
         this.ia = ia
         this.pseudo1 = pseudo1
         this.pseudo2 = pseudo2
-        this.saveFile = saveFile
     }
 
     override fun handle(Event: ActionEvent) {
@@ -34,6 +35,12 @@ class ControleurRejouer (modele: Jeu, scene: Scene, ia: Boolean, pseudo1: String
 
         jeu.initialiserPartie(j1, j2, modele.nbCoupsSansPriseMax())
         val vueJeu = VueJeu()
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+        val time = LocalDateTime.now().format(formatter)
+        val file = File("${getBaseDir()}/$time.json")
+        val saveFile = if (file.exists())
+            chercherNomDispo() else "$time.json"
 
         val controleurClick = ControleurJeu(scene, vueJeu, jeu, j1, j2, saveFile)
         val controleurRegles = ControleurRegles(scene, vueJeu)

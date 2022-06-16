@@ -10,6 +10,9 @@ import projet.echecmartien.modele.Jeu
 import projet.echecmartien.modele.Joueur
 import projet.echecmartien.vue.VueJeu
 import projet.echecmartien.vue.VuePrincipale
+import java.io.File
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<ActionEvent> {
 
@@ -71,7 +74,15 @@ class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<Actio
 
         jeu.initialiserPartie(j1, j2, coupsMax)
         val vueJeu = VueJeu()
-        val saveFile = chercherNomDispo()
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+        val time = LocalDateTime.now().format(formatter)
+
+        val file = File("${getBaseDir()}/$time.json")
+        val saveFile = if (file.exists())
+            chercherNomDispo() else "$time.json"
+
+
         val controleurClick = ControleurJeu(scene, vueJeu, jeu, j1, j2, saveFile)
         val controleurRegles = ControleurRegles(scene, vueJeu)
         val controleurSave = ControleurSauvegardeJeu(jeu, j2 is JoueurIA, saveFile)
