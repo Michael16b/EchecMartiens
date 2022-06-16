@@ -14,6 +14,7 @@ class VueParametres : BorderPane() {
     val buttonBack : Button
 
     init {
+        this.styleClass.add("parametres")
         buttonContainer = VBox()
         buttonContainer.alignment = Pos.CENTER
 
