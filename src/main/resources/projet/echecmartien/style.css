@@ -1,34 +1,68 @@
 /* VuePrincipal */
 .main {
  -fx-background-color: white;
- -fx-background-image: url("main.png");
+ -fx-background-image: url("space.jpg");
  -fx-background-position: center;
  -fx-background-repeat:  no-repeat;
  -fx-background-size: cover;
 
 }
 
+.parametres {
+    -fx-background-color: white;
+    -fx-background-image: url("spaceParametre.png");
+    -fx-background-position: center;
+    -fx-background-repeat:  no-repeat;
+    -fx-background-size: cover;
+}
+
+.chargerJeu {
+    -fx-background-color: white;
+    -fx-background-image: url("space.jpg");
+    -fx-background-position: center;
+    -fx-background-repeat:  no-repeat;
+    -fx-background-size: cover;
+}
+
+
+
+
 .MainTitle {
     -fx-font-weight : bold;
     -fx-font-size: 75;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-family: 'Calligraphic';
 }
 .LabelBase {
     -fx-font-weight : bold;
     -fx-font-size: 20;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 /* VueJeu */
+
+.Jeu {
+    -fx-background-color: white;
+    -fx-background-image: url("space.jpg");
+    -fx-background-position: center;
+    -fx-background-repeat:  no-repeat;
+    -fx-background-size: cover;
+}
+
+
 .PseudoLabelSonTour {
     -fx-font-weight : bold;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 20;
 }
 .PseudoLabelPasSonTour {
     -fx-font-weight : normal;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 15;
+}
+
+.textInfo {
+    -fx-text-fill: white;
+
 }
 
 /* VuePartieTerminee */
@@ -71,6 +105,24 @@
     -fx-text-alignment: justify;
     -fx-wrap-text: true;
 }
+
+/* VueChargerJeu */
+
+.titleChargerJeu {
+    -fx-font-size: 50;
+    -fx-text-fill: white;
+    -fx-font-weight : bold;
+    -fx-font-family: 'Cambria';
+}
+
+.textChargerPartie {
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+    -fx-font-family: 'Berlin Sans FB';
+    -fx-underline: true;
+
+}
+
 
 
 

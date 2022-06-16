@@ -54,6 +54,7 @@ class VueJeu: BorderPane() {
     init {
 
         /* Initialisation des attributs */
+        this.styleClass.add("Jeu")
         playGrid = GridPane()
         cells = Array(TAILLEHORIZONTALE) { Array(TAILLEVERTICALE) { StackPane() } }
         gridHorizontalCenterContainer = HBox()
@@ -67,11 +68,17 @@ class VueJeu: BorderPane() {
 
         labelScore1 = Label("Score : 0 pts")
         labelScore2 = Label("Score : 0 pts")
+        this.labelScore1.styleClass.add("textInfo")
+        this.labelScore2.styleClass.add("textInfo")
+
+
         labelPlayer1 = Label("NomJ1")
         this.labelPlayer1.styleClass.add("PseudoLabelSonTour")
         labelPlayer2 = Label("NomJ2")
+        this.labelPlayer2.styleClass.add("PseudoLabelPasSonTour")
 
         labelCoupsRestants = Label()
+        this.labelCoupsRestants.styleClass.add("textInfo")
 
         buttonBack = Button("Quitter")
         buttonSave = Button("Sauvegarder")
@@ -82,7 +89,9 @@ class VueJeu: BorderPane() {
         buttonRules.id = "buttonRules"
 
         pionsP1 = GridPane()
+        this.pionsP1.styleClass.add("textInfo")
         pionsP2 = GridPane()
+        this.pionsP2.styleClass.add("textInfo")
 
         labelGP1 = Label("0")
         labelMP1 = Label("0")
@@ -90,6 +99,14 @@ class VueJeu: BorderPane() {
         labelGP2 = Label("0")
         labelMP2 = Label("0")
         labelPP2 = Label("0")
+
+        this.labelGP1.styleClass.add("textInfo")
+        this.labelMP1.styleClass.add("textInfo")
+        this.labelPP1.styleClass.add("textInfo")
+        this.labelGP2.styleClass.add("textInfo")
+        this.labelMP2.styleClass.add("textInfo")
+        this.labelPP2.styleClass.add("textInfo")
+
 
         labelNbPionsArray = arrayOf(labelGP1, labelMP1, labelPP1, labelGP2, labelMP2, labelPP2)
         /* Arbre de la scène */
