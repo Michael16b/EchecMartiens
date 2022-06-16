@@ -125,6 +125,7 @@ class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, jou
      */
     private fun tourSuivant() {
         modele.changeJoueurCourant()
+
         vue.resetCouleur()
         vue.remplirCases(modele.getPLateau().getCases())
         majScores()
@@ -145,6 +146,19 @@ class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, jou
                 majPrises(j2, case.getPion())
             modele.deplacer(coup.getOrigine().getX(), coup.getOrigine().getY(), coup.getDestination().getX(), coup.getDestination().getY())
             tourSuivant()
+        }
+        if (modele.getJoueurCourant() == j1) {
+            println("C'est au tour du joueur 1")
+            vue.labelPlayer1.styleClass.clear()
+            vue.labelPlayer2.styleClass.clear()
+            vue.labelPlayer1.styleClass.add("PseudoLabelSonTour")
+            vue.labelPlayer2.styleClass.add("PseudoLabelPasSonTour")
+        } else {
+            println("C'est au tour du joueur 2")
+            vue.labelPlayer1.styleClass.clear()
+            vue.labelPlayer2.styleClass.clear()
+            vue.labelPlayer1.styleClass.add("PseudoLabelPasSonTour")
+            vue.labelPlayer2.styleClass.add("PseudoLabelSonTour")
         }
     }
 

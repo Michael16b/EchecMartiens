@@ -23,10 +23,12 @@
 .PseudoLabelSonTour {
     -fx-font-weight : bold;
     -fx-text-fill: black;
+    -fx-font-size: 20;
 }
 .PseudoLabelPasSonTour {
     -fx-font-weight : normal;
     -fx-text-fill: black;
+    -fx-font-size: 15;
 }
 
 /* VuePartieTerminee */
