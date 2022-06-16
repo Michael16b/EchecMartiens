@@ -49,6 +49,7 @@ class ControleurRejouer (modele: Jeu, scene: Scene, ia: Boolean, pseudo1: String
         val controleurBack = ControleurQuitterJeu(jeu, scene, saveFile, j2 is JoueurIA)
         vueJeu.buttonBack.addEventHandler(ActionEvent.ACTION, controleurBack)
         vueJeu.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
+        vueJeu.addEventHandler(KeyEvent.KEY_PRESSED, ControleurParametresRaccourci(scene, vueJeu))
         vueJeu.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRegles)
         vueJeu.buttonSave.addEventHandler(ActionEvent.ACTION, controleurSave)
         vueJeu.addEventHandler(KeyEvent.KEY_PRESSED, ControleurParametresRaccourci(scene, vueJeu))
