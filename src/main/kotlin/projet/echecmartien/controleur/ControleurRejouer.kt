@@ -3,6 +3,7 @@ package projet.echecmartien.controleur
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
+import javafx.scene.input.KeyEvent
 import javafx.scene.input.MouseEvent
 import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.modele.Jeu
@@ -50,6 +51,7 @@ class ControleurRejouer (modele: Jeu, scene: Scene, ia: Boolean, pseudo1: String
         vueJeu.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
         vueJeu.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRegles)
         vueJeu.buttonSave.addEventHandler(ActionEvent.ACTION, controleurSave)
+        vueJeu.addEventHandler(KeyEvent.KEY_PRESSED, ControleurParametresRaccourci(scene, vueJeu))
 
         vueJeu.setCoupsRestants(jeu.nbCoupsSansPriseRestants())
         vueJeu.setPseudo(j1, j2)

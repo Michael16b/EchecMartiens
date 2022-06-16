@@ -26,9 +26,9 @@ class ControleurParametres(scene: Scene, oldVue : Region): EventHandler<ActionEv
 
         val node = e.source as Node
         val stage = node.scene.window as Stage
-        val controleurFullScreen = ControleurFullScreen(stage)
+        val controleurPleinEcran = ControleurPleinEcran(stage)
 
-        vueParam.buttonFullScreen.addEventHandler(ActionEvent.ACTION, controleurFullScreen)
+        vueParam.buttonFullScreen.addEventHandler(ActionEvent.ACTION, controleurPleinEcran)
         scene.root = vueParam
     }
 }

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.control.Alert
+import javafx.scene.input.KeyEvent
 import javafx.scene.input.MouseEvent
 import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.modele.Jeu
@@ -88,6 +89,7 @@ class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<Actio
         val controleurRegles = ControleurRegles(scene, vueJeu)
         val controleurSave = ControleurSauvegardeJeu(jeu, j2 is JoueurIA, saveFile)
         val controleurBack = ControleurQuitterJeu(jeu, scene, saveFile, j2 is JoueurIA)
+        vueJeu.addEventHandler(KeyEvent.KEY_PRESSED, ControleurParametresRaccourci(scene, vueJeu))
         vueJeu.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
         vueJeu.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRegles)
         vueJeu.buttonSave.addEventHandler(ActionEvent.ACTION, controleurSave)
