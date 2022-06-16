@@ -18,7 +18,7 @@ class VuePrincipale: BorderPane() {
     val topContainer: VBox
     val topButtonsContainer : HBox
     val rulesContainer: HBox
-    val musicContainer : HBox
+    val paramContainer : HBox
     val titleContainer: HBox
     val playerGrid: GridPane
     val gridVerticalAlignContainer: VBox
@@ -31,7 +31,7 @@ class VuePrincipale: BorderPane() {
     val buttonNewGame: Button
     val buttonLoadGame: Button
     val buttonRules: Button
-    val buttonMusic : Button
+    val buttonParam : Button
 
     val labelPlayer1: Label
     val labelPlayer2: Label
@@ -55,7 +55,7 @@ class VuePrincipale: BorderPane() {
         topContainer = VBox()
         topButtonsContainer = HBox()
         rulesContainer = HBox()
-        musicContainer = HBox()
+        paramContainer = HBox()
         titleContainer = HBox()
         playerGrid = GridPane()
         gridVerticalAlignContainer = VBox()
@@ -68,7 +68,7 @@ class VuePrincipale: BorderPane() {
         buttonNewGame = Button("Nouvelle partie")
         buttonLoadGame = Button("Charger partie")
         buttonRules = Button("Règles du jeu")
-        buttonMusic = Button("Musique")
+        buttonParam = Button("Paramètres")
 
         labelPlayer1 = Label("Joueur 1:")
         labelPlayer2 = Label("Joueur 2:")
@@ -89,16 +89,14 @@ class VuePrincipale: BorderPane() {
         val buttonFont = Font.font(Font.getDefault().toString(), 15.0)
         /* top */
         rulesContainer.children.add(buttonRules)
-        //rulesContainer.alignment = Pos.TOP_RIGHT
         rulesContainer.padding = Insets(10.0)
         buttonRules.font = buttonFont
 
-        musicContainer.children.add(buttonMusic)
-        //musicContainer.alignment = Pos.TOP_LEFT
-        musicContainer.padding = Insets(10.0)
-        buttonMusic.font = buttonFont
+        paramContainer.children.add(buttonParam)
+        paramContainer.padding = Insets(10.0)
+        buttonParam.font = buttonFont
 
-        topButtonsContainer.children.addAll(musicContainer, rulesContainer)
+        topButtonsContainer.children.addAll(paramContainer, rulesContainer)
         topButtonsContainer.prefWidth = Double.MAX_VALUE
         topButtonsContainer.alignment = Pos.CENTER
 
