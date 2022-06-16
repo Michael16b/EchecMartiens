@@ -7,10 +7,7 @@ import javafx.event.ActionEvent
 import javafx.scene.Scene
 import javafx.stage.Stage
 import javafx.stage.WindowEvent
-import projet.echecmartien.controleur.ControleurChargerJeuVue
-import projet.echecmartien.controleur.ControleurFermerJeu
-import projet.echecmartien.controleur.ControleurNouveauJeu
-import projet.echecmartien.controleur.ControleurRegles
+import projet.echecmartien.controleur.*
 import projet.echecmartien.vue.VuePrincipale
 import javax.print.attribute.standard.Media
 
@@ -36,9 +33,13 @@ class AppliJeuEchecMartien: Application() {
         val controleurChargerJeuVue = ControleurChargerJeuVue(scene, root)
         root.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurChargerJeuVue)
 
+        val controleurParametres = ControleurParametres(scene, root)
+        root.buttonParam.addEventHandler(ActionEvent.ACTION,controleurParametres)
+
         val controleurWindow = ControleurFermerJeu(scene)
         primaryStage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, controleurWindow)
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toExternalForm())
+
 
         // Ajouter de la musique
         // val media = javafx.scene.media.Media(AppliJeuEchecMartien::class.java.getResource("/projet/echecmartien/son/son.mp3")!!.toExternalForm())
