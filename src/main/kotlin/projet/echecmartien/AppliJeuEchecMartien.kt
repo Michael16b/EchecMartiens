@@ -12,7 +12,8 @@ import projet.echecmartien.vue.VuePrincipale
 class AppliJeuEchecMartien: Application() {
 
     override fun start(primaryStage: Stage) {
-
+        // Ajout icone
+        //primaryStage.icons.add(javafx.scene.image.Image("file:ressources/images/icon.png"))
         val root = VuePrincipale()
 
         val sceneWidth = 1100.0
