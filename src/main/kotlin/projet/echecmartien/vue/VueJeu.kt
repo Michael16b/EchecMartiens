@@ -68,7 +68,10 @@ class VueJeu: BorderPane() {
         labelScore1 = Label("Score : 0 pts")
         labelScore2 = Label("Score : 0 pts")
         labelPlayer1 = Label("NomJ1")
+        this.labelPlayer1.styleClass.add("PseudoLabelPasSonTour")
         labelPlayer2 = Label("NomJ2")
+        this.labelPlayer2.styleClass.add("PseudoLabelPasSonTour")
+
         labelCoupsRestants = Label()
 
         buttonBack = Button("Quitter")

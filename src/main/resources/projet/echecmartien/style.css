@@ -1,4 +1,4 @@
-/* MainVue */
+/* VuePrincipal */
 .main {
  -fx-background-color: white;
  -fx-background-image: url("main.png");
@@ -19,12 +19,20 @@
     -fx-font-size: 20;
     -fx-text-fill: black;
 }
+/* VueJeu */
+.PseudoLabelSonTour {
+    -fx-font-weight : bold;
+    -fx-text-fill: black;
+}
+.PseudoLabelPasSonTour {
+    -fx-font-weight : normal;
+    -fx-text-fill: black;
+}
 
-
-/* WinVue */
+/* VuePartieTerminee */
 .winLabel {
     -fx-text-fill: yellow;
-    -fx-font-size: 100px;
+    -fx-font-size: 70px;
     -fx-font-family: 'Avenir Next LT Pro';
 }
 
@@ -35,7 +43,7 @@
 }
 
 
-/* RulesVue */
+/* RegleVue */
 .rules {
  -fx-background-color: white;
  -fx-background-image: url("RulesBg.png");
@@ -61,10 +69,6 @@
     -fx-text-alignment: justify;
     -fx-wrap-text: true;
 }
-
-
-
-
 
 
 

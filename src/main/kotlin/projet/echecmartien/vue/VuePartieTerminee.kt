@@ -41,8 +41,9 @@ class VuePartieTerminee : BorderPane() {
 
 
         this.labelJoueur.styleClass.add("winLabel")
+        labelJoueur.isWrapText = true
+        labelJoueur.textAlignment = TextAlignment.CENTER
         this.labelScore.styleClass.add("winScore")
-
 
         infos.children.addAll(labelJoueur, labelScore, Boutons)
         infos.spacing = 20.0
@@ -58,7 +59,7 @@ class VuePartieTerminee : BorderPane() {
             labelScore.text = "Score des joueurs : $scoreJ1 pts"
             return
         }
-        labelJoueur.text = "${joueur.getPseudo()} a remporté la partie !"
+        labelJoueur.text = "${joueur.getPseudo()} \n a remporté la partie !"
         labelScore.text = "Score : ${joueur.calculerScore()} pts"
     }
 }
