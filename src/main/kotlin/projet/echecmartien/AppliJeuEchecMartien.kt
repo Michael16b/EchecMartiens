@@ -36,11 +36,6 @@ class AppliJeuEchecMartien: Application() {
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toString())
 
 
-        // Ajouter de la musique
-        // val media = Media(AppliJeuEchecMartien::class.java.getResource("CRSoundTrack.mp3")!!.toExternalForm())
-
-        //val mediaPlayer = MediaPlayer(media)
-        //mediaPlayer.play();
 
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0

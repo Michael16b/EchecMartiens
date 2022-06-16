@@ -30,7 +30,7 @@ class VueChargerJeu: BorderPane()  {
 
     init{
         this.style="-fx-background-color: #c3b9ea "
-
+        this.styleClass.add("chargerJeu")
         conteneurgauche.padding = Insets(0.0,0.0,0.0,100.0)
         val titreConteneurGauche = Label("Liste des parties enregistrées")
         titreConteneurGauche.style = "-fx-font-family : 'Cambria';-fx-font-size : 18;-fx-underline: true"
