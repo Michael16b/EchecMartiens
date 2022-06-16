@@ -281,6 +281,12 @@ class Jeu {
     fun nbCoupsSansPriseMax() : Int = this.nombreCoupsSansPriseMax
 
     /**
+     * fonction qui retourne les joueurs du jeu
+     * @return joueurs du jeu, array de Joueur? de taille 2
+     */
+    fun getJoueurs() = this.joueurs
+
+    /**
      * Sérialise le jeu en fichier json
      * @param filepath: fichier du jeu sérialisé
      * @param présence d'une IA en joueur 2 ou non
@@ -300,7 +306,7 @@ class Jeu {
                     is MoyenPion -> "MoyenPion"
                     is GrandPion -> "GrandPion"
                     is PetitPion -> "PetitPion"
-                    else -> null
+                    else -> "null"
                 }
                 pions.add(s)
             }
@@ -329,9 +335,23 @@ class Jeu {
         return true
     }
 
+    /**
+     * fonction qui permet de redéfinir le dernier pion arrivé de zone
+     * @param pion: Pion qui arrive de zone
+     * @param coordonnee: coordonnée du pion qui arrive de zone
+     */
     fun setPionArriveDeZone(pion: Pion?, coordonnee : Coordonnee?) {
         pionArriveDeZone = pion
         coordPionArriveDeZone = coordonnee
+    }
+
+    /**
+     * fonction qui permet de redéfinir le nombre de coups sans prise
+     * @param coups: entier supérieur ou égal à 0, nouveau nombre de coups sans prise
+     */
+    fun setNombreCoupsSansPrise(coups: Int) {
+        require(coups >= 0)
+        nombreCoupsSansPrise = coups
     }
 }
 
@@ -356,23 +376,31 @@ fun deserialiser(filepath: String): Jeu? {
 
     val jeu = Jeu()
     try {
+        // créer les joueurs
         val joueurs = data.get("joueurs").asJsonArray
         val j1 = Joueur(joueurs[0].asJsonObject.get("pseudo").asString)
         val pseudo2 = joueurs[1].asJsonObject.get("pseudo").asString
         val ia = data.get("ia").asBoolean
         val j2 = if (!ia) Joueur(pseudo2) else JoueurIA(pseudo2)
-        jeu.initialiserPartie(j1, j2, data.get("nombreCoupsSansPriseMax").asInt)
 
+        // initialiser la partie
+        jeu.initialiserPartie(j1, j2, data.get("nombreCoupsSansPriseMax").asInt)
+        jeu.setNombreCoupsSansPrise(data.get("nombreCoupsSansPrise").asInt)
+
+        // avoir le bon joueur courant
         val jcourant = data.get("joueurCourant").asString
         if (jeu.getJoueurCourant()!!.getPseudo() != jcourant)
             jeu.changeJoueurCourant()
+
+        // associer chaque case au bon joueur et mettre le bon pion dedans
         val cases = jeu.getPLateau().getCases()
         val pions = data.get("plateau").asJsonArray
         for (i in 0 until TAILLEHORIZONTALE) {
             for (j in 0 until TAILLEVERTICALE) {
                 val joueur = if(j in 0..3) j1 else j2
                 cases[i][j].setJoueur(joueur)
-                val p = when(pions[i+j*i].asString) {
+                val pdata = pions[i*8+j]
+                val p = when(pdata.asString) {
                     "MoyenPion" -> MoyenPion()
                     "GrandPion" -> GrandPion()
                     "PetitPion" -> PetitPion()
@@ -382,13 +410,29 @@ fun deserialiser(filepath: String): Jeu? {
             }
         }
 
+        // donner les pions capturés aux joueurs
+        val joueursCapture = arrayOf(j1, j2)
+        for (i in 0..1) {
+            for (pion in joueurs[i].asJsonObject.get("pionsCaptures").asJsonArray) {
+                val pion = when(pion.asJsonObject.get("TYPE").asString) {
+                    "MoyenPion" -> MoyenPion()
+                    "GrandPion" -> GrandPion()
+                    "PetitPion" -> PetitPion()
+                    else -> throw JsonParseException("Pion ne doit pas être null")
+                }
+                joueursCapture[i].ajouterPionCaptures(pion)
+            }
+        }
+
+        // mettre le bon pion arrivé de zone
         val coordPionZone : Coordonnee? = gson.create().fromJson(data.get("pionArriveDeZone"), Coordonnee::class.java)
         if (coordPionZone != null) {
             val pion = jeu.getPLateau().getCases()[coordPionZone.getX()][coordPionZone.getY()].getPion()
             jeu.setPionArriveDeZone(pion, coordPionZone)
         }
 
-    } catch (_: java.lang.Exception) {
+    } catch (e: java.lang.Exception) {
+        println(e.printStackTrace())
         return null
     } finally {
         reader.close()

@@ -309,4 +309,44 @@ class VueJeu: BorderPane() {
         labelCoupsRestants.text = "Nb coups sans prise avant fin de la partie : $coups"
     }
 
+    /**
+     * fonction qui met le label du score du joueur 1 et joueur 2 aux entiers passés en argument
+     * @param score1: score joueur 1
+     * @param score2: score joueur 2
+     */
+    fun setScoreJoueurs(score1: Int, score2: Int) {
+        labelScore1.text = "Score : $score1 pts"
+        labelScore2.text = "Score : $score2 pts"
+    }
+
+    fun majPrise(joueurIndice: Int, pion: Pion?) {
+        require(joueurIndice in 0..1)
+
+        if (pion == null)
+            return
+
+        val decalagePion = when (pion) {
+            is MoyenPion -> 1
+            is GrandPion -> 0
+            is PetitPion -> 2
+            else -> throw Exception()
+        }
+        val labelNb = labelNbPionsArray[joueurIndice * 3 + decalagePion]
+        val labelValue = labelNb.text.toInt()
+        labelNb.text = "${labelValue + 1}"
+    }
+
+    fun setPrise(joueurIndice: Int, pion: Pion, score: Int) {
+        require(joueurIndice in 0..1)
+
+        val decalagePion = when (pion) {
+            is MoyenPion -> 1
+            is GrandPion -> 0
+            is PetitPion -> 2
+            else -> throw Exception()
+        }
+        val labelNb = labelNbPionsArray[joueurIndice * 3 + decalagePion]
+        labelNb.text = "$score"
+    }
+
 }

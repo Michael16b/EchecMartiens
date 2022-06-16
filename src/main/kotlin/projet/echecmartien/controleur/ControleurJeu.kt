@@ -14,7 +14,10 @@ import javafx.scene.shape.Rectangle
 import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.librairie.TAILLEHORIZONTALE
 import projet.echecmartien.librairie.TAILLEVERTICALE
-import projet.echecmartien.modele.*
+import projet.echecmartien.modele.Coordonnee
+import projet.echecmartien.modele.Jeu
+import projet.echecmartien.modele.Joueur
+import projet.echecmartien.modele.Pion
 import projet.echecmartien.vue.VueJeu
 import projet.echecmartien.vue.VuePartieTerminee
 
@@ -185,24 +188,14 @@ class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, jou
     private fun majPrises(joueur: Joueur?, type: Pion?){
 
         val decalageJoueur = if (joueur == j1) 0 else 1
-        val decalagePion = when (type) {
-            is MoyenPion -> 1
-            is GrandPion -> 0
-            is PetitPion -> 2
-            else -> 0
-        }
-        val labelNb = vue.labelNbPionsArray[decalageJoueur * 3 + decalagePion]
-
-        val labelValue = labelNb.text.toInt()
-        labelNb.text = "${labelValue + 1}"
+        vue.majPrise(decalageJoueur, type)
     }
 
     /**
      * fonction qui met à jour les scores des deux joueurs
      */
     private fun majScores() {
-        vue.labelScore1.text = "Score : ${j1.calculerScore()} pts"
-        vue.labelScore2.text = "Score : ${j2.calculerScore()} pts"
+        vue.setScoreJoueurs(j1.calculerScore(), j2.calculerScore())
     }
 
     /**

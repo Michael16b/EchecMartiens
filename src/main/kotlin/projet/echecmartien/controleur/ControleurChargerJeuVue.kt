@@ -3,7 +3,6 @@ package projet.echecmartien.controleur
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
-import javafx.scene.input.MouseEvent
 import javafx.scene.layout.Region
 import projet.echecmartien.vue.VueChargerJeu
 import java.io.File
@@ -31,7 +30,7 @@ class ControleurChargerJeuVue(scene: Scene, oldVue: Region): EventHandler<Action
         sauvegardes = listFiles?.map {it.name.removeSuffix(".json")}?.sorted() ?: listOf()
 
         vueLoadGame.ajouterSauvegardes(sauvegardes)
-        vueLoadGame.myListSave.addEventHandler(MouseEvent.MOUSE_CLICKED, ControleurChargerJeu(scene, vueLoadGame))
+        vueLoadGame.boutonChargerPartie.addEventHandler(ActionEvent.ACTION, ControleurChargerJeu(scene, vueLoadGame))
         scene.root = vueLoadGame
     }
 
