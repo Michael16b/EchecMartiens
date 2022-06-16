@@ -53,13 +53,11 @@
     -fx-font-weight : bold;
     -fx-text-fill: white;
     -fx-font-size: 20;
-    -fx-end-margin: 0;
 }
 .PseudoLabelPasSonTour {
     -fx-font-weight : normal;
     -fx-text-fill: white;
     -fx-font-size: 15;
-    -fx-end-margin: 100;
 }
 
 .textInfo {
