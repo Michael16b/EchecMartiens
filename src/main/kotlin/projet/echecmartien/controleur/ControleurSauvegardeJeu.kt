@@ -5,6 +5,8 @@ import javafx.event.EventHandler
 import javafx.scene.control.Alert
 import projet.echecmartien.modele.Jeu
 import java.io.File
+import java.nio.file.Path
+import java.nio.file.Paths
 
 class ControleurSauvegardeJeu (modele: Jeu, ia: Boolean, saveFile: String): EventHandler<ActionEvent> {
 
@@ -41,10 +43,10 @@ fun chercherNomDispo() : String {
     return filename
 }
 
-fun getBaseDir() : String = "${System.getProperty("user.home")}/.echecsMartiens/sauvegardes"
+fun getBaseDir() : String = Paths.get("${System.getProperty("user.home")}/.echecsMartiens/sauvegardes").toAbsolutePath().toString()
 
 fun sauvegarderJeu(modele: Jeu, saveFile: String, ia: Boolean) {
     val file = File(getBaseDir())
     file.mkdirs()
-    modele.serialiser("${getBaseDir()}/$saveFile", ia)
+    modele.serialiser(Paths.get("${getBaseDir()}/$saveFile").toAbsolutePath().toString(), ia)
 }

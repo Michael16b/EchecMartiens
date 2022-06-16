@@ -9,13 +9,11 @@ import javafx.scene.control.ButtonType
 import projet.echecmartien.vue.VueChargerJeu
 import java.io.File
 
-class ControleurSupprimerJeu (scene: Scene, vue: VueChargerJeu): EventHandler<ActionEvent> {
+class ControleurSupprimerJeu (vue: VueChargerJeu): EventHandler<ActionEvent> {
 
-    private val scene: Scene
     private val vue: VueChargerJeu
 
     init {
-        this.scene = scene
         this.vue = vue
     }
 

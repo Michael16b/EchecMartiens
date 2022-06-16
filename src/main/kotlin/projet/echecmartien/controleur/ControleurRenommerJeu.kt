@@ -3,18 +3,34 @@ package projet.echecmartien.controleur
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
+import javafx.scene.control.ButtonType
+import javafx.scene.control.TextInputDialog
 import projet.echecmartien.vue.VueChargerJeu
 
-class ControleurRenommerJeu(scene: Scene, vue : VueChargerJeu): EventHandler<ActionEvent> {
+class ControleurRenommerJeu(vue : VueChargerJeu): EventHandler<ActionEvent> {
 
     val vue : VueChargerJeu
-    val scene : Scene
 
     init {
         this.vue = vue
-        this.scene = scene
     }
-    override fun handle(p0: ActionEvent?) {
-        val nomPartie : String  = vue.myListSave.selectionModel.selectedItem
+
+    override fun handle(e: ActionEvent) {
+        val item = vue.myListSave.selectionModel.selectedItem
+
+        if (item == null) {
+            vue.showDialog("Supprimer une partie", "Aucune partie n'est sélectionnée")
+            return
+        }
+
+        val dialog = TextInputDialog(item)
+        dialog.title = "Renommer une partie"
+        dialog.headerText = "Entrez le nouveau nom de la partie :"
+        dialog.contentText = "Nom :"
+
+        dialog.showAndWait()
+
+        println(dialog.result)
+
     }
 }

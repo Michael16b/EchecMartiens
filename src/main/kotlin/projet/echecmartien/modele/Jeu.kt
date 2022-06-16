@@ -320,8 +320,10 @@ class Jeu {
         jeu.addProperty("ia", ia)
         val writer: FileWriter
         try {
+            println(filepath)
             writer = FileWriter(filepath)
-        } catch (_: java.lang.Exception){
+        } catch (e: java.lang.Exception){
+            println(e.printStackTrace())
             return false
         }
         try {
