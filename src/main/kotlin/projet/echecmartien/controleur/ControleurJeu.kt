@@ -169,7 +169,7 @@ class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, jou
         dialog.headerText = "La partie est terminée !"
         dialog.showAndWait()
         val vuePartieTerminee = VuePartieTerminee()
-        vuePartieTerminee.BoutonQuitter.addEventHandler(ActionEvent.ACTION, ControleurQuitterJeu(scene))
+        vuePartieTerminee.BoutonQuitter.addEventHandler(ActionEvent.ACTION, ControleurQuitterJeuApresFin(scene))
         vuePartieTerminee.BoutonRejouer.addEventHandler(ActionEvent.ACTION, ControleurRejouer(modele, scene,
             j2 is JoueurIA, j1.getPseudo(), j2.getPseudo(), saveFile))
         vuePartieTerminee.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
