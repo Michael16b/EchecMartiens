@@ -22,7 +22,7 @@ class VueJeu: BorderPane() {
     val rightContainer: BorderPane
     val p1Container: VBox
     val p2Container: VBox
-    val buttonsContainer: HBox
+    val buttonsContainer: VBox
     val coupsRestantContainer: HBox
 
     val labelScore1: Label
@@ -59,7 +59,7 @@ class VueJeu: BorderPane() {
         gridHorizontalCenterContainer = HBox()
         gridVerticalCenterContainer = VBox()
         leftContainer = BorderPane()
-        buttonsContainer = HBox()
+        buttonsContainer = VBox()
         coupsRestantContainer = HBox()
         p1Container = VBox()
         p2Container = VBox()
@@ -131,10 +131,13 @@ class VueJeu: BorderPane() {
         this.center = gridVerticalCenterContainer
 
         /* left */
-        buttonsContainer.children.addAll(buttonBack, buttonSave, buttonRules)
+        buttonsContainer.children.addAll( buttonRules, buttonSave, buttonBack)
         buttonsContainer.alignment = Pos.BOTTOM_LEFT
         buttonsContainer.spacing = 20.0
-        buttonsContainer.padding = Insets(0.0, 0.0, 10.0, 10.0)
+        buttonsContainer.padding = Insets(0.0, 0.0, 40.0, 10.0)
+        buttonBack.prefWidth = 200.0
+        buttonSave.prefWidth = 200.0
+        buttonRules.prefWidth = 200.0
 
         leftContainer.bottom = buttonsContainer
 
@@ -154,8 +157,9 @@ class VueJeu: BorderPane() {
         p1Container.children.addAll(labelPlayer1, pionsP1, labelScore1)
         p1Container.spacing = 10.0
 
-        leftContainer.padding = Insets(20.0, 0.0, 0.0, 20.0)
+        leftContainer.padding = Insets(12.0, 0.0, 0.0, 20.0)
         leftContainer.top = p1Container
+        leftContainer.prefWidth = 350.0
 
         this.left = leftContainer
 
@@ -182,10 +186,12 @@ class VueJeu: BorderPane() {
         coupsRestantContainer.padding = Insets(10.0, 10.0, 0.0, 0.0)
 
         labelCoupsRestants.isWrapText = true
-        labelCoupsRestants.prefWidth = 240.0
+        labelCoupsRestants.prefWidth = 300.0
+        labelCoupsRestants.padding= Insets(25.0,0.0,0.0,0.0)
         rightContainer.top = coupsRestantContainer
         rightContainer.bottom = p2Container
-        rightContainer.padding = Insets(0.0, 20.0, 20.0, 0.0)
+        rightContainer.padding = Insets(0.0, 20.0, 12.0, 0.0)
+        rightContainer.prefWidth = 350.0
         this.right = rightContainer
 
     }
