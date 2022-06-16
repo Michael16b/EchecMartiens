@@ -8,7 +8,6 @@ import javafx.stage.WindowEvent
 import projet.echecmartien.controleur.*
 import projet.echecmartien.vue.VuePrincipale
 
-
 class AppliJeuEchecMartien: Application() {
 
     override fun start(primaryStage: Stage) {
