@@ -30,26 +30,38 @@ class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<Actio
         try {
             coupsMax = vue.textFieldCoups.text.toInt()
         } catch(_: java.lang.NumberFormatException) {
-            mauvaisCoupMax()
-            return
-        }
-
-        if (coupsMax > 99 || coupsMax < 1) {
-            mauvaisCoupMax()
+            afficherDialog("Mauvais nombre de coups sans prise max",
+                "Le nombre de coups sans prise maximum est invalide !",
+                "Le nombre de coups sans prise maximum est invalide !")
             return
         }
 
         if (pseudo1 == "" || !pseudo1.matches("^[a-zA-Z0-9]*$".toRegex())) {
-            mauvaisPseudo(1)
+            afficherDialog("Mauvais nom de joueur","Le nom du joueur 1 est invalide !",
+                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisées")
             return
         }
+
         if (pseudo2 == "" || !pseudo2.matches("^[a-zA-Z0-9]*$".toRegex())) {
-            mauvaisPseudo(2)
+            afficherDialog("Mauvais nom de joueur","Le nom du joueur 2 est invalide !",
+                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisées")
             return
         }
 
         if (pseudo1 == pseudo2) {
-            memePseudo()
+            afficherDialog("Mauvais nom de joueur","Les deux joueurs ont le même nom !",
+                "Merci de mettre un pseudo différent aux deux joueurs")
+            return
+        }
+
+        if( pseudo1.length > 30) {
+            afficherDialog("Nom de joueur trop long", raison = "Le nom du joueur 1 a trop de caractères",
+                message = "le nom du joueur ne doit pas dépasser de 30 caractères")
+            return
+        }
+        if(pseudo2.length > 30) {
+            afficherDialog("Nom de joueur trop long", raison = "Le nom du joueur 2 a trop de caractères",
+                message = "le nom du joueur ne doit pas dépasser de 30 caractères")
             return
         }
 
@@ -76,37 +88,14 @@ class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<Actio
     }
 
     /**
-     * fonction qui affiche une boîte de dialogue (erreur) pour informer que les deux joueurs ont le même nom
+     * affiche les messages d'erreurs sur la saisie des pseudos
      */
-    fun memePseudo() {
-        val dialog = Alert(Alert.AlertType.ERROR)
-        dialog.title = "Mauvais nom de joueur"
-        dialog.headerText = "Les deux joueurs ont le même nom !"
-        dialog.contentText = "Merci de mettre un pseudo différent aux deux joueurs"
-        dialog.showAndWait()
-    }
 
-    /**
-     * fonction qui affiche une boîte de dialogue (erreur) pour informer que le nom du joueur n est invalide
-     * @param: numéro de joueur affiché dans la boîte de dialogue dont le nom est invalide (1 ou 2)
-     */
-    fun mauvaisPseudo(n: Int) {
+    fun afficherDialog(titre : String,message : String,raison : String) {
         val dialog = Alert(Alert.AlertType.ERROR)
-        dialog.title = "Mauvais nom de joueur"
-        dialog.headerText = "Le nom du joueur ${n} est invalide !"
-        dialog.contentText = "caractères de l'alphabet et chiffres uniquement et sans espaces"
+        dialog.title = titre
+        dialog.headerText = raison
+        dialog.contentText = message
         dialog.showAndWait()
     }
-
-    /**
-     * fonction qui affiche une boîte de dialogue (erreur) pour informer que le nombre de coups sans prise maximum est invalide
-     */
-    fun mauvaisCoupMax() {
-        val dialog = Alert(Alert.AlertType.ERROR)
-        dialog.title = "Mauvais nombre de coups sans prise max"
-        dialog.headerText = "Le nombre de coups sans prise maximum est invalide !"
-        dialog.contentText = "Merci de choisir nombre valide entre 1 et 99"
-        dialog.showAndWait()
-    }
-    
 }
