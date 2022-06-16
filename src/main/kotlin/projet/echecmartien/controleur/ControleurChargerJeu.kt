@@ -4,6 +4,7 @@ import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.control.Alert
+import javafx.scene.input.KeyEvent
 import javafx.scene.input.MouseEvent
 import projet.echecmartien.librairie.JoueurIA
 import projet.echecmartien.modele.GrandPion
@@ -58,11 +59,10 @@ class ControleurChargerJeu(scene: Scene, vue: VueChargerJeu): EventHandler<Actio
         val j2 = joueurs[1]!!
         val controleurClick = ControleurJeu(scene, vueJeu, jeu, j1, j2, saveFile)
         val controleurRegles = ControleurRegles(scene, vueJeu)
-        val controleurParametres = ControleurParametres(scene, vueJeu)
         val controleurSave = ControleurSauvegardeJeu(jeu, j2 is JoueurIA, saveFile)
         val controleurBack = ControleurQuitterJeu(jeu, scene, saveFile, j2 is JoueurIA)
         vueJeu.playGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, controleurClick)
-        vueJeu.buttonParam.addEventHandler(ActionEvent.ACTION, controleurParametres)
+        vueJeu.addEventHandler(KeyEvent.KEY_PRESSED, ControleurParametresRaccourci(scene, vueJeu))
         vueJeu.buttonRules.addEventHandler(ActionEvent.ACTION, controleurRegles)
         vueJeu.buttonSave.addEventHandler(ActionEvent.ACTION, controleurSave)
         vueJeu.buttonBack.addEventHandler(ActionEvent.ACTION, controleurBack)

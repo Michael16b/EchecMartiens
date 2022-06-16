@@ -29,13 +29,6 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
-            <version>15</version>
-            <type>pom</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-media</artifactId>
             <version>18.0.1</version>
         </dependency>
         <dependency>
