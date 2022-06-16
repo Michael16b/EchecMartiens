@@ -4,7 +4,7 @@ import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.stage.Stage
 
-class ControleurFullScreen(primaryStage: Stage): EventHandler<ActionEvent> {
+class ControleurPleinEcran(primaryStage: Stage): EventHandler<ActionEvent> {
 
     val stage : Stage
 

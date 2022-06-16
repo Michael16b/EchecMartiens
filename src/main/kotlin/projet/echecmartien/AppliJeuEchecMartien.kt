@@ -3,10 +3,12 @@ package projet.echecmartien
 import javafx.application.Application
 import javafx.event.ActionEvent
 import javafx.scene.Scene
+import javafx.scene.input.KeyCombination
 import javafx.stage.Stage
 import javafx.stage.WindowEvent
 import projet.echecmartien.controleur.*
 import projet.echecmartien.vue.VuePrincipale
+import kotlin.system.exitProcess
 
 class AppliJeuEchecMartien: Application() {
 
@@ -35,11 +37,9 @@ class AppliJeuEchecMartien: Application() {
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toString())
 
 
-        // Ajouter de la musique
-        // val media = Media(AppliJeuEchecMartien::class.java.getResource("CRSoundTrack.mp3")!!.toExternalForm())
-
-        //val mediaPlayer = MediaPlayer(media)
-        //mediaPlayer.play();
+        primaryStage.isResizable = false
+        primaryStage.fullScreenExitHint = ""
+        primaryStage.fullScreenExitKeyCombination = KeyCombination.NO_MATCH
 
         primaryStage.minHeight = sceneHeight+40.0
         primaryStage.minWidth = sceneWidth+15.0

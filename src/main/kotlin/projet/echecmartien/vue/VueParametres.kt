@@ -1,13 +1,10 @@
 package projet.echecmartien.vue
 
 
-import javafx.event.ActionEvent
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.layout.BorderPane
-import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
-import projet.echecmartien.controleur.ControleurFullScreen
 
 
 class VueParametres : BorderPane() {
