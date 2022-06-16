@@ -11,6 +11,7 @@ import projet.echecmartien.modele.Joueur
 import projet.echecmartien.vue.VueJeu
 import projet.echecmartien.vue.VuePrincipale
 import java.io.File
+import java.nio.file.Paths
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -41,13 +42,13 @@ class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<Actio
 
         if (pseudo1 == "" || !pseudo1.matches("^[a-zA-Z0-9]*$".toRegex())) {
             afficherDialog("Mauvais nom de joueur","Le nom du joueur 1 est invalide !",
-                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisées")
+                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisés")
             return
         }
 
         if (pseudo2 == "" || !pseudo2.matches("^[a-zA-Z0-9]*$".toRegex())) {
             afficherDialog("Mauvais nom de joueur","Le nom du joueur 2 est invalide !",
-                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisées")
+                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisés")
             return
         }
 
@@ -75,10 +76,10 @@ class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<Actio
         jeu.initialiserPartie(j1, j2, coupsMax)
         val vueJeu = VueJeu()
 
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss.SSS")
         val time = LocalDateTime.now().format(formatter)
 
-        val file = File("${getBaseDir()}/$time.json")
+        val file = File(Paths.get("${getBaseDir()}/$time.json").toAbsolutePath().toString())
         val saveFile = if (file.exists())
             chercherNomDispo() else "$time.json"
 

@@ -321,7 +321,8 @@ class Jeu {
         val writer: FileWriter
         try {
             writer = FileWriter(filepath)
-        } catch (_: java.lang.Exception){
+        } catch (e: java.lang.Exception){
+            println(e.printStackTrace())
             return false
         }
         try {

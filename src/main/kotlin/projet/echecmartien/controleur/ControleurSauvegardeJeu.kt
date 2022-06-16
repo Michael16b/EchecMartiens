@@ -5,6 +5,8 @@ import javafx.event.EventHandler
 import javafx.scene.control.Alert
 import projet.echecmartien.modele.Jeu
 import java.io.File
+import java.nio.file.Path
+import java.nio.file.Paths
 
 class ControleurSauvegardeJeu (modele: Jeu, ia: Boolean, saveFile: String): EventHandler<ActionEvent> {
 
@@ -19,10 +21,22 @@ class ControleurSauvegardeJeu (modele: Jeu, ia: Boolean, saveFile: String): Even
     }
 
     override fun handle(Event: ActionEvent) {
-        sauvegarderJeu(modele, saveFile, ia)
-        val dialog = Alert(Alert.AlertType.INFORMATION)
-        dialog.title = "Partie sauvegardée"
-        dialog.headerText = "La partie a été sauvegardée !"
+        val res = sauvegarderJeu(modele, saveFile, ia)
+
+        val dialog: Alert
+        if (res) {
+            dialog = Alert(Alert.AlertType.INFORMATION)
+            dialog.headerText = "La partie a été sauvegardée !"
+        } else {
+            dialog = Alert(Alert.AlertType.ERROR)
+            dialog.headerText = "Attention, a partie n'a pas pu être sauvegardée !"
+        }
+
+        dialog.title = "Sauvegarde de partie"
+
+
+
+
         dialog.showAndWait()
     }
 }
@@ -41,10 +55,10 @@ fun chercherNomDispo() : String {
     return filename
 }
 
-fun getBaseDir() : String = "${System.getProperty("user.home")}/.echecsMartiens/sauvegardes"
+fun getBaseDir() : String = Paths.get("${System.getProperty("user.home")}/.echecsMartiens/sauvegardes").toAbsolutePath().toString()
 
-fun sauvegarderJeu(modele: Jeu, saveFile: String, ia: Boolean) {
+fun sauvegarderJeu(modele: Jeu, saveFile: String, ia: Boolean): Boolean {
     val file = File(getBaseDir())
     file.mkdirs()
-    modele.serialiser("${getBaseDir()}/$saveFile", ia)
+    return modele.serialiser(Paths.get("${getBaseDir()}/$saveFile").toAbsolutePath().toString(), ia)
 }

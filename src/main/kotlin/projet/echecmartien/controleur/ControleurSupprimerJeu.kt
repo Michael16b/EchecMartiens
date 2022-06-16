@@ -9,13 +9,11 @@ import javafx.scene.control.ButtonType
 import projet.echecmartien.vue.VueChargerJeu
 import java.io.File
 
-class ControleurSupprimerJeu (scene: Scene, vue: VueChargerJeu): EventHandler<ActionEvent> {
+class ControleurSupprimerJeu (vue: VueChargerJeu): EventHandler<ActionEvent> {
 
-    private val scene: Scene
     private val vue: VueChargerJeu
 
     init {
-        this.scene = scene
         this.vue = vue
     }
 
@@ -23,7 +21,7 @@ class ControleurSupprimerJeu (scene: Scene, vue: VueChargerJeu): EventHandler<Ac
         val item = vue.myListSave.selectionModel.selectedItem
 
         if (item == null) {
-            vue.showDialog("Supprimer une partie", "Aucune partie n'est sélectionnée")
+            vue.showDialog("Supprimer une partie", "Aucune partie n'est sélectionnée", Alert.AlertType.ERROR)
             return
         }
 
@@ -45,7 +43,7 @@ class ControleurSupprimerJeu (scene: Scene, vue: VueChargerJeu): EventHandler<Ac
         vue.tabFichiers.remove(item)
 
         if (!file.exists()) {
-            vue.showDialog("Supprimer une partie", "La partie n'existe $item pas ou plus.")
+            vue.showDialog("Supprimer une partie", "La partie n'existe $item pas ou plus.", Alert.AlertType.ERROR)
             return
         }
 
