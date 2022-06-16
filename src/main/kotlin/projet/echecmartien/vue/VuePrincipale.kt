@@ -97,9 +97,9 @@ class VuePrincipale: BorderPane() {
 
         /* bottom */
         buttonNewGame.prefHeight = 70.0
-        buttonNewGame.prefWidth = 150.0
+        buttonNewGame.prefWidth = 200.0
         buttonLoadGame.prefHeight = 70.0
-        buttonLoadGame.prefWidth = 150.0
+        buttonLoadGame.prefWidth = 200.0
         buttonNewGame.font = buttonFont
         buttonLoadGame.font = buttonFont
         bottomContainer.children.addAll(buttonNewGame, buttonLoadGame)
@@ -121,7 +121,8 @@ class VuePrincipale: BorderPane() {
         gridPlayer2Container.spacing = 20.0
         gridPlayer2Container.alignment = Pos.CENTER_LEFT
         gridIAContainer.children.addAll(labelIA, comboBoxIA)
-        gridIAContainer.spacing = 80.0
+        gridIAContainer.spacing = 20.0
+        gridIAContainer.alignment = Pos.BASELINE_RIGHT
 
         coupsMaxContainer.children.addAll(labelCoups, textFieldCoups)
         coupsMaxContainer.spacing = 20.0

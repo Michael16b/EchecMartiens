@@ -17,6 +17,7 @@ class VueChargerJeu: BorderPane()  {
 
     val conteneurgauche = VBox()
 
+
     val CasesBoutonRadio = GridPane()
     val CasesBoutons = VBox()
     val boutonChargerPartie = Button("Charger partie")
@@ -30,6 +31,9 @@ class VueChargerJeu: BorderPane()  {
         this.style="-fx-background-color: #c3b9ea "
 
         conteneurgauche.padding = Insets(0.0,0.0,0.0,100.0)
+        val titreConteneurGauche = Label("Liste des parties enregistrées")
+        titreConteneurGauche.style = "-fx-font-style : 'Cambria'"
+        titreConteneurGauche.labelFor = conteneurgauche
 
         this.TitrePage = Label("Charger la partie")
         this.TitrePage.style = "-fx-font-style : 'Cambria'"
@@ -37,7 +41,6 @@ class VueChargerJeu: BorderPane()  {
         this.top = this.TitrePage
         BorderPane.setAlignment(this.TitrePage,Pos.TOP_CENTER)
         this.TitrePage.padding = Insets(40.0,0.0,100.0,0.0)
-
 
         this.left = conteneurgauche
         BorderPane.setAlignment(conteneurgauche,Pos.CENTER_LEFT)
@@ -64,9 +67,9 @@ class VueChargerJeu: BorderPane()  {
 
         CasesBoutons.padding = Insets(20.0,100.0,0.0,0.0)
         CasesBoutons.spacing = 40.0
-        boutonRetour.setPrefSize(150.0,70.0)
-        boutonChargerPartie.setPrefSize(150.0,70.0)
-        boutonSupprimerPartie.setPrefSize(150.0,70.0)
+        boutonRetour.setPrefSize(200.0,70.0)
+        boutonChargerPartie.setPrefSize(200.0,70.0)
+        boutonSupprimerPartie.setPrefSize(200.0,70.0)
         this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRetour)
         setMargin(CasesBoutons,Insets(0.0))
     }
