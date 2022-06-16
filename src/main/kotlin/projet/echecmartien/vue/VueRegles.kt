@@ -4,6 +4,7 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
+import javafx.scene.image.ImageView
 import javafx.scene.layout.*
 
 class VueRegles: BorderPane() {
@@ -75,6 +76,13 @@ class VueRegles: BorderPane() {
         orga.add(labelException, 1, 3)
         orga.add(labelFinTitre, 1, 4)
         orga.add(labelFinPartie, 1, 5)
+
+        val image = ImageView(javaClass.getResource("/plateau.png")?.toExternalForm())
+        image.isPreserveRatio = true
+        image.fitHeight = 400.0
+        val imageContainer = HBox(image)
+        imageContainer.alignment = Pos.BOTTOM_CENTER
+        orga.add(imageContainer, 0, 0, 1, 3)
 
         //orga.isGridLinesVisible = true
 
