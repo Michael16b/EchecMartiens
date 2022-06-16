@@ -188,7 +188,7 @@ class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, jou
         val vuePartieTerminee = VuePartieTerminee()
         vuePartieTerminee.BoutonQuitter.addEventHandler(ActionEvent.ACTION, ControleurQuitterJeuApresFin(scene))
         vuePartieTerminee.BoutonRejouer.addEventHandler(ActionEvent.ACTION, ControleurRejouer(modele, scene,
-            j2 is JoueurIA, j1.getPseudo(), j2.getPseudo(), saveFile))
+            j2 is JoueurIA, j1.getPseudo(), j2.getPseudo()))
         vuePartieTerminee.setJoueurVainqueur(modele.joueurVainqueur(), j1.calculerScore())
         scene.root = vuePartieTerminee
     }

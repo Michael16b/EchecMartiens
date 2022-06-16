@@ -84,7 +84,7 @@ class VuePrincipale: BorderPane() {
         /* top */
         rulesContainer.children.add(buttonRules)
         rulesContainer.alignment = Pos.TOP_RIGHT
-        rulesContainer.padding = Insets(2.0)
+        rulesContainer.padding = Insets(10.0)
         buttonRules.font = buttonFont
 
         labelTitle.font = Font.font(Font.getDefault().toString(), 50.0)
