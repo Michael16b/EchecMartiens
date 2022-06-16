@@ -47,6 +47,9 @@ class ControleurQuitterJeu (modele: Jeu, scene: Scene, saveFile: String, ia: Boo
             val controleurChargerJeuVue = ControleurChargerJeuVue(scene, vue)
             vue.buttonLoadGame.addEventHandler(ActionEvent.ACTION,controleurChargerJeuVue)
 
+            val controleurParametres = ControleurParametres(scene, vue)
+            vue.buttonParam.addEventHandler(ActionEvent.ACTION,controleurParametres)
+
             scene.root = vue
         }
     }
