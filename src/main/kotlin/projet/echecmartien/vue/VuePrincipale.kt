@@ -16,7 +16,9 @@ class VuePrincipale: BorderPane() {
 
     val bottomContainer: HBox
     val topContainer: VBox
+    val topButtonsContainer : HBox
     val rulesContainer: HBox
+    val musicContainer : HBox
     val titleContainer: HBox
     val playerGrid: GridPane
     val gridVerticalAlignContainer: VBox
@@ -29,6 +31,7 @@ class VuePrincipale: BorderPane() {
     val buttonNewGame: Button
     val buttonLoadGame: Button
     val buttonRules: Button
+    val buttonMusic : Button
 
     val labelPlayer1: Label
     val labelPlayer2: Label
@@ -50,7 +53,9 @@ class VuePrincipale: BorderPane() {
 
         bottomContainer = HBox()
         topContainer = VBox()
+        topButtonsContainer = HBox()
         rulesContainer = HBox()
+        musicContainer = HBox()
         titleContainer = HBox()
         playerGrid = GridPane()
         gridVerticalAlignContainer = VBox()
@@ -63,6 +68,7 @@ class VuePrincipale: BorderPane() {
         buttonNewGame = Button("Nouvelle partie")
         buttonLoadGame = Button("Charger partie")
         buttonRules = Button("Règles du jeu")
+        buttonMusic = Button("Musique")
 
         labelPlayer1 = Label("Joueur 1:")
         labelPlayer2 = Label("Joueur 2:")
@@ -83,16 +89,26 @@ class VuePrincipale: BorderPane() {
         val buttonFont = Font.font(Font.getDefault().toString(), 15.0)
         /* top */
         rulesContainer.children.add(buttonRules)
-        rulesContainer.alignment = Pos.TOP_RIGHT
+        //rulesContainer.alignment = Pos.TOP_RIGHT
         rulesContainer.padding = Insets(10.0)
         buttonRules.font = buttonFont
+
+        musicContainer.children.add(buttonMusic)
+        //musicContainer.alignment = Pos.TOP_LEFT
+        musicContainer.padding = Insets(10.0)
+        buttonMusic.font = buttonFont
+
+        topButtonsContainer.children.addAll(musicContainer, rulesContainer)
+        topButtonsContainer.prefWidth = Double.MAX_VALUE
+        topButtonsContainer.alignment = Pos.CENTER
 
         labelTitle.font = Font.font(Font.getDefault().toString(), 50.0)
         titleContainer.children.add(labelTitle)
         titleContainer.alignment = Pos.CENTER
         titleContainer.prefHeight = 200.0
 
-        topContainer.children.addAll(rulesContainer, titleContainer)
+        topContainer.children.addAll(topButtonsContainer, titleContainer)
+        topContainer.prefWidth = Double.MAX_VALUE
         this.top = topContainer
 
         /* bottom */
