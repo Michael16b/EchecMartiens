@@ -95,7 +95,6 @@ class VueJeu: BorderPane() {
         /* Arbre de la scène */
 
         /* center */
-
         val cellWidth = 90.0
         val cellHeight = 80.0
         for (i in 0 until TAILLEVERTICALE) {
