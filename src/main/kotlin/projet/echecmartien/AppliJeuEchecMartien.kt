@@ -3,6 +3,7 @@ package projet.echecmartien
 import javafx.application.Application
 import javafx.event.ActionEvent
 import javafx.scene.Scene
+import javafx.scene.image.Image
 import javafx.scene.input.KeyCombination
 import javafx.stage.Stage
 import javafx.stage.WindowEvent
@@ -13,7 +14,9 @@ class AppliJeuEchecMartien: Application() {
 
     override fun start(primaryStage: Stage) {
         // Ajout icone
-        //primaryStage.icons.add(javafx.scene.image.Image("file:ressources/images/icon.png"))
+        val icon = Image(javaClass.getResourceAsStream("icone.png")!!)
+        primaryStage.icons.add(icon);
+
         val root = VuePrincipale()
 
         val sceneWidth = 1100.0
