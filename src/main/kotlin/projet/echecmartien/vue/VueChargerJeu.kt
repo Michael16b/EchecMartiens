@@ -1,19 +1,16 @@
 package projet.echecmartien.vue
 
-import javafx.collections.FXCollections
 import javafx.collections.FXCollections.observableArrayList
 import javafx.collections.ObservableList
 import javafx.geometry.Insets
 import javafx.geometry.Pos
-import javafx.scene.control.*
+import javafx.scene.control.Button
+import javafx.scene.control.Label
+import javafx.scene.control.ListView
 import javafx.scene.layout.*
-import org.controlsfx.control.textfield.CustomTextField
-import java.io.File
 
 
-class ChargerJeu(str : String = "LoadGames"): BorderPane()  {
-
-    var TitrePageBandeau = str
+class ChargerJeu(): BorderPane()  {
 
     var TitrePage = Label()
 
@@ -26,7 +23,6 @@ class ChargerJeu(str : String = "LoadGames"): BorderPane()  {
     val boutonRetour = Button("Retour")
 
     val myListSave: ListView<String>
-    //var tabFichiers : ObservableList<String>
     var tabFichiers : ObservableList<String>
 
     init{
@@ -46,7 +42,6 @@ class ChargerJeu(str : String = "LoadGames"): BorderPane()  {
         BorderPane.setAlignment(conteneurgauche,Pos.CENTER_LEFT)
 
         tabFichiers = observableArrayList()
-        getSaveName()
         myListSave = ListView<String>()
         myListSave.items = tabFichiers
         conteneurgauche.children.addAll(myListSave)
@@ -73,17 +68,10 @@ class ChargerJeu(str : String = "LoadGames"): BorderPane()  {
         boutonSupprimerPartie.setPrefSize(150.0,70.0)
         this.CasesBoutons.children.addAll(boutonChargerPartie,boutonSupprimerPartie,boutonRetour)
         setMargin(CasesBoutons,Insets(0.0))
-
     }
 
-    private fun getSaveName() {
-        val file = File(System.getProperty("user.home")+ "/.echecsMartiens"+"/.sauvegardes")
-        val listFiles = file.listFiles()
-        if (listFiles != null) {
-              for (i in listFiles) {
-                  tabFichiers.add(i.name)
-              }
-        }
+    fun ajouterSauvegardes(sauvegardes: List<String>) {
+        tabFichiers.addAll(sauvegardes)
     }
 
 

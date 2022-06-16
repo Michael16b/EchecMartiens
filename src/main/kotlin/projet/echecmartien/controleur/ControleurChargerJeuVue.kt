@@ -5,6 +5,7 @@ import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.layout.Region
 import projet.echecmartien.vue.ChargerJeu
+import java.io.File
 
 class ControleurChargerJeuVue(scene: Scene, oldVue: Region): EventHandler<ActionEvent> {
 
@@ -20,6 +21,15 @@ class ControleurChargerJeuVue(scene: Scene, oldVue: Region): EventHandler<Action
         val vueLoadGame = ChargerJeu()
         val controleurRetourDepuisVue = ControleurRetourDepuisVue(scene, oldVue)
         vueLoadGame.boutonRetour.addEventHandler(ActionEvent.ACTION, controleurRetourDepuisVue)
+
+
+        val sauvegardes: List<String>
+
+        val file = File(getBaseDir())
+        val listFiles = file.listFiles()
+        sauvegardes = listFiles?.map {it.name.removeSuffix(".json")}?.sorted() ?: listOf()
+
+        vueLoadGame.ajouterSauvegardes(sauvegardes)
         scene.root = vueLoadGame
     }
 
