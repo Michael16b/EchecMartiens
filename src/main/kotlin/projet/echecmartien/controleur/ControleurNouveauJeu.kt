@@ -42,13 +42,13 @@ class ControleurNouveauJeu(scene: Scene, vue: VuePrincipale): EventHandler<Actio
 
         if (pseudo1 == "" || !pseudo1.matches("^[a-zA-Z0-9]*$".toRegex())) {
             afficherDialog("Mauvais nom de joueur","Le nom du joueur 1 est invalide !",
-                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisées")
+                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisés")
             return
         }
 
         if (pseudo2 == "" || !pseudo2.matches("^[a-zA-Z0-9]*$".toRegex())) {
             afficherDialog("Mauvais nom de joueur","Le nom du joueur 2 est invalide !",
-                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisées")
+                " Seuls les lettres et les chiffres de l'alphabet peuvent être uilisés")
             return
         }
 
