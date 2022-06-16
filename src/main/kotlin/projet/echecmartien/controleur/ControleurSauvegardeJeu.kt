@@ -48,5 +48,5 @@ fun getBaseDir() : String = "${System.getProperty("user.home")}/.echecsMartiens/
 fun sauvegarderJeu(modele: Jeu, saveFile: String, ia: Boolean) {
     val file = File(getBaseDir())
     file.mkdirs()
-    modele.serialiser(saveFile, ia)
+    modele.serialiser("${getBaseDir()}/$saveFile", ia)
 }

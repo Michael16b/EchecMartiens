@@ -10,7 +10,7 @@ import javafx.scene.control.ListView
 import javafx.scene.layout.*
 
 
-class ChargerJeu(): BorderPane()  {
+class VueChargerJeu: BorderPane()  {
 
     var TitrePage = Label()
 

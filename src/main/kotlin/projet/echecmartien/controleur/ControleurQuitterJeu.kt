@@ -33,7 +33,10 @@ class ControleurQuitterJeu (modele: Jeu, scene: Scene, saveFile: String, ia: Boo
 
         val result = dialog.result
         if (result == ButtonType.OK) {
+            println("sauvegarde")
             sauvegarderJeu(modele, saveFile, ia)
+        }
+        if (result == ButtonType.OK || result == ButtonType.CANCEL) {
             val vue = VuePrincipale()
 
             val controleurReglesVue = ControleurRegles(scene, vue)

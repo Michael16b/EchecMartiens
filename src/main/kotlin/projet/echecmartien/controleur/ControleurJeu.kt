@@ -229,6 +229,5 @@ class ControleurJeu(scene: Scene, vue: VueJeu, modele: Jeu, joueur1: Joueur, jou
 
             }
         }
-
     }
 }
