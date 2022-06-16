@@ -7,6 +7,7 @@ import javafx.scene.layout.*
 import javafx.scene.text.Font
 import javafx.util.converter.IntegerStringConverter
 import java.util.function.UnaryOperator
+import kotlin.system.exitProcess
 
 
 class VuePrincipale: BorderPane() {
@@ -29,6 +30,9 @@ class VuePrincipale: BorderPane() {
     val buttonLoadGame: Button
     val buttonRules: Button
     val buttonParam : Button
+    val buttonQuitter : Button
+
+
 
     val labelPlayer1: Label
     val labelPlayer2: Label
@@ -66,6 +70,10 @@ class VuePrincipale: BorderPane() {
         buttonLoadGame = Button("Charger partie")
         buttonRules = Button("Règles du jeu")
         buttonParam = Button("Paramètres")
+        buttonQuitter = Button("Quitter")
+        buttonQuitter.setOnMouseClicked{
+            exitProcess(0)
+        }
 
         labelPlayer1 = Label("Joueur 1:")
         labelPlayer2 = Label("Joueur 2:")
@@ -112,13 +120,15 @@ class VuePrincipale: BorderPane() {
         this.top = topContainer
 
         /* bottom */
+        buttonQuitter.prefHeight =70.0
+        buttonQuitter.prefWidth = 200.0
         buttonNewGame.prefHeight = 70.0
         buttonNewGame.prefWidth = 200.0
         buttonLoadGame.prefHeight = 70.0
         buttonLoadGame.prefWidth = 200.0
         buttonNewGame.font = buttonFont
         buttonLoadGame.font = buttonFont
-        bottomContainer.children.addAll(buttonNewGame, buttonLoadGame)
+        bottomContainer.children.addAll(buttonNewGame, buttonLoadGame, buttonQuitter)
         bottomContainer.alignment = Pos.CENTER
         bottomContainer.spacing = 100.0
         bottomContainer.prefHeight = 300.0
@@ -151,6 +161,7 @@ class VuePrincipale: BorderPane() {
         this.buttonRules.styleClass.add("button")
         this.buttonNewGame.styleClass.add("button")
         this.buttonLoadGame.styleClass.add("button")
+        this.buttonQuitter.styleClass.add("button")
         // Label
         this.labelTitle.styleClass.add("MainTitle")
         this.labelPlayer1.styleClass.add("LabelBase")
