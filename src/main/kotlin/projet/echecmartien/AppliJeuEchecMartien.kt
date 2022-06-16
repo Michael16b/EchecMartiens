@@ -30,8 +30,8 @@ class AppliJeuEchecMartien: Application() {
         val controleurParametres = ControleurParametres(scene, root)
         root.buttonParam.addEventHandler(ActionEvent.ACTION,controleurParametres)
 
-        val controleurWindow = ControleurFermerJeu(scene)
-        primaryStage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, controleurWindow)
+        val controleurFenetre = ControleurFermerJeu(scene)
+        primaryStage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, controleurFenetre)
         scene.stylesheets.add(AppliJeuEchecMartien::class.java.getResource("style.css")!!.toString())
 
 
