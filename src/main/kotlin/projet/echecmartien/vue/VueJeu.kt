@@ -168,7 +168,7 @@ class VueJeu: BorderPane() {
 
         pionsP1.vgap = 10.0
         pionsP1.hgap = 25.0
-        pionsP1.style = "-fx-border-color: black;"
+        pionsP1.style = "-fx-border-color: white;"
         pionsP1.padding = Insets(10.0)
         pionsP1.prefWidth = 200.0
 
@@ -191,7 +191,7 @@ class VueJeu: BorderPane() {
 
         pionsP2.vgap = 10.0
         pionsP2.hgap = 25.0
-        pionsP2.style = "-fx-border-color: black;"
+        pionsP2.style = "-fx-border-color: white;"
         pionsP2.padding = Insets(10.0)
         pionsP2.prefWidth = 200.0
 

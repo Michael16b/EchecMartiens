@@ -8,7 +8,6 @@ import javafx.stage.Stage
 import javafx.stage.WindowEvent
 import projet.echecmartien.controleur.*
 import projet.echecmartien.vue.VuePrincipale
-import kotlin.system.exitProcess
 
 class AppliJeuEchecMartien: Application() {
 
