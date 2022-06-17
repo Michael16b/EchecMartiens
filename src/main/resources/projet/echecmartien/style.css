@@ -1,7 +1,7 @@
 /* VuePrincipal */
 .main {
  -fx-background-color: white;
- -fx-background-image: url("space.jpg");
+ -fx-background-image: url("space.png");
  -fx-background-position: center;
  -fx-background-repeat:  no-repeat;
  -fx-background-size: cover;
@@ -18,7 +18,7 @@
 
 .chargerJeu {
     -fx-background-color: white;
-    -fx-background-image: url("space.jpg");
+    -fx-background-image: url("space.png");
     -fx-background-position: center;
     -fx-background-repeat:  no-repeat;
     -fx-background-size: cover;
